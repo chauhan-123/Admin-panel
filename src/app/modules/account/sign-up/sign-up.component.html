@@ -1,0 +1,61 @@
+<mat-card class="accout_wrapper login-card" style="min-width: 300px;
+max-width: 600px;
+width: auto;">
+    <!-- <div class="logo_blk"><img src="assets/images/logo.png" alt=""></div>  -->
+    <div class="header-card">
+        <h2>Sign Up Now</h2>
+        <p>Please Enter User Details</p>
+    </div>
+
+    <mat-card-content>
+        <form [formGroup]="signForm" (ngSubmit)="signForm.valid&&signup()">
+            <mat-form-field>
+                <input matInput required placeholder="First Name" name="firstname" formControlName="name">
+                <mat-error *ngIf="signForm['controls']['name']['errors']">
+                    {{getValidationError(signForm['controls']['name'],'name')}}</mat-error>
+                <mat-icon matPrefix>person</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput required placeholder="Email Address" name="username" formControlName="email">
+                <mat-error *ngIf="signForm['controls']['email']['errors']">
+                    {{getValidationError(signForm['controls']['email'],'email')}}</mat-error>
+                <mat-icon matPrefix>mail</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput required placeholder="Address" name="lastname" formControlName="address">
+                <mat-error *ngIf="signForm['controls']['address']['errors']">
+                    {{getValidationError(signForm['controls']['address'],'address')}}</mat-error>
+                <mat-icon matPrefix>account_balance</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput required placeholder="Password" formControlName="password" [type]="hide ? 'password' :
+         'text'">
+                <mat-error *ngIf="signForm['controls']['password']['errors']">
+                    {{getValidationError(signForm['controls']['password'],'password')}}</mat-error>
+                <mat-icon matPrefix>vpn_key</mat-icon>
+                <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' :
+         'visibility'}}</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput required placeholder="Confirm Password" formControlName="confirmPassword" [type]="hide ? 'password' :
+              'text'">
+                <mat-error *ngIf="signForm['controls']['confirmPassword']['errors']">
+                    {{getValidationError(signForm['controls']['confirmPassword'],'confirmPassword')}}</mat-error>
+                <mat-icon matPrefix>vpn_key</mat-icon>
+                <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' :
+              'visibility'}}</mat-icon>
+            </mat-form-field>
+            <mat-card-actions class="text-center">
+                <button mat-raised-button type="submit" color="primary">Sign Up Now</button>
+
+            </mat-card-actions>
+
+
+
+
+        </form>
+
+    </mat-card-content>
+
+</mat-card>
