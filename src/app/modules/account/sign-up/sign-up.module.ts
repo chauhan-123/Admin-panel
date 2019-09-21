@@ -8,9 +8,12 @@ import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+
+  MAT_DIALOG_DATA
 } from '@angular/material';
 import { AccountService } from '../account.service';
+// import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 const signUpRoute:Routes =[
   {path:'',component:SignUpComponent}
@@ -27,8 +30,11 @@ const signUpRoute:Routes =[
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+
   ],
-  providers:[AccountService]
+  providers:[AccountService
+  ],
+  // entryComponents:[SnackbarComponent]
 })
 export class SignUpModule { }

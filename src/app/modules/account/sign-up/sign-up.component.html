@@ -10,9 +10,9 @@ width: auto;">
     <mat-card-content>
         <form [formGroup]="signForm" (ngSubmit)="signForm.valid&&signup()">
             <mat-form-field>
-                <input matInput required placeholder="First Name" name="firstname" formControlName="name">
-                <mat-error *ngIf="signForm['controls']['name']['errors']">
-                    {{getValidationError(signForm['controls']['name'],'name')}}</mat-error>
+                <input matInput required placeholder="First Name" firstName="firstname" formControlName="firstName">
+                <mat-error *ngIf="signForm['controls']['firstName']['errors']">
+                    {{getValidationError(signForm['controls']['firstName'],'firstName')}}</mat-error>
                 <mat-icon matPrefix>person</mat-icon>
             </mat-form-field>
             <mat-form-field>
@@ -20,6 +20,12 @@ width: auto;">
                 <mat-error *ngIf="signForm['controls']['email']['errors']">
                     {{getValidationError(signForm['controls']['email'],'email')}}</mat-error>
                 <mat-icon matPrefix>mail</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput required placeholder="Phone number" phone="phone" formControlName="phone">
+                <mat-error *ngIf="signForm['controls']['phone']['errors']">
+                    {{getValidationError(signForm['controls']['phone'],'phone')}}</mat-error>
+                <mat-icon matPrefix>settings_cell</mat-icon>
             </mat-form-field>
             <mat-form-field>
                 <input matInput required placeholder="Address" name="lastname" formControlName="address">
@@ -37,7 +43,7 @@ width: auto;">
                 <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' :
          'visibility'}}</mat-icon>
             </mat-form-field>
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <input matInput required placeholder="Confirm Password" formControlName="confirmPassword" [type]="hide ? 'password' :
               'text'">
                 <mat-error *ngIf="signForm['controls']['confirmPassword']['errors']">
@@ -45,7 +51,7 @@ width: auto;">
                 <mat-icon matPrefix>vpn_key</mat-icon>
                 <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' :
               'visibility'}}</mat-icon>
-            </mat-form-field>
+            </mat-form-field> -->
             <mat-card-actions class="text-center">
                 <button mat-raised-button type="submit" color="primary">Sign Up Now</button>
 

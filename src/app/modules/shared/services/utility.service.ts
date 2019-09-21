@@ -2,14 +2,25 @@ import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import {PATTERN} from '../../../constant/pattern';
 import{VALIDATION_CRITERIA} from '../../../constant/validation-criteria';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilityService {
 
-  constructor() { }
+    constructor(
+        ) {
+    }
 
+  public static loader = new BehaviorSubject<boolean>(false);
+
+//   showAlert(message, type?) {
+//     this._snackBar.open(message, 'Close', {
+//         duration: 3000,
+//     });
+// }
   trim(data) {
     for (const item in data) {
         if (typeof data[item] === 'string') {
@@ -68,4 +79,26 @@ getLocationFormControl(required = true) {
       compose
   )];
 }
+
+getPhoneFormControl(required=true, maxLength='phoneMaxLength'){
+    let compose = [
+        Validators.pattern(PATTERN.phone),
+        Validators.minLength(VALIDATION_CRITERIA.phoneMinLength),
+        Validators.maxLength(VALIDATION_CRITERIA[maxLength])
+    ];
+
+    if (required) {
+        compose.splice(0, 0, Validators.required);
+    }
+
+    return ['', Validators.compose(
+        compose
+    )];
+}
+  
+
+
+
+
+
 }

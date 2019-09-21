@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AccountService {
+  
   baseUrl="http://localhost:3002/"
   subscribe:any;
   // Observable:any;
@@ -38,12 +39,14 @@ export class AccountService {
  createSignUpForm() {
   return this._formBuilder.group(
     {
-      name:this._utilityService.getNameFormControl(),
+      firstName:this._utilityService.getNameFormControl(),
       email:this._utilityService.getEmailFormControl(), 
+      phone:this._utilityService.getPhoneFormControl(),
+      // status:
       address:this._utilityService.getLocationFormControl(),
       termsAndCondition:[true],
       password:this._utilityService.getPasswordFormControl(),
-      confirmPassword:this._utilityService.getPasswordFormControl()  
+      // confirmPassword:this._utilityService.getPasswordFormControl()  
     },
     {
       // validator: this.matchPassword
@@ -67,10 +70,10 @@ createForgotForm() {
  login(data) {
   data = this._utilityService.trim(data);
   console.log(data,'outside');
-  this.httpclient.post(`${this.baseUrl}login`,data).subscribe()
-  console.log(data,'inside');
-  // this._router.navigate(['admin/home']);
-
+  this.httpclient.post(`${this.baseUrl}login`,data).subscribe(response =>{
+  console.log(response,'inside');
+  //  this._router.navigate(['/admin/home']);
+  });
 
   // response =>{
       // console.log(response)
@@ -92,7 +95,9 @@ createForgotForm() {
 signup(data) {
   data = this._utilityService.trim(data);
   console.log(data);
-  return this.httpclient.post(`${this.baseUrl}registration`, data);
+  return this.http.post(`${this.baseUrl}registration`, data);
+ 
+  
 
   // this.httpclient.post('http://localhost:3002/registration', data); 
   // this.http.post("http://127.0.0.1:3000/signup",{data}).subscribe(
@@ -138,5 +143,10 @@ checkEmail(data) {
 getValidationError(control:FormControl,name) {
   return ''
 }
+  
+
+// showAlert(status) {
+//   this._utilityService.showAlert(COMMON_MESSAGES[status]('Subscription'));
+// }
 
 }

@@ -4,6 +4,9 @@ import {RouterModule,Routes} from '@angular/router';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
+import { AccountService } from './account.service';
+
+
 
 const accountRoute: Routes=[
   { path:'',redirectTo:'login',pathMatch:'full'},
@@ -19,7 +22,11 @@ const accountRoute: Routes=[
   imports: [
     CommonModule,
     RouterModule.forChild(accountRoute)
+
   
-  ]
+  ],
+  providers:[AccountService]
+  
+
 })
 export class AccountModule { }

@@ -6,19 +6,26 @@ import { AppComponent } from './app.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AccountService } from './modules/account/account.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './modules/shared/services/http.service';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NotfoundComponent
+    AppComponent,NotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule
+
   ],
-  providers: [AccountService],
+  providers: [AccountService, HttpService,
+
+  ],
+
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

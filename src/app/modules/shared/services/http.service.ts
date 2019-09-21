@@ -1,12 +1,46 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { UtilityService } from './utility.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable()
 export class HttpService {
-  post(signup: string, data: any) {
-    throw new Error("Method not implemented.");
-  }
+    // private apiUrl: string;
 
-  constructor() { }
+    constructor(
+        private http: HttpClient,
+    ) {
+        // this.apiUrl = environment.url;
+     }
+    
+    post(url, data,loader = true) {
+        if(loader) {
+          console.log(loader,'loader');
+            UtilityService.loader.next(loader);
+        }
+        let postUrl;
+        postUrl = url;
+        return this.http.post(postUrl, data)
+            .pipe(
+                map((res: HttpResponse<any>) => {
+                    return res;
+                }),
+                catchError((error: HttpErrorResponse) => {
+                    throw(error);
+                })
+            );
+    }
+
+  
+
+   
+
+ 
+    handleError(error) {
+        console.error(error);
+    }
+
 }

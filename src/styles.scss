@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+img{max-width: 1000%;max-height: 100%;}
+
+.icon{
+    margin-bottom: 20px;
+      img{
+          max-width: 60px;
+          height: 60px;
+          margin: 0 auto;
+      }
+  }
+
+  .video {
+    img{opacity: .5;transition: .3s ease all;max-height: 40px;}
+    &:hover img{
+      opacity: 1;
+    }
+  } 
+
+
+  

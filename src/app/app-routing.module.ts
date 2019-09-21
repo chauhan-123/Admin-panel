@@ -5,6 +5,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 const routes: Routes = [
   {path:'',redirectTo:'account',pathMatch:'full'},
   {path:'account',loadChildren:'./modules/account/account.module#AccountModule'},
+  { path: 'admin', loadChildren: './modules/layout/layout.module#LayoutModule'},
   {path:'**',component:NotfoundComponent},
   {path:'link-expired',component:NotfoundComponent}
   
