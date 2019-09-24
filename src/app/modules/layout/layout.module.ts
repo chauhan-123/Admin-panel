@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 const layoutroutes:Routes =[
   { path:'', redirectTo:'home', pathMatch:'full'},
@@ -12,7 +13,8 @@ const layoutroutes:Routes =[
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(layoutroutes)
+    RouterModule.forChild(layoutroutes),
+    SharedModule
   ]
 })
 export class LayoutModule { }

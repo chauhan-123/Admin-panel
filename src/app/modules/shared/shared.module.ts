@@ -1,12 +1,62 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { HttpService } from './services/http.service';
+import { UtilityService } from './services/utility.service';
+// import { HomeGuard } from '../../guards/home.guard';
+import { FormsModule } from '@angular/forms';
 
-
+import {
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatDialogModule,
+  MatInputModule,
+  MatSnackBarModule,
+} from '@angular/material';
+import { AccountGuard } from '../gaurd/account.guard';
+import { TokenInterceptor } from '../interceptor/token-interceptor';
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSnackBarModule,
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    HttpClientModule,
+    FormsModule,
+  ],
+  declarations: [
+
+  ],
+  exports : [
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSnackBarModule,
+    RouterModule,
+    HttpClientModule,
+    HttpClientModule,
+    FormsModule,
+  ],
+  entryComponents: [
+
+  ],
+  providers: [
+    HttpService,
+    UtilityService,
+    // HomeGuard,
+    AccountGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ]
 })
 export class SharedModule { }

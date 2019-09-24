@@ -24,12 +24,17 @@ export class TokenInterceptor implements HttpInterceptor {
     let headers = {
       'Content-Type': 'application/json'
     };
-    if(localStorage.getItem('login-token')) {
-      headers['authorization'] = 'Bearer ' + localStorage.getItem('login-token');
+    if(localStorage.getItem('login')) {
+ 
+      headers['authorization'] = 'Bearer ' + localStorage.getItem('login');
+      console.log(headers['authorization'],'header token' )
     }
     request = request.clone({
       setHeaders: headers
+      
     });
+ 
+    
     return next.handle(request).pipe(
       tap(
       (data) =>{
@@ -44,13 +49,13 @@ export class TokenInterceptor implements HttpInterceptor {
         console.log(err)
         if (err instanceof HttpErrorResponse) {
           
-          console.log(err.error.responseType);
+     
           console.log('req url :: ' + request.url);
         //   this._utilityService.errorAlert(err);
-          if (err.status === 401||err.error.responseType=='UNAUTHORIZED') {
-            // this._utilityService.clearStorage();
-            this.router.navigate(['account/login']);
-          }
+          // if (err.status === 401||err.error.responseType=='UNAUTHORIZED') {
+          //   this._utilityService.clearStorage();
+          //   this.router.navigate(['account/login']);
+          // }
         }
       }
     ));

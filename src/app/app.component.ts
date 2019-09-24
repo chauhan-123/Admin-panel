@@ -28,9 +28,9 @@ export class AppComponent {
     UtilityService.loader.subscribe(
       data=>{
         setTimeout(()=>{
-          console.log(data);
+          // console.log(data);
           this.loader = data;
-          console.log(this.loader,'jsiji');
+          // console.log(this.loader,'jsiji');
 
         });
      

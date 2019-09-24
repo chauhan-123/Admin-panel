@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AccountService {
   
-  baseUrl="http://localhost:3002/"
+  baseUrl="http://localhost:3000/"
   subscribe:any;
   // Observable:any;
 
@@ -54,6 +54,20 @@ export class AccountService {
   );
 }
 
+
+createResetForm() {
+  return this._formBuilder.group(
+    {
+      password:this._utilityService.getPasswordFormControl(),
+      confirmPassword:this._utilityService.getPasswordFormControl()  
+    },
+    {
+      validator: this.matchPassword
+    }
+  )
+}
+
+
 createForgotForm() {
   return this._formBuilder.group(
     {
@@ -72,23 +86,30 @@ createForgotForm() {
   console.log(data,'outside');
   this.httpclient.post(`${this.baseUrl}login`,data).subscribe(response =>{
   console.log(response,'inside');
-  //  this._router.navigate(['/admin/home']);
-  });
+     if(response['status']===200) {
+      //  var token = response['token'];
+    
+        localStorage.setItem('login',response['token']);
+  
+         localStorage.setItem('_id',response['id']);
+         localStorage.setItem('admin-name',response['firstName']);
+         localStorage.setItem('admin-email',response['email']);
+         this.router.navigate(['/admin/home'])
+      }
+      
+    },error =>{
+
+    }
+    );
+    
+  };
 
   // response =>{
       // console.log(response)
-      // if(response['statusCode']===200) {
-      //   localStorage.setItem('login',response['data']['token']);
-      //   localStorage.setItem('_id',response['data']['_id']);
-      //   localStorage.setItem('admin-name',response['data']['name']);
-      //   this.router.navigate(['/admin/home'])
  
-      //   // 
-      // }
     // },error => {
       
     // })
-}
 
 // method for signup
 
@@ -104,17 +125,40 @@ signup(data) {
   //   response =>{
   //     console.log(response)
   //     if(response['statusCode']===200) {
-      //    localStorage.setItem('user-token',response['data']['token']);
-      //   localStorage.setItem('_id',response['data']['_id']);
-      //  localStorage.setItem('admin-name',response['data']['name']);
-      //  this._router.navigate(['admin/reports']);
-      //  }
-  //   },error => {
-      
-  //   }
+  //        localStorage.setItem('user-token',response['data']['token']);
+  //       localStorage.setItem('_id',response['data']['_id']);
+  //      localStorage.setItem('admin-name',response['data']['name']);
+  //      this._router.navigate(['admin/reports']);
+  //      }
+  //   },error => { }
   // )
 }
 
+
+resetPassword(data) {
+  data = this._utilityService.trim(data);
+  this.http.post(`${this.baseUrl}reset`,data).subscribe();
+    // response =>{
+    //   if(response['statusCode']===200) {
+    //     let data = {
+    //       title: POPUP_MESSAGES.passwordResetTitle ,
+    //       message: POPUP_MESSAGES.passwordChanged,
+    //       yes: POPUP_MESSAGES.close,
+    //       isHideCancel:true,
+    //       successIcon:true
+    //     }
+    //    this._utilityService.openDialog(data).subscribe(success => {
+    //       this._router.navigate(['account/login']);
+    //     });
+    //   }
+    // },error => {
+    //   if(error.error.statusCode===400&&error.error.responseType==='INVALID_TOKEN') {
+    //     this._router.navigate(['link-expired']);
+    //   }
+      
+    // }
+  // )
+}
 checkEmail(data) {
   data = this._utilityService.trim(data);
   this.httpclient.post(`${this.baseUrl}forgot`,data).subscribe();
@@ -139,6 +183,23 @@ checkEmail(data) {
   // )
 }
 
+
+matchPassword(form: AbstractControl) {
+  let password = form.get('password').value; 
+  let confirmPassword = form.get('confirmPassword').value;
+  if (password !== confirmPassword) {
+    form.get('confirmPassword').setErrors({ matchPassword: true })    
+  } else {
+    if(password === confirmPassword) {
+      delete form.get('confirmPassword').errors['matchPassword'];
+      let keys = Object.keys(form.get('confirmPassword').errors);
+      if(keys.length===0) {
+        form.get('confirmPassword').setErrors(null);
+      }
+    }
+    
+  }
+}
 
 getValidationError(control:FormControl,name) {
   return ''

@@ -8,6 +8,8 @@ import { AccountService } from './modules/account/account.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './modules/shared/services/http.service';
 
+import { SharedModule } from './modules/shared/shared.module';
+
 
 
 @NgModule({
@@ -18,11 +20,11 @@ import { HttpService } from './modules/shared/services/http.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
 
   ],
-  providers: [AccountService, HttpService,
-
+  providers: [AccountService, HttpService
   ],
 
   bootstrap: [AppComponent]

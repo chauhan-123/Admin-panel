@@ -15,7 +15,22 @@ export class UtilityService {
     }
 
   public static loader = new BehaviorSubject<boolean>(false);
+  clearStorage() {
+    localStorage.removeItem('login');
+    localStorage.removeItem('_id');
+    localStorage.removeItem('admin-name');
 
+
+    localStorage.removeItem('admin-email');
+ 
+}
+    
+getToken(){
+    return localStorage.getItem("login")
+}
+isLoggedIn() {
+    return this.getToken() !== null;
+  }
 //   showAlert(message, type?) {
 //     this._snackBar.open(message, 'Close', {
 //         duration: 3000,
@@ -54,7 +69,8 @@ getNameFormControl(required = true,maxLength='nameMaxLength') {
   let compose = [
       Validators.pattern(PATTERN.name),
       Validators.minLength(VALIDATION_CRITERIA.nameMinLength),
-      Validators.maxLength(VALIDATION_CRITERIA[maxLength])
+      Validators.maxLength(VALIDATION_CRITERIA[maxLength]),
+    //   Validators.
   ];
 
   if (required) {

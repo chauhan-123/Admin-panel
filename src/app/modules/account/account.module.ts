@@ -5,6 +5,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 
 
 import { AccountService } from './account.service';
+import { AccountGuard } from '../gaurd/account.guard';
 
 
 

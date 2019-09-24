@@ -13,6 +13,7 @@ import {
   MAT_DIALOG_DATA
 } from '@angular/material';
 import { AccountService } from '../account.service';
+import { AccountGuard } from '../../gaurd/account.guard';
 // import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 const signUpRoute:Routes =[
@@ -31,6 +32,7 @@ const signUpRoute:Routes =[
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    SharedModule
 
   ],
   providers:[AccountService
