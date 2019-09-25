@@ -11,13 +11,13 @@
     <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid&&login()">
       <mat-form-field>
         <input matInput required placeholder="Email Address" name="username" formControlName="email">
-        <mat-error *ngIf="loginForm['controls']['email']['errors']">{{getValidationError(loginForm['controls']['email'],'email')}}</mat-error>
+        <mat-error *ngIf="loginForm['controls']['email']['errors']">{{getValidationError(loginForm['controls']['email'],'email')}} please enter a email</mat-error>
         <mat-icon matPrefix>mail</mat-icon>
       </mat-form-field>    
         <mat-form-field>
         <input matInput required placeholder="Password" formControlName="password" [type]="hide ? 'password' :
           'text'">
-        <mat-error *ngIf="loginForm['controls']['password']['errors']">{{getValidationError(loginForm['controls']['password'],'password')}}</mat-error>
+        <mat-error *ngIf="loginForm['controls']['password']['errors']">{{getValidationError(loginForm['controls']['password'],'password')}} please enter a password</mat-error>
         <mat-icon matPrefix>vpn_key</mat-icon>
         <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' :
           'visibility'}}</mat-icon>

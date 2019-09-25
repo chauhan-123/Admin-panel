@@ -13,7 +13,7 @@ import {
 
 } from '@angular/material';
 import { AccountService } from '../account.service';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 const resetRoute:Routes=[
   {path:'',component:ResetPasswordComponent}
 ]
@@ -30,9 +30,7 @@ const resetRoute:Routes=[
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormGroup,
-    MatIconModule,
-    
+    FormsModule,
   ],
   providers:[AccountService]
 })

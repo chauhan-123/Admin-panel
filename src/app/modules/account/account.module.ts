@@ -6,11 +6,13 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 
 import { AccountService } from './account.service';
 import { AccountGuard } from '../gaurd/account.guard';
+import { FormsModule, FormGroup } from '@angular/forms';
+
 
 
 
 const accountRoute: Routes=[
-  { path:'',redirectTo:'login',pathMatch:'full'},
+  {path:'',redirectTo:'login',pathMatch:'full'},
   {path:'login',loadChildren:'./login/login.module#LoginModule'},
   {path:'sign-up',loadChildren:'./sign-up/sign-up.module#SignUpModule'},
   {path:'forgot-password',loadChildren:'./forgot-password/forgot-password.module#ForgotPasswordModule'},
@@ -19,12 +21,10 @@ const accountRoute: Routes=[
 
 
 @NgModule({
-  declarations: [ResetPasswordComponent],
+  declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(accountRoute)
-
-  
+    RouterModule.forChild(accountRoute),
   ],
   providers:[AccountService]
   

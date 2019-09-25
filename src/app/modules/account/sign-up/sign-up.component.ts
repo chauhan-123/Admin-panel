@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
-
+import {VALIDATION_MESSAGES } from '../../../constant/message';
+import { UtilityService } from '../../shared/services/utility.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +14,7 @@ export class SignUpComponent implements OnInit {
   signForm:FormGroup;
  
 
-  constructor( private _router: Router,   private _accountService:AccountService,private router:Router) 
+  constructor( private _router: Router,   private _accountService:AccountService,private router:Router,private utility: UtilityService) 
   {
     this.signForm = this._accountService.createSignUpForm();
    }
@@ -27,6 +28,7 @@ export class SignUpComponent implements OnInit {
     }
     
     this._accountService.signup(this.signForm.value).subscribe(console.log);
+    this.utility.openSnackBar('you are successfully signup',true)
     this._router.navigate(['/account/login/']);
 
  

@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './modules/shared/services/http.service';
 
 import { SharedModule } from './modules/shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 
@@ -21,8 +24,9 @@ import { SharedModule } from './modules/shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule
-
+    SharedModule,
+    FormsModule,
+    MatIconModule
   ],
   providers: [AccountService, HttpService
   ],

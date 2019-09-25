@@ -3,34 +3,54 @@ import { Validators } from '@angular/forms';
 import {PATTERN} from '../../../constant/pattern';
 import{VALIDATION_CRITERIA} from '../../../constant/validation-criteria';
 import { BehaviorSubject } from 'rxjs';
+import {VALIDATION_MESSAGES} from '../../../constant/message';
 
+import { MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilityService {
-
-    constructor(
+    public horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+    public verticalPosition: MatSnackBarVerticalPosition = 'top';
+    public setAutoHide = true;
+    public autoHide = 2000;
+    public addExtraClass = false;
+    
+    constructor(private snackBar: MatSnackBar
         ) {
     }
 
   public static loader = new BehaviorSubject<boolean>(false);
+
+  public snackBarConfig(successflag) {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    if(!successflag){ 
+    config.panelClass= ['red-snackbar']
+    }
+    else{
+    
+    config.panelClass = this.addExtraClass ? ['party'] :undefined;
+    }
+    return config;
+    }
+
+    
+    openSnackBar(message: string,successflag:boolean) {
+    
+    this.snackBar.open(message, undefined, this.snackBarConfig(successflag));
+    }
   clearStorage() {
     localStorage.removeItem('login');
     localStorage.removeItem('_id');
     localStorage.removeItem('admin-name');
-
-
     localStorage.removeItem('admin-email');
- 
-}
+ }
     
-getToken(){
-    return localStorage.getItem("login")
-}
-isLoggedIn() {
-    return this.getToken() !== null;
-  }
+
 //   showAlert(message, type?) {
 //     this._snackBar.open(message, 'Close', {
 //         duration: 3000,
@@ -70,7 +90,7 @@ getNameFormControl(required = true,maxLength='nameMaxLength') {
       Validators.pattern(PATTERN.name),
       Validators.minLength(VALIDATION_CRITERIA.nameMinLength),
       Validators.maxLength(VALIDATION_CRITERIA[maxLength]),
-    //   Validators.
+      
   ];
 
   if (required) {
@@ -110,8 +130,17 @@ getPhoneFormControl(required=true, maxLength='phoneMaxLength'){
     return ['', Validators.compose(
         compose
     )];
+
+
 }
   
+
+
+
+
+
+
+
 
 
 

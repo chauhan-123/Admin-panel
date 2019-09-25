@@ -95,6 +95,7 @@ createForgotForm() {
          localStorage.setItem('admin-name',response['firstName']);
          localStorage.setItem('admin-email',response['email']);
          this.router.navigate(['/admin/home'])
+         this._utilityService.openSnackBar('you are successfully login',true)
       }
       
     },error =>{
@@ -137,27 +138,29 @@ signup(data) {
 
 resetPassword(data) {
   data = this._utilityService.trim(data);
-  this.http.post(`${this.baseUrl}reset`,data).subscribe();
-    // response =>{
-    //   if(response['statusCode']===200) {
-    //     let data = {
-    //       title: POPUP_MESSAGES.passwordResetTitle ,
-    //       message: POPUP_MESSAGES.passwordChanged,
-    //       yes: POPUP_MESSAGES.close,
-    //       isHideCancel:true,
-    //       successIcon:true
-    //     }
-    //    this._utilityService.openDialog(data).subscribe(success => {
-    //       this._router.navigate(['account/login']);
-    //     });
-    //   }
-    // },error => {
-    //   if(error.error.statusCode===400&&error.error.responseType==='INVALID_TOKEN') {
-    //     this._router.navigate(['link-expired']);
-    //   }
+  console.log(data['token'],'data123')
+//   let jwtData = data['token'].split('.')[1]
+// let decodedJwtJsonData = window.atob(jwtData)
+// let decodedJwtData = JSON.parse(decodedJwtJsonData)
+
+// let isAdmin = decodedJwtData.admin
+
+// console.log('jwtData: ' + jwtData)
+// console.log('decodedJwtJsonData: ' + decodedJwtJsonData)
+// console.log('decodedJwtData: ' + decodedJwtData)
+// console.log('Is admin: ' + isAdmin)
+  this.http.post(`${this.baseUrl}reset`,data).subscribe(
+     response =>{
+      if(response['status']===200) {
+     this.router.navigate(['/account/login']); 
+      }
+    },error => {
+      if(error.error.status===400&&error.error.responseType==='INVALID_TOKEN') {
+        this.router.navigate(['link-expired']);
+      }
       
-    // }
-  // )
+     }
+   )
 }
 checkEmail(data) {
   data = this._utilityService.trim(data);
@@ -191,7 +194,7 @@ matchPassword(form: AbstractControl) {
     form.get('confirmPassword').setErrors({ matchPassword: true })    
   } else {
     if(password === confirmPassword) {
-      delete form.get('confirmPassword').errors['matchPassword'];
+      // delete form.get('confirmPassword').errors['matchPassword'];
       let keys = Object.keys(form.get('confirmPassword').errors);
       if(keys.length===0) {
         form.get('confirmPassword').setErrors(null);

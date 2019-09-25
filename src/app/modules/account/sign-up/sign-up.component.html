@@ -12,25 +12,26 @@ width: auto;">
             <mat-form-field>
                 <input matInput required placeholder="First Name" firstName="firstname" formControlName="firstName">
                 <mat-error *ngIf="signForm['controls']['firstName']['errors']">
-                    {{getValidationError(signForm['controls']['firstName'],'firstName')}}</mat-error>
+                    {{getValidationError(signForm['controls']['firstName'],'firstName')}} please enter a name</mat-error>
                 <mat-icon matPrefix>person</mat-icon>
+                <mat-error > </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input matInput required placeholder="Email Address" name="username" formControlName="email">
                 <mat-error *ngIf="signForm['controls']['email']['errors']">
-                    {{getValidationError(signForm['controls']['email'],'email')}}</mat-error>
+                    {{getValidationError(signForm['controls']['email'],'email')}} please enter a email</mat-error>
                 <mat-icon matPrefix>mail</mat-icon>
             </mat-form-field>
             <mat-form-field>
                 <input matInput required placeholder="Phone number" phone="phone" formControlName="phone">
                 <mat-error *ngIf="signForm['controls']['phone']['errors']">
-                    {{getValidationError(signForm['controls']['phone'],'phone')}}</mat-error>
+                    {{getValidationError(signForm['controls']['phone'],'phone')}} please enter a mobile number</mat-error>
                 <mat-icon matPrefix>settings_cell</mat-icon>
             </mat-form-field>
             <mat-form-field>
                 <input matInput required placeholder="Address" name="lastname" formControlName="address">
                 <mat-error *ngIf="signForm['controls']['address']['errors']">
-                    {{getValidationError(signForm['controls']['address'],'address')}}</mat-error>
+                    {{getValidationError(signForm['controls']['address'],'address')}} please enter a address</mat-error>
                 <mat-icon matPrefix>account_balance</mat-icon>
             </mat-form-field>
 
@@ -38,7 +39,7 @@ width: auto;">
                 <input matInput required placeholder="Password" formControlName="password" [type]="hide ? 'password' :
          'text'">
                 <mat-error *ngIf="signForm['controls']['password']['errors']">
-                    {{getValidationError(signForm['controls']['password'],'password')}}</mat-error>
+                    {{getValidationError(signForm['controls']['password'],'password')}} please enter a password</mat-error>
                 <mat-icon matPrefix>vpn_key</mat-icon>
                 <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' :
          'visibility'}}</mat-icon>
