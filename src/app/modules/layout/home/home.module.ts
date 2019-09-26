@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule,Routes } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
+
+import { SharedModule } from '../../shared/shared.module';
+import { MatDialogModule, MatCardModule, MatIconModule, MatInputModule, MatButtonModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatTooltipModule, MatListModule } from '@angular/material';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 const homeroutes:Routes=[
@@ -10,10 +13,25 @@ const homeroutes:Routes=[
 ]
 
 @NgModule({
-  declarations: [HomeComponent,HeaderComponent],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(homeroutes)
+    RouterModule.forChild(homeroutes),
+    SharedModule,
+    MatDialogModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatTooltipModule,
+    MatListModule
+  
   ]
 })
 export class HomeModule { }

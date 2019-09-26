@@ -1,29 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatTooltipModule, MatListModule } from '@angular/material';
+import { LayoutComponent } from './layout.component';
+import { LayoutRoutingModule } from './layout.routing';
+import { HeaderComponent } from './header/header.component';
 
-const layoutroutes:Routes =[
-  { path:'', redirectTo:'home', pathMatch:'full'},
-  {path:'home',loadChildren:'./home/home.module#HomeModule'},
-  
-]
+
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [LayoutComponent,HeaderComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(layoutroutes),
     SharedModule,
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
     MatDividerModule,
     MatTooltipModule,
-    MatListModule
-
+    MatListModule,
+    LayoutRoutingModule
   ]
 })
 export class LayoutModule { }

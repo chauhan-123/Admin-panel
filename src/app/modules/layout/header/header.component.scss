@@ -1,4 +1,4 @@
-$thm_clr : #393ef1;
+$thm_clr : #fff;
 $thm_clr_light : rgba($thm_clr, 0.1);
 
 
@@ -13,7 +13,7 @@ $thm_clr_light : rgba($thm_clr, 0.1);
     align-items: center;
     justify-content: space-between;    
     box-shadow: 5px 5px 15px 0 rgba(46,61,73,.2);
-    background-color: #f9f9f9;
+    color: #f9f9f9 !important;
 }
 .mat-badge-medium.mat-badge-after .mat-badge-content {
     right: -8px;
@@ -21,7 +21,7 @@ $thm_clr_light : rgba($thm_clr, 0.1);
     line-height: 18px;
     border: 2px solid #393ef1;
     background: #ffffff;
-    color: #393ef1;
+    color: #fff;
 }
 .btn_group .mat-button{
     min-width: 45px;
@@ -158,3 +158,13 @@ $thm_clr_light : rgba($thm_clr, 0.1);
 @media (max-width: 599px){
     .humburger{top: 7px;}
 }
+
+
+
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }

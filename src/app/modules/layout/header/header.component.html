@@ -1,36 +1,42 @@
-<p>header works!</p>
-<mat-toolbar class="header">
-    <mat-toolbar-row>
-      <div class="humburger" [ngClass]="{'open': humburger }" (click)="sidebarCollaped()">
-        <span></span>
-        <span></span>
-        <span></span>
+
+<mat-toolbar color="primary"> 
+  <mat-toolbar-row>
+       <div class="humburger" [ngClass]="{'open': humburger }" (click)="sidebarCollaped()">
       </div>
-  
-      <div class="logo"><img src="assets/images/logo.png" alt="SuperShe Logo"> </div>
-      <div class="btn_group">
-        <button mat-button matTooltip="Notifications">
-          <mat-icon matBadge="4" matBadgeColor="accent">notifications</mat-icon>
+    
+    <span class="example-spacer"></span>
+    <div class="btn_group">
+      <!-- <button mat-button matTooltip="Notifications">
+        <mat-icon matBadge="4" matBadgeColor="accent">notifications</mat-icon>
+      </button> -->
+      <button mat-button matTooltip="Settings" [matMenuTriggerFor]="menu2">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #menu2="matMenu">
+        <button mat-menu-item class="user_profile" [routerLink]="['./admin']" routerLinkActive="router-link-active">
+           <div class="img"> <img src="assets/images/admin.jpg" alt="Admin"> </div> 
+           <span>Sumit Chauhan </span> 
+        </button> 
+        <mat-divider></mat-divider>
+        <button mat-menu-item [routerLink]="['./admin/edit-profile']">
+          <mat-icon>person</mat-icon> Edit Profile
         </button>
-        <button mat-button matTooltip="Settings" [matMenuTriggerFor]="menu2">
-          <mat-icon>settings</mat-icon>
+        <button mat-menu-item [routerLink]="['./admin/change-password']">
+          <mat-icon>lock</mat-icon> Change Password
         </button>
-        <mat-menu #menu2="matMenu">
-          <button mat-menu-item class="user_profile" [routerLink]="['./admin']" routerLinkActive="router-link-active">
-            <div class="img"> <img src="http://design.applaurels.com/u_placeholder.jpg" alt="Admin"> </div>
-            <span> John Mechail </span>
-          </button>
-          <mat-divider></mat-divider>
-          <button mat-menu-item [routerLink]="['./admin/edit-profile']">
-            <mat-icon>person</mat-icon> Edit Profile
-          </button>
-          <button mat-menu-item [routerLink]="['./admin/change-password']">
-            <mat-icon>lock</mat-icon> Change Password
-          </button>
-        </mat-menu>
-        <button mat-button (click)="logout()" matTooltip="Logout">
-          <mat-icon>exit_to_app</mat-icon>
-        </button>
-  
-      </div>
-    </mat-toolbar-row>
+      </mat-menu>
+      <button mat-button (click)="logout()" matTooltip="Logout">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+
+    </div>
+    <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon> -->
+  </mat-toolbar-row>
+  </mat-toolbar>
+
+
+    <!-- <mat-toolbar-row > -->
+      <!-- <div class="logo"><img src="assets/images/logo.png" alt="SuperShe Logo"> </div> -->
+ 
+    <!-- </mat-toolbar-row> -->
