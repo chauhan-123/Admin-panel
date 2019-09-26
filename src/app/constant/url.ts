@@ -1,8 +1,8 @@
-import {environment } from '../../environments/environment';
- var connect = environment.url;
+// import {environment } from '../../environments/environment';
+//  var connect = environment.url;
 
 
-export const ADMIN_URL = {
-    login:'',
-    signup:"admin/signup"
-} 
+// export const ADMIN_URL = {
+//     login:'',
+//     signup:"admin/signup"
+// } 

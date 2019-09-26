@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder,FormControl, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {UtilityService} from '../../modules/shared/services/utility.service';
-import { ADMIN_URL } from 'src/app/constant/url';
+// import { ADMIN_URL } from 'src/app/constant/url';
 import { HttpService } from '../shared/services/http.service';
 import { HttpClient } from '@angular/common/http';
 
