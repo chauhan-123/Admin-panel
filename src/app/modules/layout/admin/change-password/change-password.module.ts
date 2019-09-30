@@ -5,6 +5,7 @@ import { RouterModule ,Routes} from '@angular/router';
 import { MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccountService } from 'src/app/modules/account/account.service';
 
 const changePassword:Routes=[
   {path:'',component:ChangePasswordComponent}
@@ -21,6 +22,7 @@ const changePassword:Routes=[
     SharedModule,
     MatInputModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[AccountService]
 })
 export class ChangePasswordModule { }

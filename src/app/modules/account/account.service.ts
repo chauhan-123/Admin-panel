@@ -5,6 +5,8 @@ import {UtilityService} from '../../modules/shared/services/utility.service';
 // import { ADMIN_URL } from 'src/app/constant/url';
 import { HttpService } from '../shared/services/http.service';
 import { HttpClient } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
+
 
 
 @Injectable({
@@ -17,7 +19,7 @@ export class AccountService {
   // Observable:any;
 
   constructor(private _formBuilder: FormBuilder, private _router: Router,private _utilityService:UtilityService,
-    private http:HttpService, private httpclient:HttpClient, private router:Router
+    private http:HttpService, private httpclient:HttpClient, private router:Router, private token:SharedModule
     ) { }
 
   /* 
@@ -76,7 +78,18 @@ createForgotForm() {
   )
 }
 
-
+createChangePasswordForm(){
+  return this._formBuilder.group(
+    { 
+      oldPassword:this._utilityService.getPasswordFormControl(),
+      password:this._utilityService.getPasswordFormControl(),
+      confirmPassword:this._utilityService.getPasswordFormControl()  
+    },
+    {
+      validator: this.matchPassword
+    }
+  )
+}
 
  /*  
       Method For Login
@@ -162,6 +175,29 @@ resetPassword(data) {
      }
    )
 }
+
+changePassword(data){
+  
+  data = this._utilityService.trim(data);
+  console.log(data,'data123');
+  this.http.post(`${this.baseUrl}changePassword`,data).subscribe(
+    response =>{
+     if(response['status']===200) {
+       console.log('vghsavxghsavhxjb')
+    // this.router.navigate(['/account/login']); 
+     }
+   },error => {
+     if(error.error.status===400&&error.error.responseType==='INVALID_TOKEN') {
+       this.router.navigate(['link-expired']);
+     }
+     
+    }
+  )
+  // this.http.post(`${this.baseUrl}changePassword`,data ).subscribe();
+  // this.router.navigate(['./admin']);
+}
+
+
 checkEmail(data) {
   data = this._utilityService.trim(data);
   this.httpclient.post(`${this.baseUrl}forgot`,data).subscribe();
