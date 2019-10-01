@@ -18,11 +18,11 @@
   
           <div class="col-sm-6">
             <div class="label">Name</div>
-            <div class="value">John Carter</div>
+            <div class="value">{{this.userName}}</div>
           </div>
           <div class="col-sm-6">
             <div class="label">Email ID</div>
-            <div class="value">john_carter@gmail.com</div>
+            <div class="value">{{this.Email}}</div>
           </div>
           <div class="col-sm-6">
             <div class="label">Dated Created</div>
@@ -56,7 +56,8 @@
         </div>
         <div class="col-sm-3">
           <!-- <button mat-raised-button color="primary" [routerLink]="['../../../edit-profile']" >Edit Profile</button> -->
-          <button mat-raised-button color="primary" [routerLink]="['../../../edit-profile']">Edit Profile</button>
+          <!-- <button mat-raised-button color="primary" [routerLink]="['../../../edit-profile']">Edit Profile</button> -->
+          <button mat-raised-button color="primary" (click)="editProfile()">Edit Profile</button>
         </div>
   
       </div>

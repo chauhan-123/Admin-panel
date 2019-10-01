@@ -184,7 +184,7 @@ changePassword(data){
     response =>{
      if(response['status']===200) {
        console.log('vghsavxghsavhxjb')
-    // this.router.navigate(['/account/login']); 
+     this.router.navigate(['../admin']); 
      }
    },error => {
      if(error.error.status===400&&error.error.responseType==='INVALID_TOKEN') {

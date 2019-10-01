@@ -6,10 +6,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-
-  constructor() { }
+  url: string;
+  constructor() {
+    this.url = 'assets/images/admin.jpg'; // for Placeholder
+   }
 
   ngOnInit() {
+  }
+  
+
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      // this.imgLoader = true;
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (imgsrc: any) => { // called once readAsDataURL is completed
+      this.url = imgsrc.target.result;
+      // this.imgLoader = false;
+        };
+  
+      }
   }
 
 }
