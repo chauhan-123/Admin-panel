@@ -4,10 +4,13 @@ import { Router } from '@angular/router';
 import {UtilityService} from '../../modules/shared/services/utility.service';
 // import { ADMIN_URL } from 'src/app/constant/url';
 import { HttpService } from '../shared/services/http.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { Observable, of } from 'rxjs';
 
-
+interface FormData {
+  entries(): Iterator<any>;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -183,7 +186,7 @@ changePassword(data){
   this.http.post(`${this.baseUrl}changePassword`,data).subscribe(
     response =>{
      if(response['status']===200) {
-       console.log('vghsavxghsavhxjb')
+   
      this.router.navigate(['../admin']); 
      }
    },error => {
@@ -193,8 +196,28 @@ changePassword(data){
      
     }
   )
-  // this.http.post(`${this.baseUrl}changePassword`,data ).subscribe();
-  // this.router.navigate(['./admin']);
+}
+
+
+
+editProfile(images:File){
+  // const httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'multipart/form-data'
+  //   })
+  // }
+  // console.log(images)
+      let formData = new FormData();
+      formData.append('images', images );
+      // formData.append('data', JSON.stringify(images));
+
+      //  var images = image.name;
+    return this.httpclient.post(`${this.baseUrl}upload`, formData);
+  
+
+
+
+
 }
 
 
@@ -202,24 +225,6 @@ checkEmail(data) {
   data = this._utilityService.trim(data);
   this.httpclient.post(`${this.baseUrl}forgot`,data).subscribe();
   this._router.navigate(['/account/login']);
-  // this.httpclient.post(,data).subscribe(
-    // response =>{
-    //   if(response['statusCode']===200) {
-    //     let data = {
-    //       title: POPUP_MESSAGES.passwordResetTitle ,
-    //       message: POPUP_MESSAGES.passwordResetLink,
-    //       yes: POPUP_MESSAGES.close,
-    //       isHideCancel:true,
-    //       successIcon:true
-    //     }
-    //    this._utilityService.openDialog(data).subscribe(success => {
-    //       this._router.navigate(['/account/login']);
-    //     });
-    //   }
-    // },error => {
-      
-    // }
-  // )
 }
 
 

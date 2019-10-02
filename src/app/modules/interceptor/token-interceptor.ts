@@ -21,17 +21,13 @@ export class TokenInterceptor implements HttpInterceptor {
   ) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    let headers = {
-      'Content-Type': 'application/json'
-    };
+    let headers = {};
     if(localStorage.getItem('login')) {
  
       headers['authorization'] = 'Bearer ' + localStorage.getItem('login');
-      console.log(headers['authorization'],'header token' )
     }
     request = request.clone({
       setHeaders: headers
-      
     });
  
     
