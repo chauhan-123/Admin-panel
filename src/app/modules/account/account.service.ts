@@ -201,17 +201,9 @@ changePassword(data){
 
 
 editProfile(images:File){
-  // const httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'multipart/form-data'
-  //   })
-  // }
-  // console.log(images)
       let formData = new FormData();
       formData.append('images', images );
       // formData.append('data', JSON.stringify(images));
-
-      //  var images = image.name;
     return this.httpclient.post(`${this.baseUrl}upload`, formData);
   
 
