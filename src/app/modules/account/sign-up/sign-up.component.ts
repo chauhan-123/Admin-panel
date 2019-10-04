@@ -12,7 +12,7 @@ import { UtilityService } from '../../shared/services/utility.service';
 })
 export class SignUpComponent implements OnInit {
   signForm:FormGroup;
- 
+   hide = true;
 
   constructor( private _router: Router,   private _accountService:AccountService,private router:Router,private utility: UtilityService) 
   {
