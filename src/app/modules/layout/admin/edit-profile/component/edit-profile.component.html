@@ -6,21 +6,27 @@
   </mat-card>
   
     <mat-card>
-      <div class="panel-header">
+        <form [formGroup]="editProfileForm" (ngSubmit)="editProfileForm.valid&&editProfile()">
+      <!-- <div class="panel-header">
         <h3> Edit Profile </h3>
-      </div>
+      </div> -->
+
+
       <div class="row"> 
         <div class="col-sm-3">
             <div class="img">
+                <!-- data:image/jpeg;base64, -->
               <img [src]="url" alt="">
               <!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
               <button type="button" mat-mini-fab color="primary">
                 <mat-icon>camera_alt</mat-icon> 
                 <input type="file" accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)"  matTooltip="Change Image" />
+   
               </button>
+              {{this.url}}
             </div>
         </div>
-          <div class="col-md-9">
+          <!-- <div class="col-md-9">
             <div class="row">
               <div class="col-sm-6">
                   <mat-form-field >
@@ -37,12 +43,12 @@
               <textarea matInput placeholder="Description" style="height:65px">Lorem ipsum doller swi gies here</textarea>
             </mat-form-field>
           
-          </div>  
+          </div>   -->
         </div>
         <div class="form-btn">
             <div class="row">
                 <div class="col-sm-3 offset-sm-3">
-                    <button mat-raised-button color="primary" >Update</button>
+                    <button mat-raised-button color="primary" (click)="editProfile()">Update</button>
                   </div>
                   <div class="col-sm-3">
                       <button mat-raised-button color="accent">Reset</button>
@@ -50,4 +56,5 @@
                         
             </div>
           </div>
+        </form>
     </mat-card>
