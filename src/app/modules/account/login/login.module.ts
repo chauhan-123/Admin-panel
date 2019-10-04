@@ -6,7 +6,9 @@ import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+  MatSlideToggleModule  
+
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
@@ -29,7 +31,9 @@ const accountRoute: Routes =[
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatSlideToggleModule
+
   ],
   providers:[AccountService]
 
