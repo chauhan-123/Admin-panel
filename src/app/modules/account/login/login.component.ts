@@ -10,6 +10,7 @@ import { AccountService } from '../account.service';
 })
 export class LoginComponent implements OnInit {
   loginForm:FormGroup;
+  hide = true;
 
   constructor( private _router: Router,   private _accountService:AccountService) 
   {

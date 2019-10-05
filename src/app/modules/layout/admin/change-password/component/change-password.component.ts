@@ -8,8 +8,11 @@ import { AccountService } from 'src/app/modules/account/account.service';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
-  hideConfirmPassword = true;
-  hidePassword = true;
+
+  oldPasswordHide =  true;
+  // hideConfirmPassword = true;
+  confirmPasswordHide = true;
+  passwordHide = true;
   changePasswordForm:FormGroup;
  
   constructor( private _router:Router , private _accountService:AccountService) {
