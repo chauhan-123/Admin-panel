@@ -21,7 +21,8 @@ const editProfile:Routes=[
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+  
   ],
   providers:[AccountService]
 })

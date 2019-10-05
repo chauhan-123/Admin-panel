@@ -1,4 +1,4 @@
-
+<!-- 
 <mat-card class="page_heading">
     <span [routerLink]="['../']">  Admin Profile </span>
     <mat-icon>arrow_forward_ios</mat-icon>
@@ -7,18 +7,18 @@
   
     <mat-card>
         <form [formGroup]="editProfileForm" (ngSubmit)="editProfileForm.valid&&editProfile()">
-      <!-- <div class="panel-header">
+       <div class="panel-header">
         <h3> Edit Profile </h3>
       </div> -->
 
-
+<!-- 
       <div class="row"> 
         <div class="col-sm-3">
             <div class="img">
-                <!-- data:image/jpeg;base64, -->
-              <img [src]="url" alt="">
-              <!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
-              <button type="button" mat-mini-fab color="primary">
+         
+              <img [src]="url" alt=""> -->
+<!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
+<!-- <button type="button" mat-mini-fab color="primary">
                 <mat-icon>camera_alt</mat-icon> 
                 <input type="file" accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)"  matTooltip="Change Image" />
    
@@ -26,7 +26,7 @@
               {{this.url}}
             </div>
         </div>
-          <!-- <div class="col-md-9">
+           <div class="col-md-9">
             <div class="row">
               <div class="col-sm-6">
                   <mat-form-field >
@@ -43,7 +43,7 @@
               <textarea matInput placeholder="Description" style="height:65px">Lorem ipsum doller swi gies here</textarea>
             </mat-form-field>
           
-          </div>   -->
+          </div>   
         </div>
         <div class="form-btn">
             <div class="row">
@@ -57,4 +57,53 @@
             </div>
           </div>
         </form>
-    </mat-card>
+    </mat-card>  -->
+
+
+<mat-card class="page_heading">
+  <!-- <span [routerLink]="['SETTINGS'|absolutePath]"> Admin Profile </span> -->
+  <mat-icon>arrow_forward_ios</mat-icon>
+  Edit Profile
+</mat-card>
+<form [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
+  <mat-card>
+    <div class="panel-header">
+      <h3> Edit Profile </h3>
+    </div>
+
+    <div class="flex-col">
+      <div class="img-wrap">
+        <div class="img">
+         
+          <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'" alt="">
+        </div>
+      </div>
+      <div class="form-wrap">
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput required placeholder="First Name" firstName="firstname" formControlName="firstName">
+            <mat-error *ngIf="editProfileForm['controls']['firstName']['errors']">
+              {{getValidationError(editProfileForm['controls']['firstName'],'firstName')}} please enter a name
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput required placeholder="Email Address" name="username" formControlName="email">
+            <mat-error *ngIf="editProfileForm['controls']['email']['errors']">
+              {{getValidationError(editProfileForm['controls']['email'],'email')}} please enter a email</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="form-btn">
+      <div class="row">
+        <div style="text-align: center;width:100%">
+          <button mat-raised-button color="primary">Update</button>
+          <!-- <button mat-raised-button [routerLink]="['SETTINGS'|absolutePath]">Cancel</button> -->
+        </div>
+
+      </div>
+    </div>
+  </mat-card>
+</form>

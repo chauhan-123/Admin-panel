@@ -5,6 +5,9 @@ $thm_clr_light :rgba(0, 205, 222, 0.1);
 $thm_clr2 : #000;
 $thm_clr2_light :rgba(8, 87, 91, .1);
 
+
+
+
 .img{
    width: inherit;
    height: inherit;
@@ -29,7 +32,7 @@ $thm_clr2_light :rgba(8, 87, 91, .1);
 }
 
 .com_details{
-
+    min-height: 100vh;
     .col-sm-4, .col-sm-6{
         padding-bottom: 30px;
     }
@@ -52,7 +55,7 @@ $thm_clr2_light :rgba(8, 87, 91, .1);
     }
     .value{
         color: #000;
-        font-size: 18px;
+        font-size: 16px;
         a{
             cursor: pointer;
             color: $thm_clr2;
@@ -84,3 +87,10 @@ $thm_clr2_light :rgba(8, 87, 91, .1);
         min-width: 120px;
     }
 }
+.img-wrap {
+    width: 250px;
+}
+.form-wrap {
+    flex: 1;
+}
+
