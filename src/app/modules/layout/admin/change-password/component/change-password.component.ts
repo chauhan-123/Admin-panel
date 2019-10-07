@@ -10,7 +10,6 @@ import { AccountService } from 'src/app/modules/account/account.service';
 export class ChangePasswordComponent implements OnInit {
 
   oldPasswordHide =  true;
-  // hideConfirmPassword = true;
   confirmPasswordHide = true;
   passwordHide = true;
   changePasswordForm:FormGroup;
