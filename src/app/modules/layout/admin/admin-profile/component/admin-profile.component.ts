@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
 
 @Component({
   selector: 'app-admin-profile',
@@ -7,28 +8,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-profile.component.scss']
 })
 export class AdminProfileComponent implements OnInit {
-userName:string;
-Email:string;
-userId:any;
-  constructor(private router:Router) { }
+  profileDetail;
+  constructor(private router:Router, private dataTransfer:DataTransferService) { }
 
-  ngOnInit(): void {
-    var currentUser = localStorage.getItem('admin-name');
-    var emailUser = localStorage.getItem('admin-email');
-    var IdUser = localStorage.getItem('_id');
-    this.userId = IdUser;
-    // console.log(this.userId,'hjjhj');
-    this.userName = currentUser;
-    this.Email = emailUser ;
-    console.log(this.Email)
-    // if (!this.userName) {
-    //     this.userName = "User Name";
-    // }
+  ngOnInit() {
+    this.getDetail();
 }
 
-editProfile(){
-this.router.navigate(['../../../admin/admin/edit-profile']);
+// editProfile(){
+// this.router.navigate(['../../../admin/admin/edit-profile']);
 
+// }
+  
+
+ /**
+   * Getting Admin Profile Detail
+   */
+getDetail() {
+  this.dataTransfer.getProfileDetail()
+  .subscribe(
+    (response:any) => {
+      console.log(response)
+      this.profileDetail = response.data;
+    }
+  )
 }
 
 }

@@ -7,6 +7,7 @@ import { HttpService } from '../shared/services/http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 interface FormData {
   entries(): Iterator<any>;
@@ -16,6 +17,7 @@ interface FormData {
   providedIn: 'root'
 })
 export class AccountService {
+ 
   
   baseUrl="http://localhost:3000/"
   subscribe:any;
@@ -24,6 +26,19 @@ export class AccountService {
   constructor(private _formBuilder: FormBuilder, private _router: Router,private _utilityService:UtilityService,
     private http:HttpService, private httpclient:HttpClient, private router:Router, private token:SharedModule
     ) { }
+
+
+     /* 
+      Method For Creating Edit Profile Form
+  */
+ createEditProfileForm() {
+  return this._formBuilder.group(
+    {
+      firstName: this._utilityService.getNameFormControl(),
+      email: this._utilityService.getEmailFormControl()
+    }
+  )
+}
 
   /* 
       Method For Creating Login Form
@@ -200,18 +215,42 @@ changePassword(data){
 
 
 
-editProfile(images:File){
+uploadProfile(images:File){
       let formData = new FormData();
       formData.append('images', images );
       // formData.append('data', JSON.stringify(images));
     return this.httpclient.post(`${this.baseUrl}upload`, formData);
-  
+  }
 
 
-
-
-}
-
+  /* 
+      Method For Edit Profile
+  */
+ editProfile(data) {
+  let body = { ...data };
+  delete body['email'];
+  return this.httpclient.put(`${this.baseUrl}edit_profile`, body).pipe(
+    map(
+      response => {
+        console.log('response','>>>>>>>>>>>>>>>>>>>>')
+        // if (response['statusCode'] === 200) {
+        //   this._utilityService.showAlert(COMMON_MESSAGES.UPDATED('Profile'));
+        //   this._dataService.profileData.data = { ...this._dataService.profileData.data, ...body }
+        //   this._dataService.profileDetail.next({ ...this._dataService.profileData });
+        //   this._router.navigate([SETTINGS.fullUrl()]);
+        }
+    )
+  )
+      }
+    // ),
+    // catchError(
+    //   error => {
+    //     this._utilityService.errorAlert(error);
+    //     return throwError(error);
+    //   }
+    // )
+  // )
+// }
 
 checkEmail(data) {
   data = this._utilityService.trim(data);

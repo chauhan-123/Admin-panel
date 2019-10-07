@@ -1,7 +1,7 @@
  <mat-card class="accout_wrapper login-card" style="       min-width: 300px;
  max-width: 600px;
  width: auto;">
-   <!-- <div class="logo_blk"><img src="assets/images/logo.png" alt=""></div>  -->
+
 <div class="header-card">
 <h2>Login</h2>
 <p>Please Enter User Details</p>
@@ -27,19 +27,14 @@
         <button mat-button type="button" class="forgor_password" [routerLink]="[ '/account/forgot-password' ]">Forgot
           Password</button>
       </mat-card-actions>
-
+      <mat-slide-toggle color="primary" formControlName="remember">Remember</mat-slide-toggle>
       <div >
         <span class="text-left">Don't have an account?</span>
         <button mat-button type="button" class="forgor_password" [routerLink]="[ '/account/sign-up' ]">SIGN UP NOW</button>
-           <!-- <span class="btn-right"><button mat-raised-button type="submit" color="primary">SIGN UP NOW</button></span> -->
+          
       </div>
 
-      <!-- <mat-card-actions class="text-center">
-     <span>Don't have an account?</span>
-    </mat-card-actions>
-      <mat-card-actions class="text-center">
-        <button mat-raised-button type="submit" color="primary">SIGN UP NOW</button>
-      </mat-card-actions> -->
+ 
 
     </form>
 
