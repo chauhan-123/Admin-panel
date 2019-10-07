@@ -216,10 +216,16 @@ changePassword(data){
 
 
 uploadProfile(images:File){
+  console.log(images,'images')
       let formData = new FormData();
       formData.append('images', images );
       // formData.append('data', JSON.stringify(images));
-    return this.httpclient.post(`${this.baseUrl}upload`, formData);
+     return this.httpclient.post(`${this.baseUrl}upload`, formData);
+  
+    //    response= >{
+    //      console.log(response);
+    //    }
+    //  )
   }
 
 
@@ -227,8 +233,17 @@ uploadProfile(images:File){
       Method For Edit Profile
   */
  editProfile(data) {
-  let body = { ...data };
-  delete body['email'];
+ console.log(data, 'data is on :::::::::::::::::::::::::::::::', data.images.name, data.firstName);
+
+      
+  // let body = {data.images.name, };
+  let body = {
+    images:data.images.name,
+    firstName: data.firstName,
+    email: data.email
+  }
+  // delete body['email'];
+  // console.log(body ,'body data is coming .....')
   return this.httpclient.put(`${this.baseUrl}edit_profile`, body).pipe(
     map(
       response => {

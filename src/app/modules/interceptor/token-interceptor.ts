@@ -36,7 +36,7 @@ export class TokenInterceptor implements HttpInterceptor {
       (data) =>{
         if(data instanceof HttpResponse) {
           UtilityService.loader.next(false);
-          console.log(data);
+        
         }
         
       },

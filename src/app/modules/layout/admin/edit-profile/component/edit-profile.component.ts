@@ -3,7 +3,9 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AccountService } from 'src/app/modules/account/account.service';
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
 import {onSelectFile} from '../../../../../constant/file-input'; 
-
+interface FormData {
+  entries(): Iterator<any>;
+}
 // import { CustomValidators, MAT_ERROR } from '@form-field';
 @Component({
   selector: 'app-edit-profile',
@@ -32,7 +34,6 @@ export class EditProfileComponent implements OnInit {
     this._dataService.getProfileDetail()
       .subscribe(
         (response: any) => {
-          console.log(response)
           this.profileDetail = response.data;
           this.editProfileForm.patchValue({
             firstName: this.profileDetail.firstName,
@@ -59,6 +60,14 @@ export class EditProfileComponent implements OnInit {
     try {
       let result = await onSelectFile(event);
       this.imageFile = result.file;
+      console.log(this.imageFile,'image file ');
+      let arr = [];
+      let files = Object.keys(this.imageFile);
+      console.log(files,'files....')
+       files.forEach(file => {
+       arr.push(this.imageFile[file]);
+      });
+      console.log(arr , ' arr i sworking....')
       this.profilePicURL = result.url;
     } catch (err) {
       // if (err.type) {
@@ -76,13 +85,18 @@ export class EditProfileComponent implements OnInit {
     if (this.editProfileForm.invalid)
       return;
     if (this.imageFile) {
-      let data: any = await this.accountService.uploadProfile(this.imageFile);
-      this.profilePicURL = data.Location;
+       this.accountService.uploadProfile(this.imageFile).subscribe(
+        (res)=>{
+          console.log(res , 'response');
+        }
+      )
     }
-    let body = { image: this.profilePicURL, ...this.editProfileForm.value };
+    
+    let body = { images:this.imageFile , ...this.editProfileForm.value };
     this.editProfileForm.disable();
     this.editProfileSubscription = this.accountService.editProfile(body).subscribe(
       data => {
+   console.log(data)
       },
       err => {
         this.editProfileForm.enable();
@@ -95,7 +109,7 @@ export class EditProfileComponent implements OnInit {
       this.editProfileSubscription.unsubscribe();
   }
 
-
+}
 
 
 
@@ -153,4 +167,4 @@ export class EditProfileComponent implements OnInit {
   
 
 
-}
+
