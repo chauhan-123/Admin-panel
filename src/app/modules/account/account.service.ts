@@ -17,7 +17,7 @@ interface FormData {
   providedIn: 'root'
 })
 export class AccountService {
- 
+ loader:boolean = false;
   
   baseUrl="http://localhost:3000/"
   subscribe:any;
@@ -216,6 +216,7 @@ changePassword(data){
 
 
 uploadProfile(images:File){
+  this.loader = true;
   console.log(images,'images')
       let formData = new FormData();
       formData.append('images', images );
@@ -233,9 +234,7 @@ uploadProfile(images:File){
       Method For Edit Profile
   */
  editProfile(data) {
- console.log(data, 'data is on :::::::::::::::::::::::::::::::', data.images.name, data.firstName);
-
-      
+ console.log(data, 'data is on :::::::::::::::::::::::::::::::', data.images.name, data.firstName);  
   // let body = {data.images.name, };
   let body = {
     images:data.images.name,
@@ -244,18 +243,19 @@ uploadProfile(images:File){
   }
   // delete body['email'];
   // console.log(body ,'body data is coming .....')
-  return this.httpclient.put(`${this.baseUrl}edit_profile`, body).pipe(
-    map(
-      response => {
-        console.log('response','>>>>>>>>>>>>>>>>>>>>')
+  return this.httpclient.put(`${this.baseUrl}edit_profile`, body);
+  // .pipe(
+  //   map(
+  //     response => {
+  //       console.log('response','>>>>>>>>>>>>>>>>>>>>')
         // if (response['statusCode'] === 200) {
         //   this._utilityService.showAlert(COMMON_MESSAGES.UPDATED('Profile'));
         //   this._dataService.profileData.data = { ...this._dataService.profileData.data, ...body }
         //   this._dataService.profileDetail.next({ ...this._dataService.profileData });
         //   this._router.navigate([SETTINGS.fullUrl()]);
-        }
-    )
-  )
+  //       }
+  //   )
+  // )
       }
     // ),
     // catchError(

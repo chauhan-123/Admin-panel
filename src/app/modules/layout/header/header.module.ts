@@ -1,15 +1,16 @@
-// import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { HeaderComponent } from './header.component';
-// import { MatIconModule } from '@angular/material';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './header.component';
+import { MatIconModule } from '@angular/material';
 
 
 
-// @NgModule({
-//   declarations: [HeaderComponent],
-//   imports: [
-//     CommonModule,
-//     MatIconModule
-//   ]
-// })
-// export class HeaderModule { }
+@NgModule({
+  declarations: [HeaderComponent],
+  imports: [
+    CommonModule,
+    MatIconModule
+  ],
+
+})
+export class HeaderModule { }

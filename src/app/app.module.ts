@@ -11,6 +11,7 @@ import { HttpService } from './modules/shared/services/http.service';
 import { SharedModule } from './modules/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import { HeaderComponent } from './modules/layout/header/header.component';
 
 
 
@@ -28,7 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule,
     MatIconModule
   ],
-  providers: [AccountService, HttpService
+  providers: [AccountService, HttpService , HeaderComponent
   ],
 
   bootstrap: [AppComponent]

@@ -3,7 +3,25 @@ $thm_clr_light :rgba(0, 205, 222, 0.1);
 $thm_clr2 : #000;
 $thm_clr2_light :rgba(8, 87, 91, .1);
 
-
+.spindiv{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+  .spindiv .spin{
+    width: 30px;
+    height: 30px;
+    border: 5px solid black;
+    border-top: 5px solid transparent;
+    border-radius: 100%;
+    -webkit-animation: spin 1s infinite linear;
+    animation: spin 1s infinite linear;
+  }
 
 .img{
     width: 150px;

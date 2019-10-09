@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AccountService } from 'src/app/modules/account/account.service';
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
-import {onSelectFile} from '../../../../../constant/file-input'; 
+import { onSelectFile } from '../../../../../constant/file-input';
+import { HeaderComponent } from '../../../header/header.component';
+
 interface FormData {
   entries(): Iterator<any>;
 }
@@ -17,13 +19,19 @@ export class EditProfileComponent implements OnInit {
   editProfileForm: FormGroup;
   minDateOfBirth = new Date();
   editProfileSubscription;
+  loader : boolean = false;
   imageFile;
   profileDetail: any;
-  constructor( private accountService:AccountService, private _dataService:DataTransferService) {
+  constructor(
+    private accountService: AccountService,
+     private _dataService: DataTransferService,
+     private _head: DataTransferService,
+     private header:HeaderComponent
+     ) {
     this.editProfileForm = this.accountService.createEditProfileForm();
-   }
+  }
 
-  ngOnInit( ) {
+  ngOnInit() {
     this.getProfileDetail();
   }
 
@@ -35,21 +43,23 @@ export class EditProfileComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.profileDetail = response.data;
+          console.log(this.profileDetail, 'PPPPPPPPPPPPPPPPP')
+          console.log(this.profileDetail.url, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
           this.editProfileForm.patchValue({
             firstName: this.profileDetail.firstName,
             email: this.profileDetail.email
           })
-          this.profilePicURL = this.profileDetail.image;
+          this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
         }
       )
   }
 
-    /**
-   * @description Getting controls of editProfileForm
-   * @param name 
-   */
-  getValidationError(control,name) {
-    return this.accountService.getValidationError(control,name);
+  /**
+ * @description Getting controls of editProfileForm
+ * @param name 
+ */
+  getValidationError(control, name) {
+    return this.accountService.getValidationError(control, name);
   }
 
   /**
@@ -60,15 +70,8 @@ export class EditProfileComponent implements OnInit {
     try {
       let result = await onSelectFile(event);
       this.imageFile = result.file;
-      console.log(this.imageFile,'image file ');
-      let arr = [];
-      let files = Object.keys(this.imageFile);
-      console.log(files,'files....')
-       files.forEach(file => {
-       arr.push(this.imageFile[file]);
-      });
-      console.log(arr , ' arr i sworking....')
       this.profilePicURL = result.url;
+      // this.profileDetail = `data:image/jpeg;base64,${res['files'][0]}`;
     } catch (err) {
       // if (err.type) {
       //   this._editProfileService.showAlert(invalidImageError());
@@ -85,23 +88,30 @@ export class EditProfileComponent implements OnInit {
     if (this.editProfileForm.invalid)
       return;
     if (this.imageFile) {
-       this.accountService.uploadProfile(this.imageFile).subscribe(
-        (res)=>{
-          console.log(res , 'response');
+      this.loader = true;
+      this.accountService.uploadProfile(this.imageFile).subscribe(
+      
+        (res) => {
+        console.log(res)
+     this.profileDetail.image =  `data:image/jpeg;base64,${res['files'][0]}`;
+        this._dataService.updatedDataSelection(this.profileDetail.image)
+   
         }
       )
     }
-    
-    let body = { images:this.imageFile , ...this.editProfileForm.value };
+    let body = { images: this.imageFile, ...this.editProfileForm.value };
     this.editProfileForm.disable();
     this.editProfileSubscription = this.accountService.editProfile(body).subscribe(
       data => {
-   console.log(data)
+        console.log(data);
+        
+        this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
       },
       err => {
         this.editProfileForm.enable();
       }
     );
+    this.header.getProfileDetail();
   }
 
   ngOnDestroy() {
@@ -128,24 +138,24 @@ export class EditProfileComponent implements OnInit {
   //       this.url = `data:image/png;base64,${response['files'][0]}`;
   //       this.editProfileForm.controls['image'].setValue(this.url);
   //     }
-   
-      
+
+
   //   }, error=>{
-      
+
   //   }
 
-    
+
   //   );
   // }
- 
+
 
   // private _updateProfile() {
     // this._profile.updateProfile(this.profileForm.value).finally(() => {
     //   this._loader.completeLoading();
     // });
   // }
-  
-  
+
+
 
   // onSelectFile(event) { // called each time file input changes
   //   if (event.target.files && event.target.files[0]) {
@@ -161,10 +171,10 @@ export class EditProfileComponent implements OnInit {
   // }
 
 
-  
-    
-  
-  
+
+
+
+
 
 
 

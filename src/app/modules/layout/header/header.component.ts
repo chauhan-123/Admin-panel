@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
+import { Component, OnInit, HostListener,OnChanges } from '@angular/core';
 import { UtilityService } from '../../shared/services/utility.service';
 import { Router } from '@angular/router';
 import { DataTransferService } from '../../shared/services/data-transfer.service';
@@ -8,7 +8,7 @@ import { DataTransferService } from '../../shared/services/data-transfer.service
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnChanges  {
   userName: string;
   Email:string;
   humburger = false;
@@ -18,34 +18,54 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
     // console.log(window.innerWidth);
-    if (window.innerWidth < 1025) {
-      this.renderer.addClass(document.body, 'collapsed');
-      this.humburger = !this.humburger;
-      this.flag = 2;
-    }
+    // if (window.innerWidth < 1025) {
+    //   this.renderer.addClass(document.body, 'collapsed');
+    //   this.humburger = !this.humburger;
+    //   this.flag = 2;
+    // }
   }
-  constructor(private _utilityService:UtilityService, private _router:Router,  private _dataService: DataTransferService,  private renderer: Renderer2,) { 
-    this.onResize();
+  constructor(private _utilityService:UtilityService, private _router:Router,  private _dataService: DataTransferService) { 
+    // this.onResize();
     this.getProfileDetail();
   }
+  ngOnChanges (){
+  this.editdata()
+  }
 
-  sidebarCollaped() {
-    this.humburger = !this.humburger;
-    if (this.flag === 1) {
-      this.renderer.addClass(document.body, 'collapsed');
-      this.flag++;
-      console.log(this.flag);
-    } else {
-      this.renderer.removeClass(document.body, 'collapsed');
-      this.flag--;
-      console.log(this.flag);
-    }
-  } 
+  editdata(){
+    this._dataService.data.subscribe((data)=>{
+      console.log(data,"data on header")
+    })
+
+  }
+  // sidebarCollaped() {
+  //   this.humburger = !this.humburger;
+  //   if (this.flag === 1) {
+  //     this.renderer.addClass(document.body, 'collapsed');
+  //     this.flag++;
+  //     console.log(this.flag);
+  //   } else {
+  //     this.renderer.removeClass(document.body, 'collapsed');
+  //     this.flag--;
+  //     console.log(this.flag);
+  //   }
+  // } 
   
-  getProfileDetail() {
+  getProfileDetail() { 
+
     this._dataService.getProfileDetail().subscribe(
       (response: any) => {
         this.profileDetail = response.data;
+        console.log(this.profileDetail,'>>>>>>>>>>>>>');
+        if(this.profileDetail['url']==[]){
+         console.log('coming');
+         this.profileDetail.image = 'assets/images/avatar.png';
+        }
+      else {
+this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
+      }
+
+
         this._dataService.profileDetail.next(this.profileDetail);
       }
     )

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 
 const adminRoute:Routes =[
   {path:'',redirectTo:'profile'},
@@ -14,6 +16,7 @@ const adminRoute:Routes =[
   imports: [
     CommonModule,
     RouterModule.forChild(adminRoute)
-  ]
+  ],
+  providers:[HeaderComponent]
 })
 export class AdminModule { }
