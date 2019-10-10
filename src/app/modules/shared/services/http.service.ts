@@ -8,17 +8,14 @@ import { UtilityService } from './utility.service';
 
 @Injectable()
 export class HttpService {
-    // private apiUrl: string;
 
     constructor(
         private http: HttpClient,
-    ) {
-        // this.apiUrl = environment.url;
-     }
-    
-    post(url, data,loader = true) {
-        if(loader) {
-          console.log(loader,'loader');
+    ) { }
+
+    post(url, data, loader = true) {
+        if (loader) {
+            console.log(loader, 'loader');
             UtilityService.loader.next(loader);
         }
         let postUrl;
@@ -29,20 +26,12 @@ export class HttpService {
                     return res;
                 }),
                 catchError((error: HttpErrorResponse) => {
-                    throw(error);
+                    throw (error);
                 })
             );
     }
 
-  
-
-   
-
- 
     handleError(error) {
         console.error(error);
     }
-
-    
-
 }

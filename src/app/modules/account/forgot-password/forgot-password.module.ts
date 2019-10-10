@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ForgotPasswordComponent } from './forgot-password.component';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import {
   MatButtonModule,
   MatCardModule,
@@ -12,8 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { AccountService } from '../account.service';
 import { AccountGuard } from '../../gaurd/account.guard';
-const forgotRoute:Routes =[
-  {path:'',component:ForgotPasswordComponent}
+const forgotRoute: Routes = [
+  { path: '', component: ForgotPasswordComponent }
 ]
 
 @NgModule({
@@ -28,6 +28,6 @@ const forgotRoute:Routes =[
     ReactiveFormsModule,
     SharedModule,
   ],
-  providers:[AccountService]
+  providers: [AccountService]
 })
 export class ForgotPasswordModule { }

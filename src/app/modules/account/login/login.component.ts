@@ -9,26 +9,23 @@ import { AccountService } from '../account.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm:FormGroup;
+  loginForm: FormGroup;
   hide = true;
 
-  constructor( private _router: Router,   private _accountService:AccountService) 
-  {
+  constructor(private _router: Router, private _accountService: AccountService) {
     this.loginForm = this._accountService.createLoginForm();
-   }
+  }
 
   ngOnInit() {
-    // this._router.navigate([''])
   }
   login() {
-    if(this.loginForm.invalid) {
+    if (this.loginForm.invalid) {
       return;
     }
     this._accountService.login(this.loginForm.value);
   }
 
-  getValidationError(control,name) {
-    return this._accountService.getValidationError(control,name);
+  getValidationError(control, name) {
+    return this._accountService.getValidationError(control, name);
   }
-
 }

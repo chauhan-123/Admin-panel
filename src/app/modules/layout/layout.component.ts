@@ -1,8 +1,8 @@
-import { Component, OnInit , OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-export let browserRefresh = false;
+
 
 @Component({
   selector: 'app-layout',
@@ -11,20 +11,11 @@ export let browserRefresh = false;
 })
 export class LayoutComponent implements OnInit {
   subscription: Subscription;
-  
-  constructor( public router:Router) {
-    this.subscription = router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        browserRefresh = !router.navigated;
-      }
-  });
-   }
+
+  constructor(public router: Router) {
+  }
 
   ngOnInit() {
-
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }

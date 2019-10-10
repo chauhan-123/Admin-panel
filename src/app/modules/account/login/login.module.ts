@@ -7,17 +7,16 @@ import {
   MatCardModule,
   MatIconModule,
   MatInputModule,
-  MatSlideToggleModule  
-
+  MatSlideToggleModule
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { AccountService } from '../account.service';
-import { AccountGuard as Guard} from '../../gaurd/account.guard';
+import { AccountGuard as Guard } from '../../gaurd/account.guard';
 
 
-const accountRoute: Routes =[
- { path:'', component:LoginComponent }
+const accountRoute: Routes = [
+  { path: '', component: LoginComponent }
 ]
 
 @NgModule({
@@ -32,9 +31,7 @@ const accountRoute: Routes =[
     ReactiveFormsModule,
     SharedModule,
     MatSlideToggleModule
-
   ],
-  providers:[AccountService]
-
+  providers: [AccountService]
 })
 export class LoginModule { }

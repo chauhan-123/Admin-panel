@@ -1,7 +1,7 @@
 <mat-card class="accout_wrapper login-card" style="min-width: 300px;
 max-width: 600px;
 width: auto;">
-    <!-- <div class="logo_blk"><img src="assets/images/logo.png" alt=""></div>  -->
+
     <div class="header-card">
         <h2>Sign Up Now</h2>
         <p>Please Enter User Details</p>
@@ -12,9 +12,10 @@ width: auto;">
             <mat-form-field>
                 <input matInput required placeholder="First Name" firstName="firstname" formControlName="firstName">
                 <mat-error *ngIf="signForm['controls']['firstName']['errors']">
-                    {{getValidationError(signForm['controls']['firstName'],'firstName')}} please enter a name</mat-error>
+                    {{getValidationError(signForm['controls']['firstName'],'firstName')}} please enter a name
+                </mat-error>
                 <mat-icon matPrefix>person</mat-icon>
-   
+
             </mat-form-field>
             <mat-form-field>
                 <input matInput required placeholder="Email Address" name="username" formControlName="email">
@@ -25,7 +26,8 @@ width: auto;">
             <mat-form-field>
                 <input matInput required placeholder="Phone number" phone="phone" formControlName="phone">
                 <mat-error *ngIf="signForm['controls']['phone']['errors']">
-                    {{getValidationError(signForm['controls']['phone'],'phone')}} please enter a mobile number</mat-error>
+                    {{getValidationError(signForm['controls']['phone'],'phone')}} please enter a mobile number
+                </mat-error>
                 <mat-icon matPrefix>settings_cell</mat-icon>
             </mat-form-field>
             <mat-form-field>
@@ -39,7 +41,8 @@ width: auto;">
                 <input matInput required placeholder="Password" formControlName="password" [type]="hide ? 'password' :
          'text'">
                 <mat-error *ngIf="signForm['controls']['password']['errors']">
-                    {{getValidationError(signForm['controls']['password'],'password')}} please enter a password</mat-error>
+                    {{getValidationError(signForm['controls']['password'],'password')}} please enter a password
+                </mat-error>
                 <mat-icon matPrefix>vpn_key</mat-icon>
                 <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' :
          'visibility'}}</mat-icon>
@@ -55,14 +58,7 @@ width: auto;">
             </mat-form-field> -->
             <mat-card-actions class="text-center">
                 <button mat-raised-button type="submit" color="primary">Sign Up Now</button>
-
             </mat-card-actions>
-
-
-
-
         </form>
-
     </mat-card-content>
-
 </mat-card>

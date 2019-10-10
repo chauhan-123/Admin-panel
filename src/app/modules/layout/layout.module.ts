@@ -6,12 +6,8 @@ import { LayoutComponent } from './layout.component';
 import { LayoutRoutingModule } from './layout.routing';
 import { HeaderComponent } from './header/header.component';
 
-
-
-
-
 @NgModule({
-  declarations: [LayoutComponent,HeaderComponent],
+  declarations: [LayoutComponent, HeaderComponent],
   imports: [
     CommonModule,
     SharedModule,

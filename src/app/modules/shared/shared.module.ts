@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HttpService } from './services/http.service';
 import { UtilityService } from './services/utility.service';
-// import { HomeGuard } from '../../guards/home.guard';
 import { FormsModule } from '@angular/forms';
 
 import {
@@ -33,7 +32,7 @@ import { TokenInterceptor } from '../interceptor/token-interceptor';
   declarations: [
 
   ],
-  exports : [
+  exports: [
     MatButtonModule,
     MatButtonToggleModule,
     MatDialogModule,
@@ -50,7 +49,6 @@ import { TokenInterceptor } from '../interceptor/token-interceptor';
   providers: [
     HttpService,
     UtilityService,
-    // HomeGuard,
     AccountGuard,
     {
       provide: HTTP_INTERCEPTORS,

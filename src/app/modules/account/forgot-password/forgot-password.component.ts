@@ -10,20 +10,19 @@ import { AccountService } from '../account.service';
 export class ForgotPasswordComponent implements OnInit {
   forgotForm: FormGroup;
 
-  constructor( private _accountService:AccountService,private _router:Router) 
-  {
+  constructor(private _accountService: AccountService, private _router: Router) {
     this.forgotForm = this._accountService.createForgotForm();
-   }
+  }
 
   ngOnInit() {
   }
 
   checkEmail() {
-    if(this.forgotForm.invalid)
-    return;
+    if (this.forgotForm.invalid)
+      return;
     this._accountService.checkEmail(this.forgotForm.value)
   }
-  getValidationError(control,name) {
-    return this._accountService.getValidationError(control,name);
+  getValidationError(control, name) {
+    return this._accountService.getValidationError(control, name);
   }
 }

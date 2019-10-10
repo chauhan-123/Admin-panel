@@ -1,66 +1,6 @@
-<!-- 
-<mat-card class="page_heading">
-    <span [routerLink]="['../']">  Admin Profile </span>
-    <mat-icon>arrow_forward_ios</mat-icon>
-    Edit Profile
-  </mat-card>
-  
-    <mat-card>
-        <form [formGroup]="editProfileForm" (ngSubmit)="editProfileForm.valid&&editProfile()">
-       <div class="panel-header">
-        <h3> Edit Profile </h3>
-      </div> -->
-
-<!-- 
-      <div class="row"> 
-        <div class="col-sm-3">
-            <div class="img">
-         
-              <img [src]="url" alt=""> -->
-<!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
-<!-- <button type="button" mat-mini-fab color="primary">
-                <mat-icon>camera_alt</mat-icon> 
-                <input type="file" accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)"  matTooltip="Change Image" />
-   
-              </button>
-              {{this.url}}
-            </div>
-        </div>
-           <div class="col-md-9">
-            <div class="row">
-              <div class="col-sm-6">
-                  <mat-form-field >
-                      <input matInput placeholder="Name" value="John Carter">
-                    </mat-form-field>
-              </div>
-              <div class="col-sm-6">
-                  <mat-form-field >
-                      <input matInput placeholder="Email" value="johncarter@gmail.com">
-                    </mat-form-field>
-              </div>
-            </div>
-            <mat-form-field >
-              <textarea matInput placeholder="Description" style="height:65px">Lorem ipsum doller swi gies here</textarea>
-            </mat-form-field>
-          
-          </div>   
-        </div>
-        <div class="form-btn">
-            <div class="row">
-                <div class="col-sm-3 offset-sm-3">
-                    <button mat-raised-button color="primary" (click)="editProfile()">Update</button>
-                  </div>
-                  <div class="col-sm-3">
-                      <button mat-raised-button color="accent">Reset</button>
-                    </div>
-                        
-            </div>
-          </div>
-        </form>
-    </mat-card>  -->
-    <div *ngIf="showloader" class="spinerdiv">
-      <div class="spinner"></div>
-    </div>
+<div *ngIf="showloader" class="spinerdiv">
+  <div class="spinner"></div>
+</div>
 
 <mat-card class="page_heading">
   <!-- <span [routerLink]="['SETTINGS'|absolutePath]"> Admin Profile </span> -->
@@ -72,22 +12,15 @@
     <div class="panel-header">
       <h3> Edit Profile </h3>
     </div>
-
     <div class="flex-col">
       <div class="img-wrap">
         <div class="img">
-         
-         
-            <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'"  alt=""> 
-<!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
- <button type="button" mat-mini-fab color="primary"> 
-              <mat-icon>camera_alt</mat-icon> 
-              <input type="file"  (change)="onSelectFile($event)"  matTooltip="Change Image" />
- 
-            </button>
-
-       
-          <!-- <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'" alt=""> -->
+          <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'" alt="">
+          <!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
+          <button type="button" mat-mini-fab color="primary">
+            <mat-icon>camera_alt</mat-icon>
+            <input type="file" (change)="onSelectFile($event)" matTooltip="Change Image" />
+          </button>
         </div>
       </div>
       <div class="form-wrap">
@@ -114,7 +47,6 @@
           <button mat-raised-button color="primary">Update</button>
           <!-- <button mat-raised-button [routerLink]="['SETTINGS'|absolutePath]">Cancel</button> -->
         </div>
-
       </div>
     </div>
   </mat-card>

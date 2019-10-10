@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChangePasswordComponent } from './component/change-password.component';
-import { RouterModule ,Routes} from '@angular/router';
-import { MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
+import { MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from 'src/app/modules/account/account.service';
 
-const changePassword:Routes=[
-  {path:'',component:ChangePasswordComponent}
+const changePassword: Routes = [
+  { path: '', component: ChangePasswordComponent }
 ]
 
 @NgModule({
@@ -23,6 +23,6 @@ const changePassword:Routes=[
     MatInputModule,
     ReactiveFormsModule
   ],
-  providers:[AccountService]
+  providers: [AccountService]
 })
 export class ChangePasswordModule { }

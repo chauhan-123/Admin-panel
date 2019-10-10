@@ -23,7 +23,6 @@ export class TokenInterceptor implements HttpInterceptor {
     
     let headers = {};
     if(localStorage.getItem('login')) {
- 
       headers['authorization'] = 'Bearer ' + localStorage.getItem('login');
     }
     request = request.clone({
@@ -36,16 +35,12 @@ export class TokenInterceptor implements HttpInterceptor {
       (data) =>{
         if(data instanceof HttpResponse) {
           UtilityService.loader.next(false);
-        
         }
-        
       },
       (err: any) => {
         UtilityService.loader.next(false);
         console.log(err)
         if (err instanceof HttpErrorResponse) {
-          
-     
           console.log('req url :: ' + request.url);
         //   this._utilityService.errorAlert(err);
           // if (err.status === 401||err.error.responseType=='UNAUTHORIZED') {

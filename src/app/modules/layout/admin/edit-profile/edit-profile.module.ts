@@ -7,8 +7,8 @@ import { MatCardModule, MatInputModule, MatIconModule, MatFormFieldModule } from
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from 'src/app/modules/account/account.service';
 
-const editProfile:Routes=[
-  {path:'',component:EditProfileComponent}
+const editProfile: Routes = [
+  { path: '', component: EditProfileComponent }
 ]
 
 @NgModule({
@@ -22,8 +22,7 @@ const editProfile:Routes=[
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-  
   ],
-  providers:[AccountService]
+  providers: [AccountService]
 })
 export class EditProfileModule { }

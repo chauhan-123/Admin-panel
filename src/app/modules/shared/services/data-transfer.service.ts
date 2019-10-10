@@ -11,21 +11,19 @@ export class DataTransferService {
     private editProfileData = new BehaviorSubject<any>({});
     data = this.editProfileData.asObservable();
     profileData;
-    baseUrl="http://localhost:3000/"
+    baseUrl = "http://localhost:3000/"
     constructor(
-        private _http: HttpService , private httpClient: HttpClient
+        private _http: HttpService, private httpClient: HttpClient
     ) {
     }
 
-    updatedDataSelection(data){
-      this.editProfileData.next(data);
+    updatedDataSelection(data) {
+        this.editProfileData.next(data);
     }
     getProfileDetail() {
         return this.httpClient.get(`${this.baseUrl}admin_details`)
-
     }
 }
 
 export interface IData {
-
 }

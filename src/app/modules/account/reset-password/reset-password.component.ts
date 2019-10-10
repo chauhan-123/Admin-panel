@@ -11,46 +11,45 @@ import { AccountService } from './../account.service';
 export class ResetPasswordComponent implements OnInit {
   passwordHide = true;
   confirmPasswordHide = true;
-  token:String;
-  email:string;
-  password:string;
+  token: String;
+  email: string;
+  password: string;
   showSpinner = false
-  resetForm:FormGroup;
+  resetForm: FormGroup;
   constructor(
     private router: Router,
-     private _accountService:AccountService,
-     private _route:ActivatedRoute
+    private _accountService: AccountService,
+    private _route: ActivatedRoute
   ) {
     this.resetForm = this._accountService.createResetForm();
-  //  this.token = this._route.snapshot.queryParamMap.get('token');
-      this.email = this._route.snapshot.queryParamMap.get('email');
- 
+    //  this.token = this._route.snapshot.queryParamMap.get('token');
+    this.email = this._route.snapshot.queryParamMap.get('email');
+
   }
 
-   ngOnInit() {
+  ngOnInit() {
   }
 
 
   resetPassword() {
-    if(this.resetForm.invalid)
-    return;
+    if (this.resetForm.invalid)
+      return;
     let data = this.resetForm.value;
-    // var formdata = {
-
-    //   // // OTP: this.otp,
-    //    email: this.email,
-    //   // // password: this.obj.password
-    //   //  token:this.token
-    // }
+    //  var formdata = {
+    //  OTP: this.otp,
+    //     email: this.email,
+    // password: this.obj.password
+    //   token:this.token
+    //  }
     data['resetPassword'] = data['password'];
     data['token'] = this.token;
     data['email'] = this.email;
     //  delete data['password'];
     this._accountService.resetPassword(data);
-     this.router.navigate(['/account/login']); 
+    this.router.navigate(['/account/login']);
   }
-  getValidationError(control,name) {
-    return this._accountService.getValidationError(control,name);
+  getValidationError(control, name) {
+    return this._accountService.getValidationError(control, name);
   }
 
 

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminProfileComponent } from './component/admin-profile.component';
-import { RouterModule , Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
-const adminProfile:Routes=[
-  {path:'',component:AdminProfileComponent}
+const adminProfile: Routes = [
+  { path: '', component: AdminProfileComponent }
 ]
 
 @NgModule({

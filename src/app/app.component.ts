@@ -12,29 +12,24 @@ export class AppComponent {
   loader = false;
   title = 'Login';
   constructor(
-    private _router:Router
+    private _router: Router
   ) {
 
   }
   ngOnInit() {
-    // this._router.navigate([''])
     this._router.events.forEach((event) => {
-      if(event instanceof NavigationStart) {
+      if (event instanceof NavigationStart) {
         UtilityService.loader.next(true)
       }
-      else if(event instanceof NavigationEnd) {
+      else if (event instanceof NavigationEnd) {
         UtilityService.loader.next(false)
       }
     });
     UtilityService.loader.subscribe(
-      data=>{
-        setTimeout(()=>{
-          // console.log(data);
+      data => {
+        setTimeout(() => {
           this.loader = data;
-          // console.log(this.loader,'jsiji');
-
         });
-     
       }
     )
   }

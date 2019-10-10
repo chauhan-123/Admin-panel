@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import {} from './admin/admin.module';
+import { } from './admin/admin.module';
 
 const routes: Routes = [
     {
@@ -9,7 +9,6 @@ const routes: Routes = [
             { path: '', redirectTo: 'home' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
-        
         ]
     },
 ];
@@ -25,6 +24,5 @@ const routes: Routes = [
     ]
 })
 export class LayoutRoutingModule {
-
 }
 

@@ -1,106 +1,36 @@
-<!-- 
 <mat-card class="page_heading">
-    <span [routerLink]="['../']"> Admin </span>
-  </mat-card> -->
-<!--   
-  <mat-card class="com_details">
-    <div class="panel-header">
-      <h3>Admin Profile </h3>
+  <span [routerLink]="['/admin']"> Admin </span>
+</mat-card>
+
+<mat-card class="com_details">
+  <div class="panel-header">
+    <h3>Admin Profile </h3>
+  </div>
+  <div class="flex-col">
+    <div class="img-wrap">
+      <div class="img">
+        <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'" alt="Admin">
+      </div>
     </div>
+    <div class="form-wrap">
+      <div class="form-group">
+        <div class="label">Name</div>
+        <div class="value">{{profileDetail?.firstName}}</div>
+      </div>
+      <div class="form-group">
+        <div class="label">Email ID</div>
+        <div class="value">{{profileDetail?.email}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-btn">
     <div class="row">
-      <div class="col-sm-3">
-        <div class="img">
-           <img src="assets/images/admin.jpg" alt="Admin"> 
-        </div>
-      </div>
-      <div class="col-sm-9">
-        <div class="row">
-  
-          <div class="col-sm-6">
-            <div class="label">Name</div>
-            <div class="value">{{this.userName}}</div>
-          </div>
-          <div class="col-sm-6">
-            <div class="label">Email ID</div>
-            <div class="value">{{this.Email}}</div>
-          </div>
-          <div class="col-sm-6">
-            <div class="label">Dated Created</div>
-            <div class="value"> 10/10/2018 </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="label">Last Login</div>
-            <div class="value"> 06/12/2018 - 06:00 PM </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="label">Description</div>
-            <div class="value">
-              The grass is green across the hill,
-              But yellow blooms the daffodil.
-              It's sunshine on a little stalk,
-              A friendly flower, I bet they talk...
-              
-           
-            </div>
-          </div>
-  
-        </div>
-      </div>
-  
+      <!-- <div class="col-sm-3 offset-sm-3"> -->
+      <button mat-raised-button color="primary" [routerLink]="['../../../changePassword']">Change Password</button>
+      <!-- </div> -->
+      <!-- <div class="col-sm-3">  -->
+      <button mat-raised-button color="primary" [routerLink]="['../../../edit-profile']">Edit Profile</button>
+      <!-- </div> -->
     </div>
-    <div class="form-btn">
-      <div class="row">
-        <div class="col-sm-3 offset-sm-3">
-         
-          <button mat-raised-button color="primary" [routerLink]="['../../../changePassword']">Change Password</button>
-        </div>
-        <div class="col-sm-3">
-          <button mat-raised-button color="primary" [routerLink]="['../../../edit-profile']" >Edit Profile</button>
-        
-          <button mat-raised-button color="primary" (click)="editProfile()">Edit Profile</button>
-        </div>
-  
-      </div>
-    </div>
-  </mat-card> -->
-
-
-
-
-  <mat-card class="page_heading">
-    <span [routerLink]="['/admin']"> Admin </span>
-  </mat-card>
-  
-  <mat-card class="com_details">
-    <div class="panel-header">
-      <h3>Admin Profile </h3>
-    </div>
-  
-    <div class="flex-col">
-      <div class="img-wrap">
-          <div class="img">
-              <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'" alt="Admin">
-            </div>
-      </div>
-      <div class="form-wrap">
-        <div class="form-group">
-            <div class="label">Name</div>
-            <div class="value">{{profileDetail?.firstName}}</div>
-        </div>
-        <div class="form-group">
-            <div class="label">Email ID</div>
-            <div class="value">{{profileDetail?.email}}</div>
-        </div>
-      </div>
-    </div>
-    <div class="form-btn">
-      <div class="row">
-        <!-- <div class="col-sm-3 offset-sm-3"> -->
-          <button mat-raised-button color="primary" [routerLink]="['../../../changePassword']">Change Password</button>
-        <!-- </div> -->
-        <!-- <div class="col-sm-3">  -->
-          <button mat-raised-button color="primary" [routerLink]="['../../../edit-profile']">Edit Profile</button>
-          <!-- </div> -->
-      </div>
-    </div>
-  </mat-card>c
+  </div>
+</mat-card>c
