@@ -1,16 +1,18 @@
-import { Component, OnInit, HostListener,OnChanges } from '@angular/core';
+import { Component, OnInit, HostListener, OnChanges } from '@angular/core';
 import { UtilityService } from '../../shared/services/utility.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { DataTransferService } from '../../shared/services/data-transfer.service';
-
+import { filter } from 'rxjs/operators';
+import { browserRefresh } from '../layout.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit,OnChanges  {
+export class HeaderComponent implements OnInit, OnChanges {
+  public browserRefresh: boolean;
   userName: string;
-  Email:string;
+  Email: string;
   humburger = false;
   flag = 1;
   profileSubscriber;
@@ -24,17 +26,19 @@ export class HeaderComponent implements OnInit,OnChanges  {
     //   this.flag = 2;
     // }
   }
-  constructor(private _utilityService:UtilityService, private _router:Router,  private _dataService: DataTransferService) { 
+  constructor(private _utilityService: UtilityService, private _router: Router, private _dataService: DataTransferService) {
     // this.onResize();
+
     this.getProfileDetail();
   }
-  ngOnChanges (){
-  this.editdata()
+  ngOnChanges() {
+   
+    this.editdata()
   }
 
-  editdata(){
-    this._dataService.data.subscribe((data)=>{
-      console.log(data,"data on header")
+  editdata() {
+    this._dataService.data.subscribe((data) => {
+      console.log(data, "data on header")
     })
 
   }
@@ -50,37 +54,38 @@ export class HeaderComponent implements OnInit,OnChanges  {
   //     console.log(this.flag);
   //   }
   // } 
-  
-  getProfileDetail() { 
 
-    this._dataService.getProfileDetail().subscribe(
+  getProfileDetail() {
+
+    this._dataService.getProfileDetail()
+    .subscribe(
       (response: any) => {
         this.profileDetail = response.data;
-        console.log(this.profileDetail,'>>>>>>>>>>>>>');
-        if(this.profileDetail['url']==[]){
-         console.log('coming');
-         this.profileDetail.image = 'assets/images/avatar.png';
-        }
-      else {
-this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
-      }
+        //  if(this.profileDetail['url']==[]){
+        //          console.log('coming');
+        //          this.profileDetail.image = 'assets/images/avatar.png';
+        //         }
+        //       else {
+        //  this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
+        //       }
 
 
-        this._dataService.profileDetail.next(this.profileDetail);
+         this._dataService.profileDetail.next(this.profileDetail);
       }
     )
   }
 
   ngOnInit() {
+
     this.profileSubscriber = this._dataService.profileDetail.subscribe(
       data => {
-        if(data)      
-        this.profileDetail = data;
-        }
+        if (data)
+          this.profileDetail = data;
+      }
     )
-}
+  }
 
-  logout(){
+  logout() {
     this._utilityService.clearStorage();
     this._router.navigate(['/account/login']);
   }
@@ -90,7 +95,7 @@ this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`
       this.profileSubscriber.unsubscribe();
     }
   }
-}   
+}
 
 
 

@@ -43,8 +43,7 @@ export class EditProfileComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.profileDetail = response.data;
-          console.log(this.profileDetail, 'PPPPPPPPPPPPPPPPP')
-          console.log(this.profileDetail.url, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    
           this.editProfileForm.patchValue({
             firstName: this.profileDetail.firstName,
             email: this.profileDetail.email
@@ -92,7 +91,7 @@ export class EditProfileComponent implements OnInit {
       this.accountService.uploadProfile(this.imageFile).subscribe(
       
         (res) => {
-        console.log(res)
+  
      this.profileDetail.image =  `data:image/jpeg;base64,${res['files'][0]}`;
         this._dataService.updatedDataSelection(this.profileDetail.image)
    
@@ -103,13 +102,12 @@ export class EditProfileComponent implements OnInit {
     this.editProfileForm.disable();
     this.editProfileSubscription = this.accountService.editProfile(body).subscribe(
       data => {
-        console.log(data);
-        
-        this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
+
+        // this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
       },
-      err => {
-        this.editProfileForm.enable();
-      }
+      // err => {
+      //   this.editProfileForm.enable();
+      // }
     );
     this.header.getProfileDetail();
   }

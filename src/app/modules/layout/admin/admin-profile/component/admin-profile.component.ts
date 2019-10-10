@@ -15,10 +15,7 @@ export class AdminProfileComponent implements OnInit {
     this.getDetail();
 }
 
-// editProfile(){
-// this.router.navigate(['../../../admin/admin/edit-profile']);
 
-// }
   
 
  /**
@@ -28,8 +25,17 @@ getDetail() {
   this.dataTransfer.getProfileDetail()
   .subscribe(
     (response:any) => {
-      console.log(response)
+
       this.profileDetail = response.data;
+//       if(this.profileDetail['url']==[]){
+//         console.log('coming');
+//         this.profileDetail.image = 'assets/images/avatar.png';
+//        }
+//      else {
+// this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
+//      }
+
+
     }
   )
 }

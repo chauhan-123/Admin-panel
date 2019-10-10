@@ -17,6 +17,7 @@ export class AppComponent {
 
   }
   ngOnInit() {
+    // this._router.navigate([''])
     this._router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
         UtilityService.loader.next(true)

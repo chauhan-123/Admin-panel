@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpService } from './http.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,37 +17,15 @@ export class DataTransferService {
     ) {
     }
 
-  
-  
-    
-  
     updatedDataSelection(data){
       this.editProfileData.next(data);
     }
-
-
-
-
-
-
     getProfileDetail() {
-        return new Observable((observer) => {
-            if (this.profileData) {
-                observer.next(this.profileData);
-            } else {
-                this.httpClient.get(`${this.baseUrl}admin_details`).subscribe(
-                    response => {
-                        if (response['status'] === 200) {
-                            this.profileData = response;
-                            observer.next(response);
-                        } else {
-                            observer.next(null);
-                        }
-                    }, error => {
-                        observer.next(null);
-                    }
-                );
-            }
-        });
+        return this.httpClient.get(`${this.baseUrl}admin_details`)
+
     }
+}
+
+export interface IData {
+
 }

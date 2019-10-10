@@ -18,7 +18,6 @@ import { AccountGuard as Guard} from '../../gaurd/account.guard';
 
 const accountRoute: Routes =[
  { path:'', component:LoginComponent }
-  // { path: '', component: LoginComponent },
 ]
 
 @NgModule({

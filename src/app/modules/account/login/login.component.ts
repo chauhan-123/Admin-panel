@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    // this._router.navigate([''])
   }
   login() {
     if(this.loginForm.invalid) {

@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {DataTransferService} from '../shared/services/data-transfer.service';
 
 interface FormData {
   entries(): Iterator<any>;
@@ -24,7 +25,8 @@ export class AccountService {
   // Observable:any;
 
   constructor(private _formBuilder: FormBuilder, private _router: Router,private _utilityService:UtilityService,
-    private http:HttpService, private httpclient:HttpClient, private router:Router, private token:SharedModule
+    private http:HttpService, private httpclient:HttpClient, private router:Router, private token:SharedModule ,
+    private _dataService : DataTransferService
     ) { }
 
 
@@ -114,9 +116,9 @@ createChangePasswordForm(){
   */
  login(data) {
   data = this._utilityService.trim(data);
-  console.log(data,'outside');
+ 
   this.httpclient.post(`${this.baseUrl}login`,data).subscribe(response =>{
-  console.log(response,'inside');
+
      if(response['status']===200) {
       //  var token = response['token'];
     
@@ -126,7 +128,8 @@ createChangePasswordForm(){
          localStorage.setItem('admin-name',response['firstName']);
          localStorage.setItem('admin-email',response['email']);
          this.router.navigate(['/admin/home'])
-         this._utilityService.openSnackBar('you are successfully login',true)
+         this._utilityService.openSnackBar('you are successfully login',true);
+       
       }
       
     },error =>{
@@ -217,7 +220,6 @@ changePassword(data){
 
 uploadProfile(images:File){
   this.loader = true;
-  console.log(images,'images')
       let formData = new FormData();
       formData.append('images', images );
       // formData.append('data', JSON.stringify(images));
@@ -234,38 +236,45 @@ uploadProfile(images:File){
       Method For Edit Profile
   */
  editProfile(data) {
- console.log(data, 'data is on :::::::::::::::::::::::::::::::', data.images.name, data.firstName);  
-  // let body = {data.images.name, };
   let body = {
     images:data.images.name,
     firstName: data.firstName,
     email: data.email
   }
   // delete body['email'];
-  // console.log(body ,'body data is coming .....')
-  return this.httpclient.put(`${this.baseUrl}edit_profile`, body);
-  // .pipe(
-  //   map(
-  //     response => {
-  //       console.log('response','>>>>>>>>>>>>>>>>>>>>')
-        // if (response['statusCode'] === 200) {
-        //   this._utilityService.showAlert(COMMON_MESSAGES.UPDATED('Profile'));
-        //   this._dataService.profileData.data = { ...this._dataService.profileData.data, ...body }
-        //   this._dataService.profileDetail.next({ ...this._dataService.profileData });
-        //   this._router.navigate([SETTINGS.fullUrl()]);
-  //       }
-  //   )
-  // )
+
+  return this.httpclient.put(`${this.baseUrl}edit_profile`, body)
+  .pipe(
+    map(
+      response => {
+        if (response['statusCode'] === 200) {
+          console.log('inside the response' , response);
+
+           this._router.navigate(['/admin']);
+        }
       }
+    )
+  )
+      
     // ),
     // catchError(
-    //   error => {
-    //     this._utilityService.errorAlert(error);
-    //     return throwError(error);
-    //   }
+      // error => {
+      //   this._utilityService.errorAlert(error);
+      //   return throwError(error);
+      // }
     // )
   // )
-// }
+}
+
+
+
+ /**
+   * @description Getting Admin Profile Detail
+   */
+  getProfileDetail() {
+    return this._dataService.getProfileDetail();
+  }
+
 
 checkEmail(data) {
   data = this._utilityService.trim(data);
