@@ -23,15 +23,19 @@ export class AdminProfileComponent implements OnInit {
     this.dataTransfer.getProfileDetail()
       .subscribe(
         (response: any) => {
-
           this.profileDetail = response.data;
-          //       if(this.profileDetail['url']==[]){
-          //         console.log('coming');
-          //         this.profileDetail.image = 'assets/images/avatar.png';
-          //        }
-          //      else {
+          
+          if(this.profileDetail['url'].length === 0){
+            console.log('coming 1');
+            
+          // this.profileDetail.image = 'assets/images/avatar.png';
+          }
+          else if(this.profileDetail['url'].length >= 0) {
+           console.log('coming 2');
+        this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
+     
+     }
           // this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
-          //      }
         }
       )
   }

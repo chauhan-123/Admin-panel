@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AccountService } from 'src/app/modules/account/account.service';
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
 import { onSelectFile } from '../../../../../constant/file-input';
-import { HeaderComponent } from '../../../header/header.component';
+
 
 interface FormData {
   entries(): Iterator<any>;
@@ -25,8 +25,7 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private _dataService: DataTransferService,
-    private _head: DataTransferService,
-    private header: HeaderComponent
+    private _head: DataTransferService
   ) {
     this.editProfileForm = this.accountService.createEditProfileForm();
   }
@@ -101,13 +100,14 @@ export class EditProfileComponent implements OnInit {
     this.editProfileForm.disable();
     this.editProfileSubscription = this.accountService.editProfile(body).subscribe(
       data => {
+        console.log(data, 'data is coming from backend...')
         // this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
       },
       // err => {
       //   this.editProfileForm.enable();
       // }
     );
-    this.header.getProfileDetail();
+    // this.header.getProfileDetail();
   }
 
   ngOnDestroy() {

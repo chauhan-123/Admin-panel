@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
 import { FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UtilityService } from '../../modules/shared/services/utility.service';
@@ -8,7 +8,9 @@ import { SharedModule } from '../shared/shared.module';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DataTransferService } from '../shared/services/data-transfer.service';
-
+import { HeaderComponent } from '../layout/header/header.component';
+import {ADMIN_URL} from '../../constant/url';
+import { JwtHelper, tokenNotExpired } from "angular2-jwt";
 interface FormData {
   entries(): Iterator<any>;
 }
@@ -17,6 +19,7 @@ interface FormData {
   providedIn: 'root'
 })
 export class AccountService {
+  // svcRenderer: Renderer2;
   loader: boolean = false;
 
   baseUrl = "http://localhost:3000/"
@@ -24,7 +27,7 @@ export class AccountService {
 
   constructor(private _formBuilder: FormBuilder, private _router: Router, private _utilityService: UtilityService,
     private http: HttpService, private httpclient: HttpClient, private router: Router, private token: SharedModule,
-    private _dataService: DataTransferService
+    private _dataService: DataTransferService , private header : HeaderComponent
   ) { }
 
 
@@ -108,6 +111,21 @@ export class AccountService {
     )
   }
 
+  isLoggedIn() {
+    // return tokenNotExpired(); // exactly what we did below, provided by angular
+
+    let jwt = new JwtHelper();
+
+    let token = localStorage.getItem("login");
+    console.log(token,'>>>>>>>>>>>>>>>>>>>>>>>>')
+    if (!token) return false;
+
+    let date = jwt.getTokenExpirationDate(token);
+    let isExpired = jwt.isTokenExpired(token);
+
+    return !isExpired;
+  }
+
   /*  
        Method For Login
    */
@@ -122,8 +140,9 @@ export class AccountService {
         this.router.navigate(['/admin/home'])
         this._utilityService.openSnackBar('you are successfully login', true);
       }
-    }, error => {
-    }
+    },
+      error => {
+      }
     );
   };
 
@@ -205,15 +224,15 @@ export class AccountService {
         map(
           response => {
             if (response['statusCode'] === 200) {
-              console.log('inside the response', response);
-              this._router.navigate(['/admin']);
+              this._router.navigate(['/admin/home']);
+              this.header.getProfileDetail();
+      
+              
             }
           }
         )
       )
   }
-
-
 
   /**
     * @description Getting Admin Profile Detail

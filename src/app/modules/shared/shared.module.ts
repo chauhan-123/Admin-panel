@@ -15,6 +15,7 @@ import {
 } from '@angular/material';
 import { AccountGuard } from '../gaurd/account.guard';
 import { TokenInterceptor } from '../interceptor/token-interceptor';
+import { ConfirmationModelComponent } from './component/confirmation-model/confirmation-model.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { TokenInterceptor } from '../interceptor/token-interceptor';
   ],
   declarations: [
 
-  ],
+  ConfirmationModelComponent],
   exports: [
     MatButtonModule,
     MatButtonToggleModule,
@@ -43,7 +44,7 @@ import { TokenInterceptor } from '../interceptor/token-interceptor';
     HttpClientModule,
     FormsModule,
   ],
-  entryComponents: [
+  entryComponents: [ConfirmationModelComponent
 
   ],
   providers: [

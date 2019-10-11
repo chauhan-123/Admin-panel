@@ -4,7 +4,8 @@ import { PATTERN } from '../../../constant/pattern';
 import { VALIDATION_CRITERIA } from '../../../constant/validation-criteria';
 import { BehaviorSubject } from 'rxjs';
 import { VALIDATION_MESSAGES } from '../../../constant/message';
-import { MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar } from '@angular/material';
+import { MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar, MatDialog } from '@angular/material';
+import { ConfirmationModelComponent } from '../component/confirmation-model/confirmation-model.component';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class UtilityService {
     public autoHide = 2000;
     public addExtraClass = false;
 
-    constructor(private snackBar: MatSnackBar
+    constructor(private snackBar: MatSnackBar , private _dialog:MatDialog
     ) {
     }
 
@@ -46,6 +47,17 @@ export class UtilityService {
         localStorage.removeItem('admin-name');
         localStorage.removeItem('admin-email');
     }
+
+    openDialog(data) {
+        const dialogRef = this._dialog.open(ConfirmationModelComponent, {
+            width:'500px',
+            data: data
+        });
+        return dialogRef.afterClosed();
+    }
+
+
+
 
 
     //   showAlert(message, type?) {

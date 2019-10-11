@@ -5,9 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { MatDialogModule, MatCardModule, MatIconModule, MatInputModule, MatButtonModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatTooltipModule, MatListModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AccountGuard } from '../../gaurd/account.guard';
 
 const homeroutes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent , canActivate:[AccountGuard] }
 ]
 
 @NgModule({

@@ -1,8 +1,8 @@
-// import {environment } from '../../environments/environment';
-//  var connect = environment.url;
+export const ADMIN_URL = {
+    login:"url/admins/login",
+    forgot:"admins/forgot-password",
+    reset:"admins/reset-password",
+    logout:"admins/logout",
+    validateToken:"admins/verify-token",
 
-
-// export const ADMIN_URL = {
-//     login:'',
-//     signup:"admin/signup"
-// } 
+}
