@@ -6,12 +6,14 @@ import { AccountService } from './account.service';
 import { AccountGuard } from '../gaurd/account.guard';
 import { FormsModule, FormGroup } from '@angular/forms';
 
+
 const accountRoute: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpModule' },
+  {path :'verify-token/:_id', loadChildren:'./verify-token/verify-token.module#VerifyTokenModule'},
   { path: 'forgot-password', loadChildren: './forgot-password/forgot-password.module#ForgotPasswordModule' },
-  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordModule' }
+  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordModule' }, 
 ];
 
 

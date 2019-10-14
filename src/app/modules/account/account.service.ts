@@ -5,12 +5,14 @@ import { UtilityService } from '../../modules/shared/services/utility.service';
 import { HttpService } from '../shared/services/http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
-import { Observable, of } from 'rxjs';
+
 import { map } from 'rxjs/operators';
 import { DataTransferService } from '../shared/services/data-transfer.service';
 import { HeaderComponent } from '../layout/header/header.component';
 import {ADMIN_URL} from '../../constant/url';
 import { JwtHelper, tokenNotExpired } from "angular2-jwt";
+import { BehaviorSubject, Observable, of } from 'rxjs';
+
 interface FormData {
   entries(): Iterator<any>;
 }
@@ -20,6 +22,8 @@ interface FormData {
 })
 export class AccountService {
   // svcRenderer: Renderer2;
+  sendtoken = new BehaviorSubject<any>(null);
+  
   loader: boolean = false;
 
   baseUrl = "http://localhost:3000/"
@@ -50,9 +54,20 @@ export class AccountService {
     return this._formBuilder.group(
       {
         email: this._utilityService.getEmailFormControl(),
-        password: this._utilityService.getPasswordFormControl()
+        password: this._utilityService.getPasswordFormControl(),
+        remember: this._utilityService.getRememberControl()
       }
     )
+  }
+
+// Method for create token form
+
+  createVerifyTokenForm(){
+   return this._formBuilder.group(
+     {
+       otp:this._utilityService.getVerifyControl()
+     }
+   )
   }
 
 
@@ -131,6 +146,7 @@ export class AccountService {
    */
   login(data) {
     data = this._utilityService.trim(data);
+    console.log(data,'<<<<<<<<<<<<<<<<<<<<')
     this.httpclient.post(`${this.baseUrl}login`, data).subscribe(response => {
       if (response['status'] === 200) {
         localStorage.setItem('login', response['token']);
@@ -149,11 +165,28 @@ export class AccountService {
   // method for signup
 
   signup(data) {
+    console.log(data,'data ');
     data = this._utilityService.trim(data);
     console.log(data);
     return this.http.post(`${this.baseUrl}registration`, data);
   }
 
+// method for verify token
+
+verify(data , sendtoken){
+ 
+  var sendToken = {
+    data:data,
+    sendtoken: sendtoken
+  }
+ console.log(sendToken,'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+  return this.http.post(`${this.baseUrl}verify-otp`, sendToken); 
+
+}
+
+
+
+// method for reset password
 
   resetPassword(data) {
     data = this._utilityService.trim(data);

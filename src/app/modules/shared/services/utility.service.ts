@@ -83,6 +83,13 @@ export class UtilityService {
         )];
     }
 
+    getVerifyControl() {
+    return ['' , Validators.compose([
+        Validators.required
+    ])]
+  
+    }
+
     getPasswordFormControl() {
         return ['', Validators.compose([
             Validators.required,
@@ -90,6 +97,12 @@ export class UtilityService {
             Validators.minLength(VALIDATION_CRITERIA.passwordMinLength),
             Validators.maxLength(VALIDATION_CRITERIA.passwordMaxLength)]
         )];
+    }
+
+    getRememberControl(){
+        return['' , Validators.compose([
+            Validators.required
+        ])]
     }
 
     getNameFormControl(required = true, maxLength = 'nameMaxLength') {

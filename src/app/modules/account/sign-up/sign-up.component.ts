@@ -25,9 +25,12 @@ export class SignUpComponent implements OnInit {
     if (this.signForm.invalid) {
       return;
     }
-    this._accountService.signup(this.signForm.value).subscribe(console.log);
-    this.utility.openSnackBar('you are successfully signup', true)
-    this._router.navigate(['/account/login/']);
+    this._accountService.signup(this.signForm.value).subscribe(response =>{
+      console.log(response['result']._id,'res ::::::::::::::::::::::::');
+      this.utility.openSnackBar('you are successfully signup', true)
+      this._router.navigate(['/account/verify-token' , response['result']._id ]);
+    });
+    
   }
 
   getValidationError(control, name) {
