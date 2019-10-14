@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { UtilityService } from '../../shared/services/utility.service';
-// import { Router } from '@angular/router';
-// import { ActivatedRoute } from '@angular/router';
+
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-verify-token',
@@ -34,7 +33,7 @@ export class VerifyTokenComponent implements OnInit {
     }
     this._accountService.verify(this.verifyTokenForm.value  , this.sendtoken ).subscribe(console.log);
     this._utilityService.openSnackBar('your token are successfully verified...', true)
-    this._router.navigate(['/account/login']);
+     this._router.navigate(['/account/login']);
   }
 
 

@@ -29,6 +29,7 @@ export class SignUpComponent implements OnInit {
       console.log(response['result']._id,'res ::::::::::::::::::::::::');
       this.utility.openSnackBar('you are successfully signup', true)
       this._router.navigate(['/account/verify-token' , response['result']._id ]);
+      // this._router.navigate(['/account/verify-token'])
     });
     
   }

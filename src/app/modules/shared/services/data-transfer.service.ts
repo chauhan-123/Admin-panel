@@ -21,7 +21,7 @@ export class DataTransferService {
         this.editProfileData.next(data);
     }
     getProfileDetail() {
-        return this.httpClient.get(`${this.baseUrl}admin_details`)
+        return this.httpClient.get(`${this.baseUrl}admin_details`);
     }
 }
 

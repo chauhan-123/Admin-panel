@@ -16,6 +16,7 @@ import {
 import { AccountGuard } from '../gaurd/account.guard';
 import { TokenInterceptor } from '../interceptor/token-interceptor';
 import { ConfirmationModelComponent } from './component/confirmation-model/confirmation-model.component';
+import { DataTransferService } from './services/data-transfer.service';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { ConfirmationModelComponent } from './component/confirmation-model/confi
   providers: [
     HttpService,
     UtilityService,
+    DataTransferService,
     AccountGuard,
     {
       provide: HTTP_INTERCEPTORS,

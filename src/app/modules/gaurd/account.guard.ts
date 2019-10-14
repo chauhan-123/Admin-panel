@@ -26,7 +26,6 @@ export class AccountGuard implements CanActivate, CanLoad {
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
     let url: string = route.path;
-    console.log(url, 'url')
     if (localStorage.getItem('login')) {
       return true;
     }

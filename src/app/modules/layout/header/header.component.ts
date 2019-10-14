@@ -1,8 +1,8 @@
-import { Component, OnInit, HostListener} from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { UtilityService } from '../../shared/services/utility.service';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { DataTransferService } from '../../shared/services/data-transfer.service';
-import { POPUP_MESSAGES} from '../../../constant/message';
+import { POPUP_MESSAGES } from '../../../constant/message';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     // }
   }
   constructor(private _utilityService: UtilityService, private _router: Router, private _dataService: DataTransferService,
-    ) {
+  ) {
     this.onResize();
     this.getProfileDetail();
   }
@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit {
       data => {
         if (data)
           this.profileDetail = data;
-          console.log(this.profileDetail, 'profile data ')
       }
     )
   }
@@ -61,15 +60,15 @@ export class HeaderComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.profileDetail = response.data;
-             if(this.profileDetail['url'].length === 0){
-             this.profileDetail.image = 'assets/images/avatar.png';
-             } else if(this.profileDetail['url'].length >= 0) {
-              this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
-              this._dataService.profileDetail.next(this.profileDetail);
-            }
-       }
+          if (this.profileDetail['url'].length === 0) {
+            this.profileDetail.image = 'assets/images/avatar.png';
+          } else if (this.profileDetail['url'].length >= 0) {
+            this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
+            this._dataService.profileDetail.next(this.profileDetail);
+          }
+        }
       )
-  
+
   }
 
 

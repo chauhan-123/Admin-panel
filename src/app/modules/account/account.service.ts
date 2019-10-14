@@ -11,7 +11,8 @@ import { DataTransferService } from '../shared/services/data-transfer.service';
 import { HeaderComponent } from '../layout/header/header.component';
 import {ADMIN_URL} from '../../constant/url';
 import { JwtHelper, tokenNotExpired } from "angular2-jwt";
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject,throwError, Observable, of } from 'rxjs';
+
 
 interface FormData {
   entries(): Iterator<any>;
@@ -31,7 +32,7 @@ export class AccountService {
 
   constructor(private _formBuilder: FormBuilder, private _router: Router, private _utilityService: UtilityService,
     private http: HttpService, private httpclient: HttpClient, private router: Router, private token: SharedModule,
-    private _dataService: DataTransferService , private header : HeaderComponent
+    private _dataService: DataTransferService , private header : HeaderComponent 
   ) { }
 
 
@@ -55,7 +56,7 @@ export class AccountService {
       {
         email: this._utilityService.getEmailFormControl(),
         password: this._utilityService.getPasswordFormControl(),
-        remember: this._utilityService.getRememberControl()
+        // remember: this._utilityService.getRememberControl()
       }
     )
   }
@@ -148,16 +149,27 @@ export class AccountService {
     data = this._utilityService.trim(data);
     console.log(data,'<<<<<<<<<<<<<<<<<<<<')
     this.httpclient.post(`${this.baseUrl}login`, data).subscribe(response => {
-      if (response['status'] === 200) {
-        localStorage.setItem('login', response['token']);
-        localStorage.setItem('_id', response['id']);
-        localStorage.setItem('admin-name', response['firstName']);
-        localStorage.setItem('admin-email', response['email']);
+      console.log(response['result']._id);
+      if (response['result']['status'] === 200) {
+        console.log('response ' , response)
+        localStorage.setItem('login', response['result']['token']);
+        localStorage.setItem('_id', response['result']['_id']);
+        localStorage.setItem('admin-name', response['result']['firstName']);
+        localStorage.setItem('admin-email', response['result']['email']);
         this.router.navigate(['/admin/home'])
         this._utilityService.openSnackBar('you are successfully login', true);
       }
     },
-      error => {
+      error => { 
+        if(error.status == '401'){
+          this._utilityService.openSnackBar('please first signup your data with database then login...', true);
+        } else if(error.status == '400'){
+          console.log(error.error.sendtoken,'_id is coming ...')
+          this._utilityService.openSnackBar('your otp is not verified and u switch the one step thats is verify otp..', true);
+            this.router.navigate([`/account/verify-token/${error.error.sendtoken}`]) 
+        } else {
+          this._utilityService.openSnackBar('your password is not match with registered password ....', true);
+        }    
       }
     );
   };
@@ -258,7 +270,7 @@ verify(data , sendtoken){
           response => {
             if (response['statusCode'] === 200) {
               this._router.navigate(['/admin/home']);
-              this.header.getProfileDetail();
+               this.header.getProfileDetail();
       
               
             }
@@ -267,9 +279,9 @@ verify(data , sendtoken){
       )
   }
 
-  /**
-    * @description Getting Admin Profile Detail
-    */
+  // /**
+  //   * @description Getting Admin Profile Detail
+  //   */
   getProfileDetail() {
     return this._dataService.getProfileDetail();
   }
