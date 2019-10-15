@@ -8,11 +8,11 @@ import { AccountService } from '../account.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit { 
   loginForm: FormGroup;
   hide = true;
 
-  constructor(private _router: Router, private _accountService: AccountService) {
+  constructor(private _router: Router, private _accountService: AccountService) { debugger
     this.loginForm = this._accountService.createLoginForm();
   }
 

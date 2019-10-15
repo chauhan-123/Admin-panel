@@ -20,11 +20,11 @@ export class TokenInterceptor implements HttpInterceptor {
    private _utilityService:UtilityService   
   ) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    let headers = {};
-    // let headers = {
-    //   'Content-Type': 'application/json'
-    // };
+
+    // let headers = {}; 
+    let headers = {
+      'Content-Type': 'application/json'
+    };
     if(localStorage.getItem('login')) {
       headers['authorization'] = 'Bearer ' + localStorage.getItem('login');
     }
@@ -46,10 +46,10 @@ export class TokenInterceptor implements HttpInterceptor {
         console.log(err)
         if (err instanceof HttpErrorResponse) {
           console.log('req url :: ' + request.url);
-        //   this._utilityService.errorAlert(err);
-          // if (err.status === 401||err.error.responseType=='UNAUTHORIZED') {
+           this._utilityService.errorAlert(err);
+          // if (err.status === 401||err.statusText=='"Not Found"') {
           //   this._utilityService.clearStorage();
-          //   this.router.navigate(['account/login']);
+          //   this.router.navigate(['/account/login']);
           // }
         }
       }

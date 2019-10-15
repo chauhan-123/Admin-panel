@@ -13,7 +13,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { AccountService } from '../account.service';
 import { AccountGuard } from '../../gaurd/account.guard';
 const forgotRoute: Routes = [
-  { path: '', component: ForgotPasswordComponent }
+  { path: '', component: ForgotPasswordComponent  }
 ]
 
 @NgModule({

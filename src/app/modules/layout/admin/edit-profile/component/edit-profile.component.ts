@@ -45,9 +45,10 @@ export class EditProfileComponent implements OnInit {
           this.profileDetail = response.data;
           this.editProfileForm.patchValue({
             firstName: this.profileDetail.firstName,
-            email: this.profileDetail.email
+            email: this.profileDetail.email,
+            
           })
-          this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
+          this.profileDetail.image =  `data:image/jpeg;base64,${this.profileDetail['url']}`;
         }
       )
   }

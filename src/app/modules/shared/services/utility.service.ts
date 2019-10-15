@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { VALIDATION_MESSAGES } from '../../../constant/message';
 import { MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar, MatDialog } from '@angular/material';
 import { ConfirmationModelComponent } from '../component/confirmation-model/confirmation-model.component';
-
+import {SOMETHING_WENT_WRONG , POPUP_MESSAGES} from '../../../constant/message'
 @Injectable({
     providedIn: 'root'
 })
@@ -54,6 +54,19 @@ export class UtilityService {
             data: data
         });
         return dialogRef.afterClosed();
+    }
+
+    errorAlert(error) {
+        console.log(error.error.message, 'arror hj5637127812812');
+        let data = {
+            title: '',
+            message: (error && error.error && error.error.message) ? (error.error.message) : SOMETHING_WENT_WRONG,
+            yes: POPUP_MESSAGES.close,
+            isHideCancel: true
+        }
+        this.openDialog(data).subscribe(success => {
+
+        });
     }
 
 

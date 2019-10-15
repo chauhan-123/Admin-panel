@@ -24,9 +24,7 @@ interface FormData {
 export class AccountService {
   // svcRenderer: Renderer2;
   sendtoken = new BehaviorSubject<any>(null);
-  
-  loader: boolean = false;
-
+  loader: boolean = false
   baseUrl = "http://localhost:3000/"
   subscribe: any;
 
@@ -147,11 +145,8 @@ export class AccountService {
    */
   login(data) {
     data = this._utilityService.trim(data);
-    console.log(data,'<<<<<<<<<<<<<<<<<<<<')
     this.httpclient.post(`${this.baseUrl}login`, data).subscribe(response => {
-      console.log(response['result']._id);
       if (response['result']['status'] === 200) {
-        console.log('response ' , response)
         localStorage.setItem('login', response['result']['token']);
         localStorage.setItem('_id', response['result']['_id']);
         localStorage.setItem('admin-name', response['result']['firstName']);
@@ -161,15 +156,19 @@ export class AccountService {
       }
     },
       error => { 
-        if(error.status == '401'){
-          this._utilityService.openSnackBar('please first signup your data with database then login...', true);
-        } else if(error.status == '400'){
-          console.log(error.error.sendtoken,'_id is coming ...')
-          this._utilityService.openSnackBar('your otp is not verified and u switch the one step thats is verify otp..', true);
-            this.router.navigate([`/account/verify-token/${error.error.sendtoken}`]) 
-        } else {
-          this._utilityService.openSnackBar('your password is not match with registered password ....', true);
-        }    
+        // console.log(error,'>>>>>>>>>>>>>>>>>>>>>')
+        // if(error.status == '401'){
+        //   this._utilityService.openSnackBar('please first signup or email is not correct ', true);
+        // } else if(error.status == '400'){
+        //   console.log(error.error.sendtoken,'_id is coming ...')
+        //   this._utilityService.openSnackBar('your otp is not verified ', true);
+        //     this.router.navigate([`/account/verify-token/${error.error.sendtoken}`]) 
+        // } else {
+        //   this._utilityService.openSnackBar('wrong password', true);
+        // }
+        //  else{
+        //   this._utilityService.openSnackBar('your email is not correct ...', true);
+        // }   
       }
     );
   };
@@ -215,12 +214,13 @@ verify(data , sendtoken){
     console.log('decodedJwtData: ' + decodedJwtData)
     console.log('Is admin: ' + isAdmin)
     */
-    this.http.post(`${this.baseUrl}reset`, data).subscribe(
+    this.http.post(`${this.baseUrl}reset-password`, data).subscribe(
       response => {
         if (response['status'] === 200) {
           this.router.navigate(['/account/login']);
         }
       }, error => {
+        console.log(error ,'error>>>>>>>>>>>>>>>>>')
         if (error.error.status === 400 && error.error.responseType === 'INVALID_TOKEN') {
           this.router.navigate(['link-expired']);
         }
@@ -233,9 +233,10 @@ verify(data , sendtoken){
     this.http.post(`${this.baseUrl}changePassword`, data).subscribe(
       response => {
         if (response['status'] === 200) {
-          this.router.navigate(['../admin']);
+          // this.router.navigate(['../admin']);
         }
       }, error => {
+ 
         if (error.error.status === 400 && error.error.responseType === 'INVALID_TOKEN') {
           this.router.navigate(['link-expired']);
         }
@@ -282,15 +283,15 @@ verify(data , sendtoken){
   // /**
   //   * @description Getting Admin Profile Detail
   //   */
-  getProfileDetail() {
-    return this._dataService.getProfileDetail();
-  }
+  // getProfileDetail() {
+  //   return this._dataService.getProfileDetail();
+  // }
 
 
   checkEmail(data) {
     data = this._utilityService.trim(data);
-    this.httpclient.post(`${this.baseUrl}forgot`, data).subscribe();
-    this._router.navigate(['/account/login']);
+    this.httpclient.post(`${this.baseUrl}forgot-password`, data).subscribe();
+    // this._router.navigate(['/account/login']);
   }
 
 

@@ -3,17 +3,18 @@
 </div>
 
 <mat-card class="page_heading">
+    <span [routerLink]="['/admin']"> Admin </span>
   <!-- <span [routerLink]="['SETTINGS'|absolutePath]"> Admin Profile </span> -->
   <mat-icon>arrow_forward_ios</mat-icon>
   Edit Profile
 </mat-card>
 <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
-  <mat-card>
+  <mat-card class="profile-card">
     <div class="panel-header">
       <h3> Edit Profile </h3>
     </div>
-    <div class="flex-col">
-      <div class="img-wrap">
+    <div class="row">
+      <div class="img-wrap col-md-6">
         <div class="img">
           <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'" alt="">
           <!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
@@ -21,10 +22,10 @@
             <mat-icon>camera_alt</mat-icon>
             <input type="file" (change)="onSelectFile($event)" matTooltip="Change Image" />
           </button>
-          {{profileDetail?.image}}
+          <!-- {{profileDetail?.image}} -->
         </div>
       </div>
-      <div class="form-wrap">
+      <div class="form-wrap col-md-6">
         <div class="form-group">
           <mat-form-field>
             <input matInput required placeholder="First Name" firstName="firstname" formControlName="firstName">

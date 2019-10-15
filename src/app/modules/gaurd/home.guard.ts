@@ -1,13 +1,36 @@
-// import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot,CanLoad, Route, UrlSegment, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { UtilityService } from '../shared/services/utility.service';
 
-// import { Observable } from 'rxjs';
-// import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Route, UrlSegment,
-//   CanLoad, Router, ActivatedRoute } from '@angular/router';
+@Injectable()
+export class HomeGuard implements CanActivate,CanLoad {
+  constructor(
+    private _router:Router,
+    private _utilityService:UtilityService
+  ) {
 
-// @Injectable(
-
-// )
-
-// export class HomeGuard implements  CanActivate, CanLoad  {
+  }
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if(localStorage.getItem('login')) {
+      return true;
+    }
+    return this.navigate();
+    
+  }
   
-// }
+  canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean {
+    if(localStorage.getItem('login')) {
+      return true;
+    }
+    return this.navigate();
+  }
+  navigate() {
+    this._utilityService.clearStorage();
+    this._router.navigate(['/account/login']);
+    return false;
+  }
+}
+

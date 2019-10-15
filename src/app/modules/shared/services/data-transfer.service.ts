@@ -17,6 +17,7 @@ export class DataTransferService {
     ) {
     }
 
+    
     updatedDataSelection(data) {
         this.editProfileData.next(data);
     }

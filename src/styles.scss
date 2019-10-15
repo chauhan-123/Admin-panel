@@ -4,7 +4,9 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 img{max-width: 1000%;max-height: 100%;}
-
+$thm_clr : #2e2e2e;
+$thm_clr_blue: #5459f9;
+$thm_clr_light : rgba($thm_clr, 0.1);
 .icon{
     margin-bottom: 20px;
       img{
@@ -20,6 +22,41 @@ img{max-width: 1000%;max-height: 100%;}
       opacity: 1;
     }
   } 
+
+  .mat-card.page_heading {
+    font-size: 14px;
+    position: relative;
+    /* border-left: 5px solid #2e2e2e; */
+    padding: 17px 20px;
+    background: #f57970;
+    color: #fff;
+    border-radius: 0px;
+    .mat-icon{
+      vertical-align: middle;
+      font-size: 14px;
+      width: 20px;
+      height: 14px;
+      text-align: center;
+    }
+    span{color:#393ef1;cursor: pointer;}
+  }
+
+
+  .mat-card.profile-card{
+    max-width: 500px;
+    margin: 15px auto;
+    background: whitesmoke;
+    h3{
+        margin-top: 0px;
+    }
+    .form-btn{
+        margin-top: 10px;
+        padding-bottom: 0px;
+    }
+    .panel-header{
+        margin-bottom: 10px;
+    }
+}
 
 
   
