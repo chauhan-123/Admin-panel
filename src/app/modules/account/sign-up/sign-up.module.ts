@@ -31,7 +31,7 @@ const signUpRoute: Routes = [
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    SharedModule
+  
   ],
   providers: [AccountService
   ]

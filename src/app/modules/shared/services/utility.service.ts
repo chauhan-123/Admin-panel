@@ -57,7 +57,7 @@ export class UtilityService {
     }
 
     errorAlert(error) {
-        console.log(error.error.message, 'arror hj5637127812812');
+
         let data = {
             title: '',
             message: (error && error.error && error.error.message) ? (error.error.message) : SOMETHING_WENT_WRONG,

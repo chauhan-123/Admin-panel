@@ -8,7 +8,7 @@ const routes: Routes = [
         path: '', component: LayoutComponent, children: [
             { path: '', redirectTo: 'home' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
-            { path: '', loadChildren: './admin/admin.module#AdminModule' }
+            { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
         ]
     },
 ];

@@ -11,7 +11,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { AccountService } from '../account.service';
-import { AccountGuard } from '../../gaurd/account.guard';
+
 const forgotRoute: Routes = [
   { path: '', component: ForgotPasswordComponent  }
 ]

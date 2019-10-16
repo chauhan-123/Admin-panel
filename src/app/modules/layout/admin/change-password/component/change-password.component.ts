@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/modules/account/account.service';
+import { AdminService } from '../../admin.service';
 
 @Component({
   selector: 'app-change-password',
@@ -15,7 +16,7 @@ export class ChangePasswordComponent implements OnInit {
   passwordHide = true;
   changePasswordForm: FormGroup;
 
-  constructor(private _router: Router, private _accountService: AccountService) {
+  constructor(private _router: Router, private _adminService:AdminService , private _accountService : AccountService) {
     this.changePasswordForm = this._accountService.createChangePasswordForm();
   }
 
@@ -23,10 +24,10 @@ export class ChangePasswordComponent implements OnInit {
   }
   changePassword() {
     if (this.changePasswordForm.invalid) {
-      console.log('wrong value.....');
+
       return;
     }
-    this._accountService.changePassword(this.changePasswordForm.value);
+    this._adminService.changePassword(this.changePasswordForm.value);
   }
 
   getValidationError(control, name) {

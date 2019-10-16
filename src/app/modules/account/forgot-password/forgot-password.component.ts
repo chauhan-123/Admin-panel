@@ -10,7 +10,7 @@ import { AccountService } from '../account.service';
 export class ForgotPasswordComponent implements OnInit {
   forgotForm: FormGroup;
 
-  constructor(private _accountService: AccountService, private _router: Router) {
+  constructor(private _accountService: AccountService) {
     this.forgotForm = this._accountService.createForgotForm();
   }
 

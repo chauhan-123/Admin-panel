@@ -1,18 +1,12 @@
-import { Injectable  } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UtilityService } from '../../modules/shared/services/utility.service';
 import { HttpService } from '../shared/services/http.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SharedModule } from '../shared/shared.module';
-
-import { map } from 'rxjs/operators';
-import { DataTransferService } from '../shared/services/data-transfer.service';
-import { HeaderComponent } from '../layout/header/header.component';
-import {ADMIN_URL} from '../../constant/url';
-import { JwtHelper, tokenNotExpired } from "angular2-jwt";
-import { BehaviorSubject,throwError, Observable, of } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import { JwtHelper } from "angular2-jwt";
+import { BehaviorSubject } from 'rxjs';
+import { POPUP_MESSAGES } from 'src/app/constant/message';
 
 interface FormData {
   entries(): Iterator<any>;
@@ -22,20 +16,20 @@ interface FormData {
   providedIn: 'root'
 })
 export class AccountService {
-  // svcRenderer: Renderer2;
   sendtoken = new BehaviorSubject<any>(null);
   loader: boolean = false
   baseUrl = "http://localhost:3000/"
   subscribe: any;
 
-  constructor(private _formBuilder: FormBuilder, private _router: Router, private _utilityService: UtilityService,
-    private http: HttpService, private httpclient: HttpClient, private router: Router, private token: SharedModule,
-    private _dataService: DataTransferService , private header : HeaderComponent 
-  ) { }
+  constructor(private _formBuilder: FormBuilder, private _utilityService: UtilityService,
+    private http: HttpService,
+    private httpclient: HttpClient, private router: Router
+  ) {
+  }
 
 
   /* 
-   Method For Creating Edit Profile Form
+  //  Method For Creating Edit Profile Form
 */
   createEditProfileForm() {
     return this._formBuilder.group(
@@ -59,14 +53,13 @@ export class AccountService {
     )
   }
 
-// Method for create token form
-
-  createVerifyTokenForm(){
-   return this._formBuilder.group(
-     {
-       otp:this._utilityService.getVerifyControl()
-     }
-   )
+  // Method for create token form
+  createVerifyTokenForm() {
+    return this._formBuilder.group(
+      {
+        otp: this._utilityService.getVerifyControl()
+      }
+    )
   }
 
 
@@ -103,7 +96,6 @@ export class AccountService {
     )
   }
 
-
   createForgotForm() {
     return this._formBuilder.group(
       {
@@ -127,16 +119,11 @@ export class AccountService {
 
   isLoggedIn() {
     // return tokenNotExpired(); // exactly what we did below, provided by angular
-
     let jwt = new JwtHelper();
-
     let token = localStorage.getItem("login");
-    console.log(token,'>>>>>>>>>>>>>>>>>>>>>>>>')
     if (!token) return false;
-
     let date = jwt.getTokenExpirationDate(token);
     let isExpired = jwt.isTokenExpired(token);
-
     return !isExpired;
   }
 
@@ -155,20 +142,7 @@ export class AccountService {
         this._utilityService.openSnackBar('you are successfully login', true);
       }
     },
-      error => { 
-        // console.log(error,'>>>>>>>>>>>>>>>>>>>>>')
-        // if(error.status == '401'){
-        //   this._utilityService.openSnackBar('please first signup or email is not correct ', true);
-        // } else if(error.status == '400'){
-        //   console.log(error.error.sendtoken,'_id is coming ...')
-        //   this._utilityService.openSnackBar('your otp is not verified ', true);
-        //     this.router.navigate([`/account/verify-token/${error.error.sendtoken}`]) 
-        // } else {
-        //   this._utilityService.openSnackBar('wrong password', true);
-        // }
-        //  else{
-        //   this._utilityService.openSnackBar('your email is not correct ...', true);
-        // }   
+      error => {  
       }
     );
   };
@@ -176,125 +150,76 @@ export class AccountService {
   // method for signup
 
   signup(data) {
-    console.log(data,'data ');
     data = this._utilityService.trim(data);
-    console.log(data);
     return this.http.post(`${this.baseUrl}registration`, data);
   }
 
-// method for verify token
+  // method for verify token
 
-verify(data , sendtoken){
- 
-  var sendToken = {
-    data:data,
-    sendtoken: sendtoken
+  verify(data, sendtoken) {
+    var sendToken = {
+      data: data,
+      sendtoken: sendtoken
+    }
+    return this.http.post(`${this.baseUrl}verify-otp`, sendToken);
   }
- console.log(sendToken,'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-  return this.http.post(`${this.baseUrl}verify-otp`, sendToken); 
 
-}
-
-
-
-// method for reset password
-
+  // method for reset password
   resetPassword(data) {
     data = this._utilityService.trim(data);
-
     /* this method is used for decoded the token
-    
-    
       let jwtData = data['token'].split('.')[1]
     let decodedJwtJsonData = window.atob(jwtData)
     let decodedJwtData = JSON.parse(decodedJwtJsonData)
     let isAdmin = decodedJwtData.admin
-    console.log('jwtData: ' + jwtData)
-    console.log('decodedJwtJsonData: ' + decodedJwtJsonData)
-    console.log('decodedJwtData: ' + decodedJwtData)
-    console.log('Is admin: ' + isAdmin)
     */
     this.http.post(`${this.baseUrl}reset-password`, data).subscribe(
       response => {
-        if (response['status'] === 200) {
-          this.router.navigate(['/account/login']);
-        }
-      }, error => {
-        console.log(error ,'error>>>>>>>>>>>>>>>>>')
-        if (error.error.status === 400 && error.error.responseType === 'INVALID_TOKEN') {
-          this.router.navigate(['link-expired']);
-        }
-      }
-    )
-  }
-
-  changePassword(data) {
-    data = this._utilityService.trim(data);
-    this.http.post(`${this.baseUrl}changePassword`, data).subscribe(
-      response => {
-        if (response['status'] === 200) {
-          // this.router.navigate(['../admin']);
-        }
-      }, error => {
- 
-        if (error.error.status === 400 && error.error.responseType === 'INVALID_TOKEN') {
-          this.router.navigate(['link-expired']);
-        }
-      }
-    )
-  }
-
-
-
-  uploadProfile(images: File) {
-    this.loader = true;
-    let formData = new FormData();
-    formData.append('images', images);
-    // formData.append('data', JSON.stringify(images));
-    return this.httpclient.post(`${this.baseUrl}upload`, formData);
-  }
-
-
-  /* 
-      Method For Edit Profile
-  */
-  editProfile(data) {
-    let body = {
-      images: data.images.name,
-      firstName: data.firstName,
-      email: data.email
-    }
-    // delete body['email'];
-    return this.httpclient.put(`${this.baseUrl}edit_profile`, body)
-      .pipe(
-        map(
-          response => {
-            if (response['statusCode'] === 200) {
-              this._router.navigate(['/admin/home']);
-               this.header.getProfileDetail();
-      
-              
-            }
+        console.log(response,'>>>>>>>>>>>>')
+        if (response['statusCode'] === '200') {
+          let data = {
+            title: POPUP_MESSAGES.passwordResetTitle ,
+            message: POPUP_MESSAGES.passwordChanged,
+            yes: POPUP_MESSAGES.close,
+            isHideCancel:true,
+            successIcon:true
           }
-        )
-      )
+          this._utilityService.openDialog(data).subscribe(success => {
+            this.router.navigate(['/account/login']);
+          });
+        }
+      }, error => {
+        if (error.error.status === 400 && error.error.responseType === 'INVALID_TOKEN') {
+          this.router.navigate(['link-expired']);
+        }
+      }
+    )
   }
 
-  // /**
-  //   * @description Getting Admin Profile Detail
-  //   */
-  // getProfileDetail() {
-  //   return this._dataService.getProfileDetail();
-  // }
-
-
+  // forgot password 
   checkEmail(data) {
     data = this._utilityService.trim(data);
-    this.httpclient.post(`${this.baseUrl}forgot-password`, data).subscribe();
-    // this._router.navigate(['/account/login']);
+    this.httpclient.post(`${this.baseUrl}forgot-password`, data).subscribe(
+      response =>{
+        if(response['statusCode']===200) {
+          let data = {
+            title: POPUP_MESSAGES.passwordResetTitle ,
+            message: POPUP_MESSAGES.passwordResetLink,
+            yes: POPUP_MESSAGES.close,
+            isHideCancel:true,
+            successIcon:true
+          }
+         this._utilityService.openDialog(data).subscribe(success => {
+            this.router.navigate(['/account/login']);
+          });
+        }
+      },error => {
+        }
+    )
+
   }
 
-
+  //  password match function 
   matchPassword(form: AbstractControl) {
     let password = form.get('password').value;
     let confirmPassword = form.get('confirmPassword').value;
@@ -308,15 +233,12 @@ verify(data , sendtoken){
           form.get('confirmPassword').setErrors(null);
         }
       }
-
     }
   }
 
   getValidationError(control: FormControl, name) {
     return ''
   }
-
-
   // showAlert(status) {
   //   this._utilityService.showAlert(COMMON_MESSAGES[status]('Subscription'));
   // }

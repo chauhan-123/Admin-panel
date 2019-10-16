@@ -46,11 +46,11 @@ export class HeaderComponent implements OnInit {
   //   if (this.flag === 1) {
   //     this.renderer.addClass(document.body, 'collapsed');
   //     this.flag++;
-  //     console.log(this.flag);
+
   //   } else {
   //     this.renderer.removeClass(document.body, 'collapsed');
   //     this.flag--;
-  //     console.log(this.flag);
+
   //   }
   // }
 

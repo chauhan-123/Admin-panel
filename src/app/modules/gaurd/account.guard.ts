@@ -15,13 +15,13 @@ export class AccountGuard implements CanActivate, CanLoad {
 
    }
 
-  navigate() {
-    this._router.navigate(['admin/home']);
-    return false;
-  }
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  // navigate() {
+  //   this._router.navigate(['admin/home']);
+  //   return false;
+  // }
+  // canActivate(
+  //   next: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       // if (!localStorage.getItem('login')) {
       //   let token = next.params.token;
         
@@ -49,19 +49,19 @@ export class AccountGuard implements CanActivate, CanLoad {
       //     return true;
       // }
   
-      return this.navigate();
-  }
-
-  // canActivate(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-  //   let token = localStorage.getItem('login');
-  //   if (token) {
-  //     return true;
-  //   }
-  //   this._router.navigate(['/account/login']);
-  //   return false;
+  //     return this.navigate();
   // }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    let token = localStorage.getItem('login');
+    if (token) {
+      return true;
+    }
+    this._router.navigate(['/account/login']);
+    return false;
+  }
 
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
@@ -71,10 +71,10 @@ export class AccountGuard implements CanActivate, CanLoad {
     }
     return this.navigate();
   }
-  // navigate() {
-  //   this.utility.clearStorage();
-  //   this._router.navigate(['/account/login']);
-  //   return false;
-  // }
+  navigate() {
+    this.utility.clearStorage();
+    this._router.navigate(['/account/login']);
+    return false;
+  }
 
 }

@@ -28,12 +28,7 @@ export class SignUpComponent implements OnInit {
     this._accountService.signup(this.signForm.value).subscribe(response =>{
       this.utility.openSnackBar('you are successfully signup', true)
       this._router.navigate(['/account/verify-token' , response['result']._id ]);
-      // this._router.navigate(['/account/verify-token'])
     }, error =>{
-        console.log(error.error.status ,'>>>>>>>>>>>>');
-        if(error.error.status === '400'){
-          this.utility.openSnackBar('email is allready registered ', true) 
-        }
     });
     
   }

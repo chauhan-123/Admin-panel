@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AccountService } from 'src/app/modules/account/account.service';
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
 import { onSelectFile } from '../../../../../constant/file-input';
+import { AdminService } from '../../admin.service';
 
 
 interface FormData {
@@ -25,7 +26,8 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private _dataService: DataTransferService,
-    private _head: DataTransferService
+ 
+    private _adminService:AdminService
   ) {
     this.editProfileForm = this.accountService.createEditProfileForm();
   }
@@ -90,7 +92,7 @@ export class EditProfileComponent implements OnInit {
       return;
     if (this.imageFile) {
       this.loader = true;
-      this.accountService.uploadProfile(this.imageFile).subscribe(
+      this._adminService.uploadProfile(this.imageFile).subscribe(
         (res) => {
           this.profileDetail.image = `data:image/jpeg;base64,${res['files'][0]}`;
           this._dataService.updatedDataSelection(this.profileDetail.image)
@@ -99,9 +101,9 @@ export class EditProfileComponent implements OnInit {
     }
     let body = { images: this.imageFile, ...this.editProfileForm.value };
     this.editProfileForm.disable();
-    this.editProfileSubscription = this.accountService.editProfile(body).subscribe(
+    this.editProfileSubscription = this._adminService.editProfile(body).subscribe(
       data => {
-        console.log(data, 'data is coming from backend...')
+
         // this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
       },
       // err => {

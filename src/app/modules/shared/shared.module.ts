@@ -16,7 +16,7 @@ import {
 import { AccountGuard } from '../gaurd/account.guard';
 import { TokenInterceptor } from '../interceptor/token-interceptor';
 import { ConfirmationModelComponent } from './component/confirmation-model/confirmation-model.component';
-import { DataTransferService } from './services/data-transfer.service';
+
 import { HomeGuard } from '../gaurd/home.guard';
 
 @NgModule({
@@ -52,7 +52,6 @@ import { HomeGuard } from '../gaurd/home.guard';
   providers: [
     HttpService,
     UtilityService,
-    DataTransferService,
     AccountGuard,
     HomeGuard,
  

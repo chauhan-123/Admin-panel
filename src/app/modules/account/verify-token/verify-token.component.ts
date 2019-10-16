@@ -4,6 +4,8 @@ import { AccountService } from '../account.service';
 import { UtilityService } from '../../shared/services/utility.service';
 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { POPUP_MESSAGES } from 'src/app/constant/message';
+
 @Component({
   selector: 'app-verify-token',
   templateUrl: './verify-token.component.html',
@@ -23,7 +25,7 @@ export class VerifyTokenComponent implements OnInit {
 
   ngOnInit() {
   var id = this.route.snapshot.paramMap.get('_id');
-  // console.log(id,'OOOOOOOOOOOOOOOOOOOOO')
+
   this.sendtoken = id;
   }
 
@@ -31,9 +33,28 @@ export class VerifyTokenComponent implements OnInit {
     if (this.verifyTokenForm.invalid) {
       return;
     }
-    this._accountService.verify(this.verifyTokenForm.value  , this.sendtoken ).subscribe(console.log);
-    this._utilityService.openSnackBar('your token are successfully verified...', true)
-     this._router.navigate(['/account/login']);
+    this._accountService.verify(this.verifyTokenForm.value  , this.sendtoken ).subscribe(
+      response =>{
+        if (response['status'] === 200) {
+          console.log('bjhjhskjudhiuh')
+          let data = {
+            title: POPUP_MESSAGES.verifyTokenTitle ,
+            message: POPUP_MESSAGES.verifyChanged,
+            yes: POPUP_MESSAGES.close,
+            isHideCancel:true,
+            successIcon:true
+          }
+          this._utilityService.openDialog(data).subscribe(success => {
+            this._router.navigate(['/account/login']);
+          });
+        }
+      }, error =>{
+       console.log(error ,'??????????????')
+      }
+    );
+
+    // this._utilityService.openSnackBar('your token are successfully verified...', true)
+    //  this._router.navigate(['/account/login']);
   }
 
 

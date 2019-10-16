@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
 
-  constructor(private _router: Router, private _accountService: AccountService) { debugger
+  constructor(private _router: Router, private _accountService: AccountService) { 
     this.loginForm = this._accountService.createLoginForm();
   }
 

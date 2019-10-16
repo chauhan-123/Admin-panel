@@ -86,6 +86,8 @@ export const POPUP_MESSAGES = {
     signUpVerificationLink: 'User registered successfully , a link has been sent to email id . Please follow the email to verify account .',
     passwordResetTitle:'Reset Password',
     passwordResetLink: 'Password reset link has been sent to registered email id . Please follow the link to reset password .',
+    verifyTokenTitle:' Token verify',
+    verifyChanged:'  token has verified from user',
     profileEdited: 'Profile has been Edited successfully.',
     passwordChanged: 'Password has been changed successfully.',
     passwordChangedTitle:'Change Password',

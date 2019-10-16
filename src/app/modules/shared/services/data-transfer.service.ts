@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
 })
 export class DataTransferService {
-    profileDetail = new BehaviorSubject<any>(null);
+    profileDetail = new BehaviorSubject<any>(null); // change the name to something else
     private editProfileData = new BehaviorSubject<any>({});
 
     profileData;
@@ -22,7 +22,7 @@ export class DataTransferService {
         this.editProfileData.next(data);
     }
     getProfileDetail() {
-        return this.httpClient.get(`${this.baseUrl}admin_details`);
+        return this._http.get(`${this.baseUrl}admin_details`);
     }
 }
 

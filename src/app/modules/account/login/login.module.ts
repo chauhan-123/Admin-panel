@@ -14,7 +14,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { AccountService } from '../account.service';
 import { AccountGuard as Guard } from '../../gaurd/account.guard';
 
-
 const accountRoute: Routes = [
   { path: '', component: LoginComponent }
 ]

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 import { UtilityService } from './utility.service';
 
 
@@ -10,25 +9,24 @@ import { UtilityService } from './utility.service';
 export class HttpService {
 
     constructor(
-        private http: HttpClient,
+        public http: HttpClient,
     ) { }
 
-    post(url, data, loader = true) {
-        if (loader) {
-            console.log(loader, 'loader');
-            UtilityService.loader.next(loader);
-        }
+    post(url, data) {
         let postUrl;
         postUrl = url;
-        return this.http.post(postUrl, data)
-            .pipe(
-                map((res: HttpResponse<any>) => {
-                    return res;
-                }),
-                catchError((error: HttpErrorResponse) => {
-                    throw (error);
-                })
-            );
+        return this.http.post(postUrl, data);
+    }
+
+
+    get(url, httpParams?: any) {
+
+        const header = {};
+        if (httpParams) {
+            header['params'] = httpParams; 
+        }
+         const getUrl =  url;
+        return this.http.get(getUrl, header);
     }
 
     handleError(error) {
