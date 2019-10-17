@@ -221,6 +221,7 @@ export class AccountService {
 
   //  password match function 
   matchPassword(form: AbstractControl) {
+    console.log('>>>>>>>>>>>>>>>>>>>>')
     let password = form.get('password').value;
     let confirmPassword = form.get('confirmPassword').value;
     if (password !== confirmPassword) {
