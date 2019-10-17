@@ -1,34 +1,42 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { UtilityService } from '../../shared/services/utility.service';
-import { Router, NavigationEnd, RouterEvent } from '@angular/router';
-import { DataTransferService } from '../../shared/services/data-transfer.service';
-import { POPUP_MESSAGES } from '../../../constant/message';
+import { Component, OnInit, HostListener, Renderer2, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { UtilityService } from 'src/app/modules/shared/services/utility.service';
+import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
+import { POPUP_MESSAGES } from 'src/app/constant/message';
+import { LayoutService } from '../../layout.service';
+// import {CollespeDirective} from '../../../directive/collespe.directive';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
   public browserRefresh: boolean;
   userName: string;
   Email: string;
   humburger = false;
-  flag = 1;
   profileSubscriber;
   profileDetail;
+  @ViewChild('ham', { static: true }) ham: ElementRef;
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-
-    // if (window.innerWidth < 1025) {
-    //   this.renderer.addClass(document.body, 'collapsed');
-    //   this.humburger = !this.humburger;
-    //   this.flag = 2;
-    // }
+    if(window.innerWidth > 1025) {
+      this.rd.addClass(this.ham.nativeElement, 'open');
+      this.layoutService.changeMenuState(true);
+    } else {
+      this.rd.removeClass(this.ham.nativeElement, 'open')
+      this.layoutService.changeMenuState(false);
+    }
+      
   }
   constructor(private _utilityService: UtilityService, private _router: Router, private _dataService: DataTransferService,
+    private rd : Renderer2, private layoutService: LayoutService
   ) {
-    this.onResize();
     this.getProfileDetail();
+  }
+
+  ngAfterViewInit() {
+    this.onResize();
   }
 
   ngOnInit() {
@@ -41,19 +49,11 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  // sidebarCollaped() {
-  //   this.humburger = !this.humburger;
-  //   if (this.flag === 1) {
-  //     this.renderer.addClass(document.body, 'collapsed');
-  //     this.flag++;
-
-  //   } else {
-  //     this.renderer.removeClass(document.body, 'collapsed');
-  //     this.flag--;
-
-  //   }
-  // }
-
+  sidebarCollaped() {
+    this.humburger = !this.humburger;
+    this.layoutService.changeMenuState(this.humburger);
+  }
+  
   getProfileDetail() {
 
     this._dataService.getProfileDetail()

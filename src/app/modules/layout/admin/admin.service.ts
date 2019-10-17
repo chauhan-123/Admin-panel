@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UtilityService } from '../../shared/services/utility.service';
 import { DataTransferService } from '../../shared/services/data-transfer.service';
+import { HeaderComponent } from '../layout parts/header/header.component';
 
 interface FormData {
   entries(): Iterator<any>;
@@ -47,11 +47,11 @@ changePassword(data) {
   data = this._utilityService.trim(data);
   this.httpclient.post(`${this.baseUrl}changePassword`, data).subscribe(
     response => {
-      if (response['status'] === 200) {
+      if (response['statusCode'] === 200) {
         // this.router.navigate(['../admin']);
       }
     }, error => {
-      if (error.error.status === 400 && error.error.responseType === 'INVALID_TOKEN') {
+      if (error.error.statusCode === 400 && error.error.responseType === 'INVALID_TOKEN') {
         this._router.navigate(['link-expired']);
       }
     }

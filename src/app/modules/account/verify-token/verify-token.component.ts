@@ -35,8 +35,7 @@ export class VerifyTokenComponent implements OnInit {
     }
     this._accountService.verify(this.verifyTokenForm.value  , this.sendtoken ).subscribe(
       response =>{
-        if (response['status'] === 200) {
-          console.log('bjhjhskjudhiuh')
+        if (response['statusCode'] === 200) {
           let data = {
             title: POPUP_MESSAGES.verifyTokenTitle ,
             message: POPUP_MESSAGES.verifyChanged,
@@ -49,7 +48,7 @@ export class VerifyTokenComponent implements OnInit {
           });
         }
       }, error =>{
-       console.log(error ,'??????????????')
+
       }
     );
 

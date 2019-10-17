@@ -133,7 +133,7 @@ export class AccountService {
   login(data) {
     data = this._utilityService.trim(data);
     this.httpclient.post(`${this.baseUrl}login`, data).subscribe(response => {
-      if (response['result']['status'] === 200) {
+      if (response['statusCode'] === 200) {
         localStorage.setItem('login', response['result']['token']);
         localStorage.setItem('_id', response['result']['_id']);
         localStorage.setItem('admin-name', response['result']['firstName']);
@@ -175,8 +175,7 @@ export class AccountService {
     */
     this.http.post(`${this.baseUrl}reset-password`, data).subscribe(
       response => {
-        console.log(response,'>>>>>>>>>>>>')
-        if (response['statusCode'] === '200') {
+        if (response['statusCode'] === 200) {
           let data = {
             title: POPUP_MESSAGES.passwordResetTitle ,
             message: POPUP_MESSAGES.passwordChanged,
@@ -189,7 +188,8 @@ export class AccountService {
           });
         }
       }, error => {
-        if (error.error.status === 400 && error.error.responseType === 'INVALID_TOKEN') {
+        this.router.navigate(['/account/login']);
+        if (error.error.statusCode === 400 && error.error.responseType === 'INVALID_TOKEN') {
           this.router.navigate(['link-expired']);
         }
       }
@@ -221,7 +221,7 @@ export class AccountService {
 
   //  password match function 
   matchPassword(form: AbstractControl) {
-    console.log('>>>>>>>>>>>>>>>>>>>>')
+  
     let password = form.get('password').value;
     let confirmPassword = form.get('confirmPassword').value;
     if (password !== confirmPassword) {

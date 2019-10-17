@@ -57,7 +57,6 @@ export class UtilityService {
     }
 
     errorAlert(error) {
-
         let data = {
             title: '',
             message: (error && error.error && error.error.message) ? (error.error.message) : SOMETHING_WENT_WRONG,

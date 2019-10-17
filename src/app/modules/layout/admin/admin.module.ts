@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
+
 import { AdminService } from './admin.service';
+import { HeaderComponent } from '../layout parts/header/header.component';
 
 const adminRoute: Routes = [
   { path: '', redirectTo: 'profile' },

@@ -155,7 +155,7 @@ $thm_clr_light : rgba($thm_clr, 0.1);
   transform: rotate(0deg);
   cursor: pointer;
   position: absolute;
-  left: 200px;
+  left: 5px;
   top: 10px;
   padding: 10px;
   -webkit-transform: scale(0.5);
@@ -221,4 +221,17 @@ $thm_clr_light : rgba($thm_clr, 0.1);
   -webkit-transform: rotate(-135deg);
   -ms-transform: rotate(-135deg);
   transform: rotate(-135deg);
+}
+
+
+
+
+
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }

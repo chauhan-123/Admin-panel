@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,7 +13,7 @@ export class DataTransferService {
     profileData;
     baseUrl = "http://localhost:3000/"
     constructor(
-        private _http: HttpService, private httpClient: HttpClient
+        private _http: HttpService
     ) {
     }
 
