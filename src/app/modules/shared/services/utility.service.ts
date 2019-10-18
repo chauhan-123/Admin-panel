@@ -158,4 +158,30 @@ export class UtilityService {
             compose
         )];
     }
+
+    getPriceFormControl(required = true,){
+        let compose = [
+            Validators.pattern(PATTERN.phone),
+            // Validators.minLength(VALIDATION_CRITERIA.phoneMinLength),
+            // Validators.maxLength(VALIDATION_CRITERIA[maxLength])
+        ];
+        if (required) {
+            compose.splice(0, 0, Validators.required);
+        }
+        return ['', Validators.compose(
+            compose
+        )];
+    }
+
+    getDescriptionFormControl(){
+        return['' , Validators.compose([
+            Validators.required
+        ])]
+    }
+
+    getImageControl(){
+        return['' , Validators.compose([
+            Validators.required
+        ])]
+    }
 }

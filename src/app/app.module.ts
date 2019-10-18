@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Renderer2 } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,9 +8,13 @@ import { AccountService } from './modules/account/account.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './modules/shared/services/http.service';
 import { SharedModule } from './modules/shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './modules/layout/layout parts/header/header.component';
+import { CollespeModule } from './modules/directive/collespe/collespe.module';
+import { HomeService } from './modules/layout/home/home.service';
+
+
 
 
 
@@ -28,9 +32,13 @@ import { HeaderComponent } from './modules/layout/layout parts/header/header.com
     HttpClientModule,
     SharedModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    CollespeModule,
+    FormsModule
+
+
   ],
-  providers: [AccountService, HttpService, HeaderComponent
+  providers: [AccountService, HttpService, HeaderComponent, HomeService , FormBuilder
   ],
 
   bootstrap: [AppComponent]

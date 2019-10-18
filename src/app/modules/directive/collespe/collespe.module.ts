@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CollespeDirective } from './collespe.directive';
 
 
 
 
 @NgModule({
-  declarations: [CollespeDirective],
+  declarations: [],
   imports: [
     CommonModule
   ]

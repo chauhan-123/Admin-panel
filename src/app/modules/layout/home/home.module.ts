@@ -3,16 +3,30 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
-import { MatDialogModule, MatCardModule, MatIconModule, MatInputModule, MatButtonModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatTooltipModule, MatListModule } from '@angular/material';
+import { MatDialogModule,
+         MatCardModule, 
+         MatIconModule,
+          MatInputModule,
+           MatButtonModule, 
+           MatToolbarModule,
+            MatMenuModule, 
+            MatDividerModule, 
+            MatTooltipModule, 
+            MatListModule, 
+            MatFormFieldModule, 
+            MatTableModule} from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AccountGuard } from '../../gaurd/account.guard';
+import { HomeService } from './home.service';
+import { AddBookModelComponent } from './addBookModel/add-book-model/add-book-model.component';
+
 
 const homeroutes: Routes = [
   { path: '', component: HomeComponent , canActivate:[AccountGuard] }
 ]
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, AddBookModelComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(homeroutes),
@@ -29,8 +43,12 @@ const homeroutes: Routes = [
     MatMenuModule,
     MatDividerModule,
     MatTooltipModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    MatTableModule,
 
-  ]
+  ], 
+  providers:[HomeService],
+  entryComponents:[AddBookModelComponent ]
 })
 export class HomeModule { }

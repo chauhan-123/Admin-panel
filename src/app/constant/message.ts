@@ -92,6 +92,8 @@ export const POPUP_MESSAGES = {
     passwordChanged: 'Password has been changed successfully.',
     passwordChangedTitle:'Change Password',
     invalidResetPasswordLink: 'Reset password link is expired',
+    bookTitle:'Book store',
+    bookSave:'books are saved',
     logout: 'Logout',
     logoutConfirmation: 'Do you wish to logout?',
     saveAsDraft: 'Talk has been saved as draft successfully',

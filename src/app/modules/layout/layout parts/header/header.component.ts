@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Renderer2, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2, AfterViewInit, ViewChild, ElementRef, RendererFactory2  } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilityService } from 'src/app/modules/shared/services/utility.service';
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
@@ -17,29 +17,30 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   humburger = false;
   profileSubscriber;
   profileDetail;
-  @ViewChild('ham', { static: true }) ham: ElementRef;
-  @HostListener('window:resize', ['$event'])
-  onResize(event?) {
-    if(window.innerWidth > 1025) {
-      this.rd.addClass(this.ham.nativeElement, 'open');
-      this.layoutService.changeMenuState(true);
-    } else {
-      this.rd.removeClass(this.ham.nativeElement, 'open')
-      this.layoutService.changeMenuState(false);
-    }
+  // @ViewChild('ham', { static: true }) ham: ElementRef;
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event?) {
+  //   if(window.innerWidth > 1025) {
+  //     this.rd.addClass(this.ham.nativeElement, 'open');
+  //     this.layoutService.changeMenuState(true);
+  //   } else {
+  //     this.rd.removeClass(this.ham.nativeElement, 'open')
+  //     this.layoutService.changeMenuState(false);
+  //   }
       
-  }
-  constructor(private _utilityService: UtilityService, private _router: Router, private _dataService: DataTransferService,
-    private rd : Renderer2, private layoutService: LayoutService
+  // }
+  constructor(private _utilityService: UtilityService,
+     private _router: Router, private _dataService: DataTransferService,
+    private layoutService: LayoutService
   ) {
     this.getProfileDetail();
   }
 
   ngAfterViewInit() {
-    this.onResize();
+    // this.onResize();
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.profileSubscriber = this._dataService.profileDetail.subscribe(
       data => {
         if (data)
@@ -62,7 +63,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
           this.profileDetail = response.data;
           if (this.profileDetail['url'].length === 0) {
             this.profileDetail.image = 'assets/images/avatar.png';
-          } else if (this.profileDetail['url'].length >= 0) {
+          } else if (this.profileDetail.url.length >= 0) {
             this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
             this._dataService.profileDetail.next(this.profileDetail);
           }

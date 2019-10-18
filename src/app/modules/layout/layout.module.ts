@@ -6,10 +6,20 @@ import { LayoutComponent } from './layout.component';
 import { LayoutRoutingModule } from './layout.routing';
 import { HeaderComponent } from './layout parts/header/header.component';
 import { SidebarComponent } from './layout parts/sidebar/sidebar.component';
+import { CollespeDirective } from '../directive/collespe/collespe.directive';
+import { HomeService } from './home/home.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, SidebarComponent],
+  declarations: [
+    LayoutComponent, 
+    HeaderComponent, 
+    SidebarComponent,
+    CollespeDirective
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -19,7 +29,11 @@ import { SidebarComponent } from './layout parts/sidebar/sidebar.component';
     MatDividerModule,
     MatTooltipModule,
     MatListModule,
-    LayoutRoutingModule
-  ]
+    LayoutRoutingModule,
+    HttpClientModule,
+    FormsModule
+
+  ],  
+  providers:[HomeService]
 })
 export class LayoutModule { }

@@ -1,6 +1,7 @@
-<mat-toolbar class="header" color="primary">
+<mat-toolbar class="header" color="primary"  >
   <mat-toolbar-row>
-    <div class="humburger" #ham [ngClass]="{'open': humburger }" (click)="sidebarCollaped()">
+    <!-- <div class="humburger" #ham [ngClass]="{'open': humburger }" (click)="sidebarCollaped()"> -->
+      <div class ="humburger" appCollespe [ngClass]="{'open': humburger }" (click)="sidebarCollaped()">
       <span></span>
       <span></span>
       <span></span>
@@ -35,3 +36,4 @@
 
 
   </mat-toolbar-row>
+  </mat-toolbar>

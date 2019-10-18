@@ -1,0 +1,47 @@
+
+    <mat-card-content>
+      <form [formGroup]="addBookForm" (ngSubmit)="addBookForm.valid&&submit()">
+        <div class="img-wrap col-md-6">
+                <div class="img">
+                  <img src="../../../../../../assets/images/avatar.png" alt="pic">
+                    <input type="file" (change)="onSelectFile($event)" matTooltip="Change Image" />
+                    <mat-error *ngIf="addBookForm['controls']['name']['errors']">
+                            {{getValidationError(addBookForm['controls']['image'],'image')}} please enter a image
+                        </mat-error>
+                </div>
+              </div>
+          
+                <mat-form-field>
+                    <input matInput required placeholder="name" name="name" formControlName="name">
+                    <mat-error *ngIf="addBookForm['controls']['name']['errors']">
+                        {{getValidationError(addBookForm['controls']['name'],'name')}} please enter a name
+                    </mat-error>
+                </mat-form-field>
+           <br>          <mat-form-field>
+                <input matInput required placeholder="price" price="price" formControlName="price">
+                <mat-error *ngIf="addBookForm['controls']['price']['errors']">
+                    {{getValidationError(addBookForm['controls']['price'],'price')}} please enter a price
+                </mat-error>
+            </mat-form-field>
+       <br>          <mat-form-field>
+            <input matInput required placeholder="author" author="author" formControlName="author">
+            <mat-error *ngIf="addBookForm['controls']['author']['errors']">
+                {{getValidationError(addBookForm['controls']['author'],'author')}} please enter a author name
+            </mat-error>
+        </mat-form-field>
+   <br>          <mat-form-field>
+        <input matInput required placeholder="description" description="description" formControlName="description">
+        <mat-error *ngIf="addBookForm['controls']['description']['errors']">
+            {{getValidationError(addBookForm['controls']['description'],'description')}} please enter a description
+        </mat-error>
+    </mat-form-field>
+<br>  
+    
+       <br>
+      
+                <mat-card-actions class="text-center">
+                    <button mat-raised-button type="submit" color="primary">Submit</button>
+                    <button type="button" (click)="onCancel()" mat-stroked-button color="warn">Cancel</button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
