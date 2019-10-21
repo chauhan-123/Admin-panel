@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
 import { AccountService } from 'src/app/modules/account/account.service';
 import { HomeService } from '../../home.service';
 import { POPUP_MESSAGES } from 'src/app/constant/message';
 import { UtilityService } from 'src/app/modules/shared/services/utility.service';
 import { Router } from '@angular/router';
 import { onSelectFile } from 'src/app/constant/file-input';
+import { AddBookModelService } from './add-book-model.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { HomeComponent } from '../../home.component';
+import { HeaderComponent } from '../../../layout parts/header/header.component';
 
 @Component({
   selector: 'app-add-book-model',
@@ -18,10 +21,18 @@ export class AddBookModelComponent implements OnInit {
   imageFile;
   url: string;
   addBookData: any;
-  constructor(private HomeService:HomeService ,
+
+  constructor(
+    private dialogRef: MatDialogRef<AddBookModelComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private HomeService:HomeService ,
      private  _accountService:AccountService,
      private  _utilityService : UtilityService,
-     private router : Router)
+     private router : Router,
+     private addBookService :AddBookModelService,
+
+
+)
    { 
      this.url = 'assets/images/avatar.png';   // for Placeholder 
     this.addBookForm = this.HomeService.createBookForm();
@@ -35,54 +46,31 @@ export class AddBookModelComponent implements OnInit {
    */
 
   async submit() {
+
+
     if (this.addBookForm.invalid)
       return;
     if (this.imageFile) {
       this.HomeService.uploadProfile(this.imageFile).subscribe(
         (res) => {
-          console.log(res,'>>>>>');
           this.HomeService.imageUrl(res);
         }
       )
     }
-    let body = { images: this.imageFile, ...this.addBookForm.value };
+    let body = { images: this.url, ...this.addBookForm.value };
     this.addBookForm.disable();
-    this.addBookData = this.HomeService.submit(body).subscribe(
-      data => {
+    this.addBookData = this.addBookService.submit(body).subscribe(
+      response => {
+
+   
       },
     );
+    this.dialogRef.close( );
+
+    
+
   }
 
-  // submit() { 
-  //   if (this.addBookForm.invalid) {
-  //     return;
-  //   }
-  //   let data = {
-  //      data : this.addBookForm.value,
-  //     images :this.imageFile
-  //   }
-  //   console.log('dfghjk')
-  //   this.HomeService.submit(data).subscribe(
-  //     response => {
-  //       if (response['statusCode'] === 200) {
-  //         let data = {
-  //           title: POPUP_MESSAGES.bookTitle ,
-  //           message: POPUP_MESSAGES.bookSave,
-  //           yes: POPUP_MESSAGES.close,
-  //           isHideCancel:true,
-  //           successIcon:true
-  //         }
-  //         this._utilityService.openDialog(data).subscribe(success => {
-  //           this.router.navigate(['/account/login']);
-  //         });
-  //       }
-  //     }, error => {
-    
-  //     }
-     
-  //   );
-    
-  // }
 
  /**
    * @description This function is called when user change profile pic. Save that file
@@ -95,11 +83,7 @@ export class AddBookModelComponent implements OnInit {
       this.imageFile = result.file;
       this.url = result.url;
     } catch (err) {
-      // if (err.type) {
-      //   this._editProfileService.showAlert(invalidImageError());
-      // } else if (err.size) {
-      //   this._editProfileService.showAlert(invalidFileSize())
-      // }
+
     }
   }
 
@@ -109,5 +93,7 @@ export class AddBookModelComponent implements OnInit {
     return this._accountService.getValidationError(control, name);
   }
 
-  
+  onCancel(): void {
+    this.dialogRef.close();
+  }
 }

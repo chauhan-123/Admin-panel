@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { UtilityService } from '../../shared/services/utility.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { jsonpFactory } from '@angular/http/src/http_module';
 
 interface FormData {
   entries(): Iterator<any>;
@@ -16,15 +18,14 @@ export class HomeService {
     images = new BehaviorSubject('images');
   baseUrl = "http://localhost:3000/"
   
-  constructor( private httpClient:HttpClient , public _formBuilder: FormBuilder , private _utilityService: UtilityService )
+  constructor( private httpClient:HttpClient , public _formBuilder: FormBuilder , private _utilityService: UtilityService,
+    private _router:Router )
    { 
 
    }
 
    imageUrl(url:any){
      this.images.next(url);
-     console.log(url);
-
    }
  
    // create book form
@@ -43,30 +44,7 @@ export class HomeService {
     );
   }
 
-  submit(data) {
-    console.log(data ,'>>>>>>>>>>>>>')
-    let body = {
-      images: data.images.name,
-      name: data.name,
-      author: data.author,
-      price: data.price,
-      description: data.description
-    }
- 
-    // delete body['email'];
-    return this.httpClient.post(`${this.baseUrl}add_book`, body)
-      .pipe(
-        map(
-          response => {
-            if (response['statusCode'] === 200) {
-              // this._router.navigate(['/admin/home']);
-              //  this.header.getProfileDetail();   
-            }
-          }
-        )
-      )
-  }
-  
+
 
   
 //  upload profile function
@@ -76,7 +54,36 @@ uploadProfile(images: File) {
   return this.httpClient.post(`${this.baseUrl}upload_image`, formData);
 }
 
-  getBookListing(){
-    return this.httpClient.get(`${this.baseUrl}get_book`);
+  // getBookListing(data){
+  //   console.log(data , '---------------------')
+  //   return this.httpClient.get(`${this.baseUrl}get_book`, data);
+  // }
+
+  getBookListing(data) {
+    console.log(data, '+++++++++++++++++++++++++++++++')
+    data.page = data.page - 1;
+    var body: any[] = [];
+    for (let item in data) {
+        if (data[item] !== '' && data[item] !== undefined && data[item] !== null) {
+            body.push({ key: item, value: data[item] });
+        }
+    }
+
+    return this.httpClient.get<any>(this.baseUrl + `get_book`, { params: data });
   }
+            // response => {
+            //     if (response['statusCode'] === 200) {
+            //         observer.next(response);
+            //     } else {
+            //         observer.next(null);
+            //     }
+            // }, error => {
+            //     observer.next(null);
+            // }
+        // )
+    
+    // );
 }
+
+
+// }

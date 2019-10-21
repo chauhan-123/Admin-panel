@@ -14,7 +14,10 @@ import { MatDialogModule,
             MatTooltipModule, 
             MatListModule, 
             MatFormFieldModule, 
-            MatTableModule} from '@angular/material';
+            MatTableModule,
+            MatSortModule
+          } from '@angular/material';
+          import {MatPaginatorModule} from '@angular/material/paginator';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AccountGuard } from '../../gaurd/account.guard';
 import { HomeService } from './home.service';
@@ -46,6 +49,8 @@ const homeroutes: Routes = [
     MatListModule,
     MatFormFieldModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
 
   ], 
   providers:[HomeService],

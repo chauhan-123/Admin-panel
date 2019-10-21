@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { MatIconModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatTooltipModule, MatListModule } from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { LayoutComponent } from './layout.component';
 import { LayoutRoutingModule } from './layout.routing';
 import { HeaderComponent } from './layout parts/header/header.component';
@@ -31,7 +32,8 @@ import { FormsModule } from '@angular/forms';
     MatListModule,
     LayoutRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
 
   ],  
   providers:[HomeService]
