@@ -10,12 +10,14 @@ import { AddBookModelComponent } from './addBookModel/add-book-model/add-book-mo
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  displayedColumns: string[] = ['position','Image', 'name', 'price', 'author','description'];
+  displayedColumns: string[] = ['position', 'name', 'price', 'author','description'];
   bookList = new MatTableDataSource<any>([]);
+  images : any;
 
  constructor( private homeService:HomeService,
   public dialog: MatDialog
   ){
+    this.imageUrl();
  this.getBookListDetail();
  }
   // applyFilter(filterValue: string) {
@@ -25,7 +27,20 @@ export class HomeComponent implements OnInit {
   ngOnInit(){
   }
 
+
+  imageUrl(){
+    this.homeService.images.subscribe(images=>{
+      this.images = images;
+      console.log(this.images,'----------------------------------');
+      this.images =  `data:image/jpeg;base64,${this.images['files']}`;
+      console.log(this.images,'11111111111111111111111');
+
+    })
+  }
+
   getBookListDetail(){
+    this.images = this.images;
+    console.log(this.images,'-------------------------------------------------------------------------------------')
     this.homeService.getBookListing().subscribe(
       (response: any) => {
         if (response) {

@@ -103,14 +103,8 @@ export class EditProfileComponent implements OnInit {
     this.editProfileForm.disable();
     this.editProfileSubscription = this._adminService.editProfile(body).subscribe(
       data => {
-
-        // this.profileDetail.image = `data:image/jpeg;base64,${this.profileDetail['url']}`;
       },
-      // err => {
-      //   this.editProfileForm.enable();
-      // }
     );
-    // this.header.getProfileDetail();
   }
 
   ngOnDestroy() {

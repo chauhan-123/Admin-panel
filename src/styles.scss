@@ -59,6 +59,10 @@ $thm_clr_light : rgba($thm_clr, 0.1);
 }
 
 
+.white_space{
+  white-space: nowrap;
+}
+
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

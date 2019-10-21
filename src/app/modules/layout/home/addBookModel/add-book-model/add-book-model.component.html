@@ -3,14 +3,12 @@
       <form [formGroup]="addBookForm" (ngSubmit)="addBookForm.valid&&submit()">
         <div class="img-wrap col-md-6">
                 <div class="img">
-                  <img src="../../../../../../assets/images/avatar.png" alt="pic">
+                  <img [src]="url" alt="pic">
                     <input type="file" (change)="onSelectFile($event)" matTooltip="Change Image" />
-                    <mat-error *ngIf="addBookForm['controls']['name']['errors']">
-                            {{getValidationError(addBookForm['controls']['image'],'image')}} please enter a image
-                        </mat-error>
-                </div>
-              </div>
-          
+                
+                 </div> 
+              </div> 
+
                 <mat-form-field>
                     <input matInput required placeholder="name" name="name" formControlName="name">
                     <mat-error *ngIf="addBookForm['controls']['name']['errors']">
