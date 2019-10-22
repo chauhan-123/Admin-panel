@@ -60,15 +60,7 @@ uploadProfile(images: File) {
   // }
 
   getBookListing(data) {
-    console.log(data, '+++++++++++++++++++++++++++++++')
-    data.page = data.page - 1;
-    var body: any[] = [];
-    for (let item in data) {
-        if (data[item] !== '' && data[item] !== undefined && data[item] !== null) {
-            body.push({ key: item, value: data[item] });
-        }
-    }
-
+     data.page = data.page - 1;
     return this.httpClient.get<any>(this.baseUrl + `get_book`, { params: data });
   }
             // response => {

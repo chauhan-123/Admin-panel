@@ -8,6 +8,7 @@ export class Pagination {
     pageOptions: number[];
     sortKey: string;
     sortType: number;
+    search: string;
    
     constructor() {
         this.total = 0;
@@ -22,6 +23,11 @@ export class Pagination {
             limit: this.pageSize
         };
     }
+ 
+    get searchFilter() {
+        return { search: this.search };
+    }
+
 
     get sortHeaders() {
         let key = this.sortKey;
@@ -37,7 +43,8 @@ export class Pagination {
     allPrams() {
         return {
             ...this.pageParams,   
-            ...this.sortHeaders  
+            ...this.sortHeaders,
+            ...this.searchFilter,  
         };
     }
 

@@ -4,6 +4,7 @@ import { HomeService } from './home.service';
 import { MatDialog, MatPaginator } from '@angular/material';
 import { AddBookModelComponent } from './addBookModel/add-book-model/add-book-model.component';
 import {Pagination} from  '../../../model/pagination';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,6 +14,7 @@ export class HomeComponent extends Pagination  implements OnInit {
   displayedColumns: string[] = ['position','Image','name', 'price', 'author','description'];
   bookList = new MatTableDataSource<any>([]);
   images : any;
+  limit;
 
 
  constructor( private homeService:HomeService,
@@ -22,9 +24,7 @@ export class HomeComponent extends Pagination  implements OnInit {
     this.imageUrl();
  this.getBookListDetail();
  }
-  // applyFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
+ 
 
   ngOnInit(){
   }
@@ -38,13 +38,13 @@ export class HomeComponent extends Pagination  implements OnInit {
     })
   }
 
-  getBookListDetail(){
-    let data = {...this.validPageOptions , ...this.sortOptions};
+  getBookListDetail(sort?){
+    let data = {...this.validPageOptions, ...sort };
     this.homeService.getBookListing(data).subscribe(
       (response: any) => {
         if (response) {
            this.bookList = new MatTableDataSource(response.result);
-          this.total = response.total.length;
+          this.total = response.total;
         }
       }
     )
@@ -58,8 +58,17 @@ export class HomeComponent extends Pagination  implements OnInit {
  changePage(event: MatPaginator) {
   this.pageOptionsOnChange = event;
   if (this.total == 0) {
- 
   }
+  this.getBookListDetail();
+}
+
+ /*
+    Method For Searching
+  */
+ setSearch(event) {
+  this.search = event;
+  console.log(event)
+   this.resetPages();
   this.getBookListDetail();
 }
 
@@ -67,10 +76,10 @@ export class HomeComponent extends Pagination  implements OnInit {
     Method For Sorting
   */
  sortData(event) {
-  console.log(event)
-  this.sortOptions = event;
-  this.resetPages();
-  this.getBookListDetail();
+  if(event.direction) {
+    let sort = { field: event.active, order: event.direction === 'asc' ? 1 : -1 };
+    this.getBookListDetail(sort);
+  }
 }
 
 

@@ -22,6 +22,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AccountGuard } from '../../gaurd/account.guard';
 import { HomeService } from './home.service';
 import { AddBookModelComponent } from './addBookModel/add-book-model/add-book-model.component';
+import { SearchFilterModule } from '../layout-shared/search-filter/search-filter.module';
 
 
 const homeroutes: Routes = [
@@ -50,7 +51,8 @@ const homeroutes: Routes = [
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    SearchFilterModule
 
   ], 
   providers:[HomeService],
