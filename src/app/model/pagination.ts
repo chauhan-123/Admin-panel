@@ -9,7 +9,7 @@ export class Pagination {
     sortKey: string;
     sortType: number;
     search: string;
-   
+    filterOptions: { [key: string]: string};
     constructor() {
         this.total = 0;
         this.page = 1;
@@ -45,6 +45,7 @@ export class Pagination {
             ...this.pageParams,   
             ...this.sortHeaders,
             ...this.searchFilter,  
+            ...this.filterOptions,
         };
     }
 

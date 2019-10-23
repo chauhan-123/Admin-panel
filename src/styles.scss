@@ -66,3 +66,32 @@ $thm_clr_light : rgba($thm_clr, 0.1);
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.adminFilter.mat-expansion-panel{
+  margin-bottom: 30px;
+  .mat-expansion-panel-body{padding: 0;}
+}
+
+.mat_filter {
+  padding: 20px;
+  border: 1px solid #ffe5e5;
+  transform-origin: top;
+  transition: .3s ease-in all;
+
+  &.active {
+    display: block;
+    opacity: 1;
+    transform: scaleY(1);
+    height: 100%;
+
+  }
+  h4{color: #000;}
+  .filter_by{
+    background: #ffffff;
+    position: relative;
+    top: -30px;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 1.2rem;
+  }
+}

@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { UtilityService } from '../../shared/services/utility.service';
-import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import { jsonpFactory } from '@angular/http/src/http_module';
+
 
 interface FormData {
   entries(): Iterator<any>;
@@ -21,7 +20,6 @@ export class HomeService {
   constructor( private httpClient:HttpClient , public _formBuilder: FormBuilder , private _utilityService: UtilityService,
     private _router:Router )
    { 
-
    }
 
    imageUrl(url:any){
@@ -36,16 +34,22 @@ export class HomeService {
          author: this._utilityService.getNameFormControl(),
         description: this._utilityService.getDescriptionFormControl(),
          price: this._utilityService.getPriceFormControl(),
-    
+         code: this._utilityService.getBookCodeControl()
       },
-      {
-
-      }
     );
   }
 
+// create filter form
 
-
+createFilterForm(){
+  return this._formBuilder.group(
+    {
+       name: this._utilityService.getNameFormControl(),
+       author: this._utilityService.getNameFormControl(),
+       price: this._utilityService.getPriceFormControl()
+    },
+  );
+}
   
 //  upload profile function
 uploadProfile(images: File) {
@@ -63,19 +67,7 @@ uploadProfile(images: File) {
      data.page = data.page - 1;
     return this.httpClient.get<any>(this.baseUrl + `get_book`, { params: data });
   }
-            // response => {
-            //     if (response['statusCode'] === 200) {
-            //         observer.next(response);
-            //     } else {
-            //         observer.next(null);
-            //     }
-            // }, error => {
-            //     observer.next(null);
-            // }
-        // )
-    
-    // );
 }
 
 
-// }
+

@@ -8,11 +8,54 @@
     <button class="filter_btn" mat-mini-fab matTooltip="Filter" (click)="showFilter=!showFilter">
       <mat-icon>filter_list</mat-icon>
     </button>
+
     <button class="filter_btn" mat-mini-fab matTooltip="Add Book" (click)="addBookCategory()">
       <mat-icon>add</mat-icon>
     </button>
   </div>
 </div>
+
+
+ <!-- filter -->
+  <mat-expansion-panel class="adminFilter" [expanded]="showFilter">
+    <form [formGroup]="bookForm">
+      <div class="row">
+          <mat-form-field>
+              <input matInput required placeholder="name" name="name" formControlName="name">
+              <mat-error *ngIf="bookForm['controls']['name']['errors']">
+                  {{getValidationError(bookForm['controls']['name'],'name')}} please enter a name
+              </mat-error>
+          </mat-form-field>
+         
+          <mat-form-field>
+              <input matInput required placeholder="price" price="price" formControlName="price">
+              <mat-error *ngIf="bookForm['controls']['price']['errors']">
+                  {{getValidationError(bookForm['controls']['price'],'price')}} please enter a price
+              </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+              <input matInput required placeholder="author" author="author" formControlName="author">
+              <mat-error *ngIf="bookForm['controls']['author']['errors']">
+                  {{getValidationError(bookForm['controls']['author'],'author')}} please enter a author name
+              </mat-error>
+          </mat-form-field>
+
+  
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-btn text-center mt-3">
+              <button filter_btn mat-stroked-button  (click)="resetFilter()"> Reset </button>
+              <button filter_btn mat-raised-button color="primary" 
+                (click)="filter($event)"> Filter </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-expansion-panel>
+  <!-- /filter -->
+  <!-- end of filter -->
 
 
 <!-- table sction -->
@@ -32,6 +75,11 @@
         <div class="profile_pic"><img [src]="element.images||'assets/images/avatar.png'" class="user-image" alt="User">
         </div>
       </td>
+    </ng-container>
+    <!-- book code -->
+    <ng-container matColumnDef="book_code">
+      <th mat-header-cell *matHeaderCellDef> code </th>
+      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
     </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="name">

@@ -122,6 +122,10 @@ export const COMMON_MESSAGES = {
 };
 export const SOMETHING_WENT_WRONG = 'Something went wrong , Please try again later.';  
 
+export const invalidImageError = (format = 'jpeg/png') => `Only ${format} images are allowed`;
+
+export const invalidFileSize = (size = 4) => `File size can not be more than ${size} MB`;
+
 export const toTitleCase = (str) => {
     return str.replace(
         /\w\S*/g,

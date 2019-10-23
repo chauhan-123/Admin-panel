@@ -4,6 +4,8 @@ import { HomeService } from './home.service';
 import { MatDialog, MatPaginator } from '@angular/material';
 import { AddBookModelComponent } from './addBookModel/add-book-model/add-book-model.component';
 import {Pagination} from  '../../../model/pagination';
+import { FormGroup } from '@angular/forms';
+import { AccountService } from '../../account/account.service';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +13,19 @@ import {Pagination} from  '../../../model/pagination';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent extends Pagination  implements OnInit {
-  displayedColumns: string[] = ['position','Image','name', 'price', 'author','description'];
+  displayedColumns: string[] = ['position', 'book_code','Image','name', 'price', 'author','description'];
   bookList = new MatTableDataSource<any>([]);
   images : any;
   limit;
-
+  showFilter = false;
+  bookForm:FormGroup;
 
  constructor( private homeService:HomeService,
+  private _accountService:AccountService,
   public dialog: MatDialog
   ){
     super();
+    this.bookForm = this.homeService.createFilterForm();
     this.imageUrl();
  this.getBookListDetail();
  }
@@ -38,8 +43,8 @@ export class HomeComponent extends Pagination  implements OnInit {
     })
   }
 
-  getBookListDetail(sort?){
-    let data = {...this.validPageOptions, ...sort };
+  getBookListDetail(sort?, formVal?){
+    let data = formVal ? {...this.validPageOptions, ...sort, ...formVal } : {...this.validPageOptions, ...sort };
     this.homeService.getBookListing(data).subscribe(
       (response: any) => {
         if (response) {
@@ -67,7 +72,6 @@ export class HomeComponent extends Pagination  implements OnInit {
   */
  setSearch(event) {
   this.search = event;
-  console.log(event)
    this.resetPages();
   this.getBookListDetail();
 }
@@ -82,7 +86,18 @@ export class HomeComponent extends Pagination  implements OnInit {
   }
 }
 
-
+  /*
+    Method For Applying The Filters
+  */
+ filter() {
+  if (this.bookForm.valid) {
+    console.log('here')
+    let data = this.bookForm.value;
+    this.bookForm.setValue(data);
+    this.getBookListDetail(this.bookForm.value);
+  }
+  // this.resetPages();
+}
 
 // change the serial number
 
@@ -90,7 +105,15 @@ getSerialNumber(i) {
   return i + ((this.validPageOptions['page'] - 1) * this.validPageOptions['limit']);
 }
 
+ /*
+    Method For Resetting The Filters
+  */
+ resetFilter() {
+  this.bookForm.reset();
+  this.resetPages();
+  this.getBookListDetail();
 
+}
 
   // add the book 
   addBookCategory(category?){
@@ -110,6 +133,14 @@ getSerialNumber(i) {
         // }
       }
     });
+  }
+
+  sendData(){
+
+  }
+
+  getValidationError(control, name) {
+    return this._accountService.getValidationError(control, name);
   }
   
 }

@@ -17,19 +17,10 @@ export class AddBookModelService {
       name: data.name,
       author: data.author,
       price: data.price,
-      description: data.description
+      description: data.description,
+      code:data.code
     }
-    return this.httpClient.post(`${this.baseUrl}add_book`, body)
-      .pipe(
-        map(
-          response => {
-            console.log(response,'oooooooooooo')
-            if (response['statusCode'] == 200) {
-              // this.home.getBookListDetail();   
-           }
-          }
-        )
-      )
+    return this.httpClient.post(`${this.baseUrl}add_book`, body);
   }
   
 }

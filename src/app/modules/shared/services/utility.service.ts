@@ -68,15 +68,11 @@ export class UtilityService {
         });
     }
 
-
-
-
-
-    //   showAlert(message, type?) {
-    //     this._snackBar.open(message, 'Close', {
-    //         duration: 3000,
-    //     });
-    // }
+     showAlert(message, type?) {
+        this.snackBar.open(message, 'Close', {
+            duration: 3000,
+        });
+    }
 
     trim(data) {
         for (const item in data) {
@@ -159,11 +155,21 @@ export class UtilityService {
         )];
     }
 
-    getPriceFormControl(required = true,){
+    getPriceFormControl(required = true){
         let compose = [
             Validators.pattern(PATTERN.phone),
-            // Validators.minLength(VALIDATION_CRITERIA.phoneMinLength),
-            // Validators.maxLength(VALIDATION_CRITERIA[maxLength])
+        ];
+        if (required) {
+            compose.splice(0, 0, Validators.required);
+        }
+        return ['', Validators.compose(
+            compose
+        )];
+    }
+
+    getBookCodeControl(required = true){
+        let compose = [
+            Validators.pattern(PATTERN.phone),
         ];
         if (required) {
             compose.splice(0, 0, Validators.required);

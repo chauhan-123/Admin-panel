@@ -17,12 +17,11 @@
       <div class="img-wrap col-md-6">
         <div class="img">
           <img [src]="profileDetail?.image ? profileDetail?.image : 'assets/images/avatar.png'" alt="">
-          <!-- <mat-spinner *ngIf="imgLoader" [diameter]="40"></mat-spinner> -->
           <button type="button" mat-mini-fab color="primary">
             <mat-icon>camera_alt</mat-icon>
             <input type="file" (change)="onSelectFile($event)" matTooltip="Change Image" />
           </button>
-          <!-- {{profileDetail?.image}} -->
+       
         </div>
       </div>
       <div class="form-wrap col-md-6">

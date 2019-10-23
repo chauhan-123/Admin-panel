@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { HomeService } from '../../home.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatError } from '@angular/material';
 
 
 
@@ -15,7 +16,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatError
   ],
   providers:[HomeService]
 

@@ -15,7 +15,8 @@ import { MatDialogModule,
             MatListModule, 
             MatFormFieldModule, 
             MatTableModule,
-            MatSortModule
+            MatSortModule,
+            MatExpansionModule
           } from '@angular/material';
           import {MatPaginatorModule} from '@angular/material/paginator';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -52,10 +53,11 @@ const homeroutes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    SearchFilterModule
+    SearchFilterModule,
+    MatExpansionModule,
 
   ], 
-  providers:[HomeService],
+  providers:[HomeService ,HomeComponent],
   entryComponents:[AddBookModelComponent ]
 })
 export class HomeModule { }
