@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { UtilityService } from '../../shared/services/utility.service';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { POPUP_MESSAGES, COMMON_MESSAGES } from 'src/app/constant/message';
 
 
 interface FormData {
@@ -58,16 +59,39 @@ uploadProfile(images: File) {
   return this.httpClient.post(`${this.baseUrl}upload_image`, formData);
 }
 
-  // getBookListing(data){
-  //   console.log(data , '---------------------')
-  //   return this.httpClient.get(`${this.baseUrl}get_book`, data);
-  // }
 
   getBookListing(data) {
      data.page = data.page - 1;
     return this.httpClient.get<any>(this.baseUrl + `get_book`, { params: data });
   }
+
+  getUserDetails(userId){
+console.log(userId);
+return this.httpClient.get<any>(this.baseUrl + `books_details`, { params: userId });
+  }
+
+  changeStatus(body){
+    const status = body.status;
+    const data = {
+        title: POPUP_MESSAGES.confrim,
+        message: COMMON_MESSAGES[status].confirm('Book'),
+        yes: 'Yes',
+        isHideCancel: false,
+        no: 'No',
+        showTextBox:status!='ACTIVE'
+    }
+    this._utilityService.openDialog(data).subscribe(success => {
+      if (success != undefined && success != null) {
+          delete body['status'];
+          this.httpClient.delete(this.baseUrl + `delete_book`, {params : body}).subscribe(
+            response =>{
+              if(response['statusCode'] === 200){
+                this._utilityService.showAlert(COMMON_MESSAGES[status].success('Books'))
+              }
+              else{
+              }         
+   })
+  }
+})
+  }
 }
-
-
-

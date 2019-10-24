@@ -4,12 +4,11 @@ import { AccountService } from 'src/app/modules/account/account.service';
 import { HomeService } from '../../home.service';
 import { POPUP_MESSAGES, invalidImageError, invalidFileSize } from 'src/app/constant/message';
 import { UtilityService } from 'src/app/modules/shared/services/utility.service';
-import { Router } from '@angular/router';
 import { onSelectFile } from 'src/app/constant/file-input';
 import { AddBookModelService } from './add-book-model.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { HomeComponent } from '../../home.component';
-import { HeaderComponent } from '../../../layout parts/header/header.component';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-add-book-model',
@@ -19,7 +18,7 @@ import { HeaderComponent } from '../../../layout parts/header/header.component';
 export class AddBookModelComponent implements OnInit {
   addBookForm: FormGroup;
   imageFile;
-  url: string;
+  url: any;
   addBookData: any;
   logoError: boolean = false;
 
@@ -29,16 +28,25 @@ export class AddBookModelComponent implements OnInit {
     private HomeService: HomeService,
     private _accountService: AccountService,
     private addBookService: AddBookModelService,
-    // public home : HomeComponent,
     private _utilityService:UtilityService
-
-
   ) {
-    // this.url = 'assets/images/avatar.png';   // for Placeholder 
     this.addBookForm = this.HomeService.createBookForm();
   }
 
   ngOnInit() {
+    if (this.data) {
+      console.log(this.data);
+      if (this.data.images) {
+        this.url= [this.data.images];
+      }
+      this.addBookForm.patchValue({
+     name : this.data.name,
+     author : this.data.author,
+     price : this.data.price,
+     description: this.data.description,
+     code : this.data.code
+      })
+    }
   }
 
   /**
@@ -68,11 +76,13 @@ export class AddBookModelComponent implements OnInit {
               isHideCancel:true,
               successIcon:true
             }
-           this._utilityService.openDialog(data).subscribe(success => {
-             console.log(success);
-             if(success){
-               this.dialogRef.close();
-             }
+           this._utilityService.openDialog(data).subscribe(response => {
+             if (response) {
+              this._addCategoryService.showAlert(this.data ? 'UPDATED' : 'ADDED');
+              this.dialogRef.close(data);
+            } else {
+              this.dialogRef.close();
+            }
             }); 
         }
       },

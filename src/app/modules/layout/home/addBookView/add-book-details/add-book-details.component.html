@@ -1,0 +1,54 @@
+<mat-card class="page_heading">
+    <span [routerLink]="['/admin/home/user']"> Users </span>
+    <mat-icon>arrow_forward_ios</mat-icon>
+    Details
+  </mat-card>
+
+  <mat-card class="com_details" *ngIf="userDetails" >
+    <div class="panel-header">
+      <h3> {{userDetails.author}} </h3>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="img">
+          <img [src]="userDetails.images||'../../../../../../assets/images/avatar.png'" alt="User">
+        </div>
+      </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <div class="label">Book code</div>
+          <div class="value">{{userDetails.code}}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <div class="label">User Name</div>
+          <div class="value">{{userDetails.name}}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <div class="label">Book price</div>
+          <div class="value">{{userDetails.price}}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <div class="form-group">
+              <div class="label">Description</div>
+              <div class="value">{{userDetails.description}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+  </mat-card>

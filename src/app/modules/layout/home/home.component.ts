@@ -13,7 +13,7 @@ import { AccountService } from '../../account/account.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent extends Pagination  implements OnInit {
-  displayedColumns: string[] = ['position', 'book_code','Image','name', 'price', 'author','description'];
+  displayedColumns: string[] = ['position', 'book_code','Image','name', 'price', 'author','description' , 'action'];
   bookList = new MatTableDataSource<any>([]);
   images : any;
   limit;
@@ -105,6 +105,21 @@ getSerialNumber(i) {
   return i + ((this.validPageOptions['page'] - 1) * this.validPageOptions['limit']);
 }
 
+changeStatus(status, bookId) {
+  const data = {
+    id: bookId,
+    status: status
+  }
+  this.homeService.changeStatus(data);
+  // .subscribe(
+  //   data => {
+  //     if (data) {
+  //       this.getBookListDetail();
+  //     }
+  //   }
+  // )
+}
+
  /*
     Method For Resetting The Filters
   */
@@ -135,9 +150,7 @@ getSerialNumber(i) {
     });
   }
 
-  sendData(){
 
-  }
 
   getValidationError(control, name) {
     return this._accountService.getValidationError(control, name);

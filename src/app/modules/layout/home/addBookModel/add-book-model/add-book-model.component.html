@@ -1,4 +1,9 @@
+<button mat-button mat-dialog-close>
+    <mat-icon>clear</mat-icon>
+  </button>
+
 <mat-card-content class="addbook-dialog">
+    <h1 class="modal-title">{{data?'Edit':'Add'}} Book</h1>
     <form [formGroup]="addBookForm" (ngSubmit)="addBookForm.valid&&submit()">
         <div class="row">
             <div class="col-md-6">
@@ -62,7 +67,7 @@
             <div class="row mg-0">
                 <div class="col-md-12">
                     <div class="text-center">
-                        <button mat-raised-button type="submit" class="mr-10" color="primary">Submit</button>
+                        <button mat-raised-button type="submit" class="mr-10" color="primary">{{data?'Edit':'Add'}}</button>
                         <button type="button" (click)="onCancel()" mat-stroked-button color="warn">Cancel</button>
                     </div>
                 </div>

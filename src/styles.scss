@@ -95,3 +95,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 1.2rem;
   }
 }
+.form-group{
+  margin-bottom: 20px;
+}
+
+.action_btn {
+  .mat-button {
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: $thm_clr_light;
+    color: $thm_clr;
+    margin: 0 2px;
+    &:first-child{margin-left: 0;}
+    &:last-child{margin-right: 0;}
+    &:hover {
+      color: $thm_clr;
+      background: $thm_clr_light;
+    }
+    .mat-icon{
+      transform: scale(0.8);
+      line-height: 14px;
+    }
+  }
+}

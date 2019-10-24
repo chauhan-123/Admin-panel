@@ -24,14 +24,19 @@ import { AccountGuard } from '../../gaurd/account.guard';
 import { HomeService } from './home.service';
 import { AddBookModelComponent } from './addBookModel/add-book-model/add-book-model.component';
 import { SearchFilterModule } from '../layout-shared/search-filter/search-filter.module';
+import { AddBookDetailsComponent } from './addBookView/add-book-details/add-book-details.component';
+
 
 
 const homeroutes: Routes = [
-  { path: '', component: HomeComponent , canActivate:[AccountGuard] }
+  {path:'', redirectTo:'user' , pathMatch:'full'},
+  { path: 'user', component: HomeComponent , canActivate:[AccountGuard] },
+  {path :'user_details/:bookId', component: AddBookDetailsComponent }
+ 
 ]
 
 @NgModule({
-  declarations: [HomeComponent, AddBookModelComponent],
+  declarations: [HomeComponent, AddBookModelComponent, AddBookDetailsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(homeroutes),
@@ -55,6 +60,7 @@ const homeroutes: Routes = [
     MatSortModule,
     SearchFilterModule,
     MatExpansionModule,
+    
 
   ], 
   providers:[HomeService ,HomeComponent],
