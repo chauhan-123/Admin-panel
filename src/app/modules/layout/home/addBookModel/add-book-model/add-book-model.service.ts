@@ -12,7 +12,7 @@ export class AddBookModelService {
   constructor( private httpClient:HttpClient , private _router : Router ) { }
 
   submit(data) {
-    console.log(data , 'kkkkkkkkkkkkkk')
+console.log(data)
     let apiType = data.id?'post':'put';
     let body = {
       images: data.images,
@@ -20,7 +20,8 @@ export class AddBookModelService {
       author: data.author,
       price: data.price,
       description: data.description,
-      code:data.code
+      code:data.code,
+      status : data.status
     }
     return this.httpClient[apiType](`${this.baseUrl}add_book`, body);
   }

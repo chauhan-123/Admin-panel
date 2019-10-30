@@ -13,7 +13,7 @@ import { AccountService } from '../../account/account.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent extends Pagination  implements OnInit {
-  displayedColumns: string[] = ['position', 'book_code','Image','name', 'price', 'author','description' , 'action'];
+  displayedColumns: string[] = ['position', 'book_code','Image','name', 'price', 'author','description' , 'status','action'];
   bookList = new MatTableDataSource<any>([]);
   images : any;
   limit;
@@ -104,20 +104,36 @@ export class HomeComponent extends Pagination  implements OnInit {
 getSerialNumber(i) {
   return i + ((this.validPageOptions['page'] - 1) * this.validPageOptions['limit']);
 }
-
+//  function for deleted admin panel
 changeStatus(status, bookId) {
   const data = {
     id: bookId,
     status: status
   }
-  this.homeService.changeStatus(data);
-  // .subscribe(
-  //   data => {
-  //     if (data) {
-  //       this.getBookListDetail();
-  //     }
-  //   }
-  // )
+  this.homeService.changeStatus(data).subscribe(
+    data => {
+      if (data) {
+        this.getBookListDetail();
+      }
+    }
+  )
+}
+
+
+//  function for active and block for admin panel
+changeStatusActive(status, bookId){
+  const data = {
+    id: bookId,
+    status: status
+  }
+  this.homeService.changeStatusActive(data).subscribe(
+    data => {
+      if (data) {
+        this.getBookListDetail();
+      }
+    }
+  )
+ 
 }
 
  /*
@@ -139,13 +155,18 @@ changeStatus(status, bookId) {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        // if(category) {
-        //   category.name = result.name;
-        //   category.image = result.image;
-        //   category.statusInfo = result.statusInfo;
-        // } else {
-        //   // this.resetFilter();
-        // }
+        console.log(result,';;;;;;;;;;;;;')
+        if(category) {
+          category.name = result.name;
+           category.images = result.images;
+           category.status = result.status;
+           category.price = result.price;
+           category.description = result.description;
+           category.author = result.author;
+           category.code = result.code
+        } else {
+          this.resetFilter();
+        }
       }
     });
   }

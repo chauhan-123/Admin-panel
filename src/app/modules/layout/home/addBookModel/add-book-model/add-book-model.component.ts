@@ -44,7 +44,8 @@ export class AddBookModelComponent implements OnInit {
      author : this.data.author,
      price : this.data.price,
      description: this.data.description,
-     code : this.data.code
+     code : this.data.code,
+     status: this.data.status
       })
     }
   }
@@ -78,8 +79,8 @@ export class AddBookModelComponent implements OnInit {
             }
            this._utilityService.openDialog(data).subscribe(response => {
              if (response) {
-              this._addCategoryService.showAlert(this.data ? 'UPDATED' : 'ADDED');
-              this.dialogRef.close(data);
+              this._utilityService.showAlert(this.data ? 'UPDATED' : 'ADDED');
+              this.dialogRef.close(body);
             } else {
               this.dialogRef.close();
             }

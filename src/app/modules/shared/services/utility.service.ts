@@ -179,6 +179,17 @@ export class UtilityService {
         )];
     }
 
+    getDropDownFormControl(required = true) {
+        if (required) {
+            return [null, Validators.compose([
+                Validators.required]
+            )];
+        }
+        else {
+            return [null];
+        }
+    }
+    
     getDescriptionFormControl(){
         return['' , Validators.compose([
             Validators.required

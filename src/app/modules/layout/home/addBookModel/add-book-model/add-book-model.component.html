@@ -53,6 +53,22 @@
                     </mat-error>
                 </mat-form-field>
                 <br>
+            
+                      <mat-form-field >
+                        <mat-select formControlName="status" placeholder="Status">
+                          <mat-option [value]="'ACTIVE'">
+                            Active
+                          </mat-option>
+                          <mat-option [value]="'INACTIVE'">
+                            Blocked
+                          </mat-option>
+                        </mat-select>
+                        <mat-error>
+                            {{getValidationError(addBookForm['controls']['status'],'status')}}
+                        </mat-error>
+        
+                      </mat-form-field>
+          <br>
                 <mat-form-field>
                     <input matInput required placeholder="description" description="description"
                         formControlName="description">

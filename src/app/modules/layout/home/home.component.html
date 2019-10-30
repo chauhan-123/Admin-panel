@@ -105,7 +105,13 @@
       <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
-    
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status|titlecase}}  </td>
+          </ng-container>
+       
+
       <!-- Action Column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
@@ -114,10 +120,10 @@
             <button mat-button matTooltip="Edit" (click)="addBookCategory(element)">
               <mat-icon>edit</mat-icon>
             </button>
-            <!-- <button mat-button matTooltip="{{element.statusInfo.status=='ACTIVE'?'Block':'Unblock'}}"
-               (click)="changeStatus(element.statusInfo.status=='ACTIVE'?'BLOCKED':'ACTIVE',element._id)"> 
-              <mat-icon>{{element.statusInfo.status=='ACTIVE'?'lock':'lock_open'}}</mat-icon>
-            </button> -->
+            <button mat-button matTooltip="{{element.status=='ACTIVE'?'Block':'Unblock'}}"
+               (click)="changeStatusActive(element.status=='ACTIVE'?'BLOCKED':'ACTIVE',element._id)"> 
+              <mat-icon>{{element.status=='ACTIVE'?'lock':'lock_open'}}</mat-icon>
+            </button>
             <button mat-button matTooltip="Delete" (click)="changeStatus('DELETED',element._id)">
               <mat-icon>delete</mat-icon>
             </button>

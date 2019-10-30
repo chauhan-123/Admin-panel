@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notfound',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotfoundComponent implements OnInit {
 
-  constructor() { }
-
+  constructor( private _router:Router) { 
+    if(this._router.url=='/link-expired') {
+      this.linkExpired = true;
+    }
+  }
+  linkExpired = false;
   ngOnInit() {
   }
 
