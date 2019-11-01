@@ -151,6 +151,7 @@ export class AccountService {
 
   signup(data) {
     data = this._utilityService.trim(data);
+    data.role = 'admin';
     return this.http.post(`${this.baseUrl}registration`, data);
   }
 
