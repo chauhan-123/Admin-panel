@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './modules/layout/layout parts/header/header.component';
 import { CollespeModule } from './modules/directive/collespe/collespe.module';
 import { HomeService } from './modules/layout/home/home.service';
+import { CustomDatePipe } from './pipe/custom-date.pipe';
 
 
 
@@ -23,7 +24,7 @@ import { HomeService } from './modules/layout/home/home.service';
 
 @NgModule({
   declarations: [
-    AppComponent, NotfoundComponent
+    AppComponent, NotfoundComponent, CustomDatePipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+<mat-card class="page_heading">Dashboard</mat-card>
+  <div class="contianer">
+    <div class="row">
+           <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4">
+                        <mat-card class="dash_card">
+                            <img class="icon" src="../../../../assets/images/Admin.png" alt="">
+                            <mat-card-title (click)="admindetails()">Admin</mat-card-title>
+                             <mat-card-actions>
+                              Total Admin: <span> {{this.adminCounter}} </span>
+                            </mat-card-actions>
+                          </mat-card>
+                    </div>
+          
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4">
+                        <mat-card class="dash_card">
+                            <img class="icon" src="../../../../assets/images/users.svg" alt="">
+                            <mat-card-title (click)="userDetails()">Users</mat-card-title>
+                            <mat-card-actions>
+                              Total Users: <span> {{this.userCounter}} </span>
+                            </mat-card-actions>
+                          </mat-card>
+                    </div>
+          
+        </div>
+
+    </div>
+  </div>
+  

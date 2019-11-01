@@ -1,0 +1,37 @@
+$thm_clr : rgb(232, 31, 98);
+$thm_clr_light : rgba($thm_clr, 0.1);
+
+.dash_card{
+    margin: 5px;
+    width: 100%;
+}
+.dash_card {
+    margin-bottom: 20px;
+    .icon{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        max-width: 60px;
+        max-height: 60px;        
+    }
+    .mat-card-title{
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+    }
+    .counts{
+        color: $thm_clr;
+    }
+    .mat-card-actions{
+        margin: 0 -20px -20px;
+        background: $thm_clr_light;
+        padding: 20px;  
+        span{
+            float: right;
+        }  
+    }
+}
+.counts{
+    font-size: 2rem;
+}
+

@@ -1,7 +1,11 @@
 <mat-list class="sidebar" [ngClass]="{'open': !state}">
-    <mat-list-item [routerLink]="['home']" routerLinkActive="active" matRipple matTooltip="Dashboard"
+    <mat-list-item [routerLink]="['home']" routerLinkActive="active" matRipple matTooltip="Home"
         titlePosition="right">
-        <mat-icon>dashboard</mat-icon> <span> Home </span>
+        <mat-icon>home</mat-icon> <span> Home </span>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <mat-list-item [routerLink]="['dashboard']" routerLinkActive="active" matRipple matTooltip="Dashboard"
+    titlePosition="right">
+    <mat-icon>dashboard</mat-icon> <span> Dashboard </span>
+</mat-list-item>
     </mat-list>
