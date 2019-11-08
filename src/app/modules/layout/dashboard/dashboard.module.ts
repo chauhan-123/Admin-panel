@@ -18,9 +18,11 @@ import { MatDialogModule,
      MatSortModule,
      MatExpansionModule,
      MatOptionModule,
-     MatSelectModule,          
+     MatSelectModule,
+     MatPaginatorModule,          
 } from '@angular/material';
 import { UserdetailsComponent } from './userdetails/userdetails.component';
+import { CustomdateModule } from 'src/app/pipe/customdate/customdate.module';
 const dashboardRoute: Routes =[
   { path :''  , component:DashboardComponent},
   {path :'admindetails' , component: AdmindetailsComponent},
@@ -37,11 +39,9 @@ const dashboardRoute: Routes =[
     RouterModule.forChild(dashboardRoute),
     MatCardModule,
     MatDialogModule,
-
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
@@ -50,12 +50,11 @@ const dashboardRoute: Routes =[
     MatListModule,
     MatFormFieldModule,
     MatTableModule,
- 
-   
-
+    CustomdateModule,
     MatExpansionModule,
      MatOptionModule,
      MatSelectModule,
+     MatPaginatorModule
   ]
 })
 export class DashboardModule { }

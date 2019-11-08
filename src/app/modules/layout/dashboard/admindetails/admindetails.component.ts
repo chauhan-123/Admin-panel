@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Pagination } from 'src/app/model/pagination';
+import { MatPaginator } from '@angular/material/paginator/typings/paginator';
 
 @Component({
   selector: 'app-admindetails',
@@ -28,12 +29,23 @@ export class AdmindetailsComponent extends Pagination implements OnInit {
         }
       }
       this.adminList = new MatTableDataSource(adminlist);
+      this.total = this.adminList['data'].length;
     });
   }
 
  // change the serial number
  getSerialNumber(i) {
   return i + ((this.validPageOptions['page'] - 1) * this.validPageOptions['limit']);
+}
+
+ /*
+    Method For Changing The Pagination
+  */
+ changePage(event: MatPaginator) {
+  this.pageOptionsOnChange = event;
+  if (this.total == 0) {
+  }
+    this.adminDetails();
 }
   
 }

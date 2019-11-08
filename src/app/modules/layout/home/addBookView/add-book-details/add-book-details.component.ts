@@ -23,9 +23,7 @@ userDetails: any;
 getUserDetails(){
   this.homeService.getUserDetails({ bookId: this.bookId })
   .subscribe(response=>{
-
   this.userDetails = response.result[0];
-  console.log(  this.userDetails,'-------------')
   }  
   )
 }

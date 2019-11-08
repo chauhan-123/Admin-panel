@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule , DatePipe } from '@angular/common';
-import { CustomdatePipe } from '../customdate.pipe';
+import { CustomdatePipe } from './customdate.pipe';
 
 
 
@@ -9,7 +9,9 @@ import { CustomdatePipe } from '../customdate.pipe';
   imports: [
     CommonModule
   ],
-  export:[CustomdatePipe],
+  exports:[
+CustomdatePipe
+  ],
   providers: [
     DatePipe
   ]

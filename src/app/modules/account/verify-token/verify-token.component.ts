@@ -25,7 +25,6 @@ export class VerifyTokenComponent implements OnInit {
 
   ngOnInit() {
   var id = this.route.snapshot.paramMap.get('_id');
-
   this.sendtoken = id;
   }
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
-import { VALIDATION_MESSAGES } from '../../../constant/message';
 import { UtilityService } from '../../shared/services/utility.service';
 
 @Component({

@@ -3,7 +3,6 @@ import { NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotfoundComponent } from './notfound/notfound.component';
 import { AccountService } from './modules/account/account.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './modules/shared/services/http.service';
@@ -13,18 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './modules/layout/layout parts/header/header.component';
 import { CollespeModule } from './modules/directive/collespe/collespe.module';
 import { HomeService } from './modules/layout/home/home.service';
-import { CustomDatePipe } from './pipe/custom-date.pipe';
-
-
-
-
-
-
-
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent, NotfoundComponent, CustomDatePipe
+    AppComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +28,6 @@ import { CustomDatePipe } from './pipe/custom-date.pipe';
     MatIconModule,
     CollespeModule,
     FormsModule
-
-
   ],
   providers: [AccountService, HttpService, HeaderComponent, HomeService , FormBuilder
   ],

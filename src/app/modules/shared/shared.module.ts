@@ -14,10 +14,10 @@ import {
   MatSnackBarModule,
 } from '@angular/material';
 import { AccountGuard } from '../gaurd/account.guard';
-import { TokenInterceptor } from '../interceptor/token-interceptor';
 import { ConfirmationModelComponent } from './component/confirmation-model/confirmation-model.component';
 
 import { HomeGuard } from '../gaurd/home.guard';
+import { TokenInterceptor } from '../interceptor/token-interceptor';
 
 @NgModule({
   imports: [

@@ -56,11 +56,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
   
   getProfileDetail() {
-
     this._dataService.getProfileDetail()
       .subscribe(
         (response: any) => {
           this.profileDetail = response.data;
+          console.log(this.profileDetail)
           if (this.profileDetail['url'].length === 0) {
             this.profileDetail.image = 'assets/images/avatar.png';
           } else if (this.profileDetail.url.length >= 0) {

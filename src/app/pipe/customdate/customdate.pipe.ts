@@ -9,7 +9,9 @@ export class CustomdatePipe implements PipeTransform {
   }
 
   transform(value: any, args?: any): any {
-    return value?this.datePipe.transform(value,'dd/MM/yyyy'):'-'
+    var time = new Date(value);
+     return time?this.datePipe.transform(time,'h:mm:ss a'):'-'
   }
+
 
 }

@@ -12,7 +12,6 @@ import {
   MAT_DIALOG_DATA
 } from '@angular/material';
 import { AccountService } from '../account.service';
-import { AccountGuard } from '../../gaurd/account.guard';
 
 
 const signUpRoute: Routes = [

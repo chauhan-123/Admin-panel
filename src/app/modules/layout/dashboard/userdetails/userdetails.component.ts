@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Pagination } from 'src/app/model/pagination';
 import { DashboardService } from '../dashboard.service';
+import { MatPaginator } from '@angular/material/paginator/typings/public-api';
 
 @Component({
   selector: 'app-userdetails',
@@ -9,7 +10,7 @@ import { DashboardService } from '../dashboard.service';
   styleUrls: ['./userdetails.component.scss']
 })
 export class UserdetailsComponent extends Pagination implements OnInit {
-  displayedColumns: string[] = ['position', 'Role', 'name', 'Email', 'Phone', 'Time'];
+  displayedColumns: string[] = ['position', 'Role', 'name', 'Email', 'Phone', 'Date','Time'];
   userList = new MatTableDataSource<any>([]);
   constructor(private _dashboardService:DashboardService) { 
     super();
@@ -27,6 +28,7 @@ export class UserdetailsComponent extends Pagination implements OnInit {
         }
       }
       this.userList = new MatTableDataSource(userlist);
+      this.total = this.userList['data'].length;
     });
   }
 
@@ -34,4 +36,14 @@ export class UserdetailsComponent extends Pagination implements OnInit {
     getSerialNumber(i) {
       return i + ((this.validPageOptions['page'] - 1) * this.validPageOptions['limit']);
     }
+
+     /*
+    Method For Changing The Pagination
+  */
+ changePage(event: MatPaginator) {
+  this.pageOptionsOnChange = event;
+  if (this.total == 0) {
+  }
+    this.userDetails();
+}
 }

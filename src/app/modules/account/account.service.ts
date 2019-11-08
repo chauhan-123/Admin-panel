@@ -48,7 +48,6 @@ export class AccountService {
       {
         email: this._utilityService.getEmailFormControl(),
         password: this._utilityService.getPasswordFormControl(),
-        // remember: this._utilityService.getRememberControl()
       }
     )
   }
@@ -75,15 +74,13 @@ export class AccountService {
         address: this._utilityService.getLocationFormControl(),
         termsAndCondition: [true],
         password: this._utilityService.getPasswordFormControl(),
-        // confirmPassword:this._utilityService.getPasswordFormControl()  
       },
       {
-        // validator: this.matchPassword
       }
     );
   }
 
-
+// reset password form
   createResetForm() {
     return this._formBuilder.group(
       {
@@ -104,6 +101,7 @@ export class AccountService {
     )
   }
 
+  // create password form
   createChangePasswordForm() {
     return this._formBuilder.group(
       {
@@ -132,7 +130,8 @@ export class AccountService {
    */
   login(data) {
     data = this._utilityService.trim(data);
-    this.httpclient.post(`${this.baseUrl}login`, data).subscribe(response => {
+    data.role = 'admin';
+    this.http.post(`${this.baseUrl}login`, data).subscribe(response => {
       if (response['statusCode'] === 200) {
         localStorage.setItem('login', response['result']['token']);
         localStorage.setItem('_id', response['result']['_id']);
@@ -156,7 +155,6 @@ export class AccountService {
   }
 
   // method for verify token
-
   verify(data, sendtoken) {
     var sendToken = {
       data: data,
@@ -200,7 +198,7 @@ export class AccountService {
   // forgot password 
   checkEmail(data) {
     data = this._utilityService.trim(data);
-    this.httpclient.post(`${this.baseUrl}forgot-password`, data).subscribe(
+    this.http.post(`${this.baseUrl}forgot-password`, data).subscribe(
       response =>{
         if(response['statusCode']===200) {
           let data = {
@@ -222,7 +220,6 @@ export class AccountService {
 
   //  password match function 
   matchPassword(form: AbstractControl) {
-  
     let password = form.get('password').value;
     let confirmPassword = form.get('confirmPassword').value;
     if (password !== confirmPassword) {

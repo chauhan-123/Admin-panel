@@ -12,15 +12,19 @@ export class HttpService {
         public http: HttpClient,
     ) { }
 
-    post(url, data) {
+    post(url, data,loader = true) {
+        if(loader) {
+            UtilityService.loader.next(loader);
+        }
         let postUrl;
         postUrl = url;
         return this.http.post(postUrl, data);
     }
 
-
-    get(url, httpParams?: any) {
-
+    get(url, httpParams?: any, loader = true) {
+        if(loader) {
+            UtilityService.loader.next(loader);
+        }
         const header = {};
         if (httpParams) {
             header['params'] = httpParams; 
