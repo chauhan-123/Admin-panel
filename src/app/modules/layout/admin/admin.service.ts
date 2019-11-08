@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { UtilityService } from '../../shared/services/utility.service';
 import { DataTransferService } from '../../shared/services/data-transfer.service';
 import { HeaderComponent } from '../layout parts/header/header.component';
+import { HttpService } from '../../shared/services/http.service';
 
 interface FormData {
   entries(): Iterator<any>;
@@ -17,7 +18,7 @@ export class AdminService {
   baseUrl = "http://localhost:3000/"
   loader: boolean = false
   constructor(private header:HeaderComponent , private httpclient:HttpClient , private _router:Router , private _utilityService:UtilityService ,
-    private _dataService:DataTransferService) { }
+    private _dataService:DataTransferService , private http:HttpService) { }
 
   /* 
       Method For Edit Profile
@@ -29,7 +30,7 @@ export class AdminService {
     email: data.email
   }
   // delete body['email'];
-  return this.httpclient.put(`${this.baseUrl}edit_profile`, body)
+  return this.http.put(`${this.baseUrl}edit_profile`, body)
     .pipe(
       map(
         response => {
@@ -45,10 +46,10 @@ export class AdminService {
 //  change password function for admin panel
 changePassword(data) {
   data = this._utilityService.trim(data);
-  this.httpclient.post(`${this.baseUrl}changePassword`, data).subscribe(
+  this.http.post(`${this.baseUrl}changePassword`, data).subscribe(
     response => {
       if (response['statusCode'] === 200) {
-        // this.router.navigate(['../admin']);
+         this._router.navigate(['../admin']);
       }
     }, error => {
       if (error.error.statusCode === 400 && error.error.responseType === 'INVALID_TOKEN') {

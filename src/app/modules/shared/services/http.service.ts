@@ -33,6 +33,16 @@ export class HttpService {
         return this.http.get(getUrl, header);
     }
 
+
+    put(url, data,loader = true) {
+        if(loader) {
+            UtilityService.loader.next(loader);
+        }
+        let postUrl;
+        postUrl = url;
+        return this.http.put(postUrl, data);    
+    }
+
     handleError(error) {
         console.error(error);
     }

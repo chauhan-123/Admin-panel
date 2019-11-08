@@ -4,6 +4,8 @@ import { AccountService } from 'src/app/modules/account/account.service';
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
 import { onSelectFile } from '../../../../../constant/file-input';
 import { AdminService } from '../../admin.service';
+import { UtilityService } from 'src/app/modules/shared/services/utility.service';
+import { invalidImageError, invalidFileSize } from 'src/app/constant/message';
 
 
 interface FormData {
@@ -26,7 +28,7 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private _dataService: DataTransferService,
- 
+    private _utilityService:UtilityService,
     private _adminService:AdminService
   ) {
     this.editProfileForm = this.accountService.createEditProfileForm();
@@ -74,13 +76,14 @@ export class EditProfileComponent implements OnInit {
       let result = await onSelectFile(event);
       this.imageFile = result.file;
       this.profilePicURL = result.url;
+      this.profileDetail.image = result.url;
     } catch (err) {
-      // if (err.type) {
-      //   this._editProfileService.showAlert(invalidImageError());
-      // } else if (err.size) {
-      //   this._editProfileService.showAlert(invalidFileSize())
-      // }
-    }
+      if (err.type) {
+        this._utilityService.showAlert(invalidImageError());
+     } else if (err.size) {
+       this._utilityService.showAlert(invalidFileSize())
+     }
+   }
   }
 
   /**

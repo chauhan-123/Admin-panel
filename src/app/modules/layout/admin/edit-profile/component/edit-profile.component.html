@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
           <mat-form-field>
-            <input matInput required placeholder="Email Address" name="username" formControlName="email">
+            <input  matInput required placeholder="Email Address" name="username" formControlName="email">
             <mat-error *ngIf="editProfileForm['controls']['email']['errors']">
               {{getValidationError(editProfileForm['controls']['email'],'email')}} please enter a email</mat-error>
           </mat-form-field>

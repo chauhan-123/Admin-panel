@@ -104,7 +104,6 @@ export class AddBookModelComponent implements OnInit {
       this.url = result.url;
       this.logoError = false;
     } catch (err) {
-      console.log(err.type)
      if (err.type) {
        this._utilityService.showAlert(invalidImageError());
     } else if (err.size) {
