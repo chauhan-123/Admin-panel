@@ -9,7 +9,8 @@ const routes: Routes = [
             { path: '', redirectTo: 'home' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
-            {path :'dashboard', loadChildren :'./dashboard/dashboard.module#DashboardModule'}
+            {path :'dashboard', loadChildren :'./dashboard/dashboard.module#DashboardModule'},
+            {path:'chat-Application', loadChildren:'./chat-application/chat-application.module#ChatApplicationModule'}
         ]
     },
 ];

@@ -13,6 +13,8 @@ import { HeaderComponent } from './modules/layout/layout parts/header/header.com
 import { CollespeModule } from './modules/directive/collespe/collespe.module';
 import { HomeService } from './modules/layout/home/home.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ChatApplicationModule } from './modules/layout/chat-application/chat-application.module';
+import { ChatService } from './modules/layout/chat-application/chat.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     MatIconModule,
     CollespeModule,
-    FormsModule
+    FormsModule,
+    ChatApplicationModule
   ],
-  providers: [AccountService, HttpService, HeaderComponent, HomeService , FormBuilder
+  providers: [AccountService, HttpService, HeaderComponent, HomeService , FormBuilder , ChatService
   ],
 
   bootstrap: [AppComponent]

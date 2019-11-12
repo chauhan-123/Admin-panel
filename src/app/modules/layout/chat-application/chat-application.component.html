@@ -1,0 +1,9 @@
+
+<h1 style="text-align: center;">What is this</h1>
+<div *ngFor="let message of messages">
+    {{message}}
+</div>
+
+
+<input [(ngModel)]="message" (keyup)="$event.keyCode == 13 && sendMessage()" style="position: fixed; bottom: 0; width: 90%;"/>
+<button (click)="sendMessage()" style="width: 10%; position: fixed; bottom: 0; right: 0">Send</button>

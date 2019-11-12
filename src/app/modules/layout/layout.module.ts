@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     LayoutComponent, 
     HeaderComponent, 
     SidebarComponent,
-    CollespeDirective
+    CollespeDirective,
   ],
   imports: [
     CommonModule,
@@ -33,7 +33,7 @@ import { FormsModule } from '@angular/forms';
     LayoutRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
 
   ],  
   providers:[HomeService]
