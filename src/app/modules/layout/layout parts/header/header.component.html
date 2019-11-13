@@ -1,15 +1,37 @@
-<mat-toolbar class="header" color="primary"  >
+<mat-toolbar class="header" color="primary">
   <mat-toolbar-row>
     <!-- <div class="humburger" #ham [ngClass]="{'open': humburger }" (click)="sidebarCollaped()"> -->
-      <div class ="humburger" appCollespe [ngClass]="{'open': humburger }" (click)="sidebarCollaped()">
+    <div class="humburger" appCollespe [ngClass]="{'open': humburger }" (click)="sidebarCollaped()">
       <span></span>
       <span></span>
       <span></span>
     </div>
     <span class="example-spacer"></span>
+    <!-- Notification start -->
+    <button mat-icon-button matTooltip="Notifications" color="secondary" class="example-icon"
+      [matMenuTriggerFor]="notificationMenu" mat-button>
+      <mat-icon [matBadge]="notifications.length" matBadgeColor="accent">notifications</mat-icon>
+
+    </button>
+    <mat-menu #notificationMenu>
+      <div class="notifications">
+        <div class="notification__container" *ngFor="let notification of notifications">
+          <img [src]="'data:image/jpg;base64,' + notification.url" />
+          <div class="notification__wrapper">
+            <span class="notification__title">{{notification.firstName}}</span>
+            <span class="notification__title">{{notification.role}}</span>
+            <span class="notification__time">{{ notification.time | date  }}</span>
+            <span class="notification__time">{{ notification.time | customdate  }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-menu>
+
+    <!-- Notification end -->
     <button class="example-icon" mat-button matTooltip="Settings" [matMenuTriggerFor]="menu2">
       <mat-icon>settings</mat-icon>
     </button>
+
 
     <div class="btn_group">
 
@@ -36,4 +58,4 @@
 
 
   </mat-toolbar-row>
-  </mat-toolbar>
+</mat-toolbar>

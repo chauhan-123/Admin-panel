@@ -1,7 +1,57 @@
 $thm_clr : #fff;
 $thm_clr_light : rgba($thm_clr, 0.1);
 
-
+// Notifications
+.notifications {
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.notification__container {
+  padding: 8px 15px;
+  width: 260px;
+  cursor: default;
+  display: flex;
+  &:not(:first-child) {
+      border-top: 1px solid rgba(#000, .1);
+  }
+  // &:hover {
+  //     background-color: rgba(#000, .05);
+  // }
+  img {
+      height: 32px;
+      width: 32px;
+      object-fit: cover;
+      border-radius: 50%;
+      cursor: pointer;
+  }
+}
+.notification__wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+.notification__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.notification__title {
+  color: #444;
+  font-size: 14px;
+  font-weight: bold;
+}
+.notification__message {
+  color: #444;
+  font-size: 14px;
+  display: block;
+  margin: 5px 0;
+}
+.notification__time {
+  font-size: 13px;
+  margin-top: 5px;
+}
 
 .mat-toolbar-row{
     position: fixed;
@@ -21,7 +71,7 @@ $thm_clr_light : rgba($thm_clr, 0.1);
     line-height: 18px;
     border: 2px solid #393ef1;
     background: #ffffff;
-    color: #fff;
+    // color: #fff;
 }
 .btn_group .mat-button{
     min-width: 45px;
@@ -154,7 +204,7 @@ $thm_clr_light : rgba($thm_clr, 0.1);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
   cursor: pointer;
-  position: absolute;
+  // position: absolute;
   left: 5px;
   top: 10px;
   padding: 10px;

@@ -1,0 +1,33 @@
+<div class="uploader__header">
+    <span class="uploader__label">{{label}}</span>
+    <button mat-button type="button" mat-icon-button color="primary" (click)="onAddFileHandler()" >
+    </button>
+  </div>
+
+  <div class="uploader__body" [ngClass]="{'uploader__body--active': isDropActive}" (drop)="onDropHandler($event)">
+  <div class="uploader__placeholder" (click)="onAddFileHandler()" *ngIf = "data.length == 0">
+    <mat-icon>cloud_upload</mat-icon>
+    <br />
+    <span>Choose file or drag it here</span>
+  </div>
+  <div class="uploader__preview" *ngIf="data.length !== 0">
+    <div class="uploader__file" *ngFor="let fileData of data">
+      <ng-container [ngSwitch]="fileData.type.split('/')[0]">
+        <img [src]="fileData.url" *ngSwitchCase="'image'" />
+        <video *ngSwitchCase="'video'" crossOrigin="Anonymous" controls (canplay)="onCanPlayHandler(fileData, $event.currentTarget)">
+          <ng-container>
+            <source [src]="fileData.url" type="video/mp4">
+            <source [src]="fileData.url" type="video/3gp">
+            <source [src]="fileData.url" type="video/flv">
+          </ng-container>
+        </video>
+        <div class="file-button">
+     
+          <button mat-icon-button color="warn" (click)="onRemoveFileHandler(fileData)" matTooltip="Delete File">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Renderer2, AfterViewInit, ViewChild, ElementRef, RendererFactory2  } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2, AfterViewInit, ViewChild, ElementRef, RendererFactory2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilityService } from 'src/app/modules/shared/services/utility.service';
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   humburger = false;
   profileSubscriber;
   profileDetail;
+  notifications = [];
   // @ViewChild('ham', { static: true }) ham: ElementRef;
   // @HostListener('window:resize', ['$event'])
   // onResize(event?) {
@@ -27,20 +28,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   //     this.rd.removeClass(this.ham.nativeElement, 'open')
   //     this.layoutService.changeMenuState(false);
   //   }
-      
+
   // }
   constructor(private _utilityService: UtilityService,
-     private _router: Router, private _dataService: DataTransferService,
+    private _router: Router, private _dataService: DataTransferService,
     private layoutService: LayoutService
   ) {
     this.getProfileDetail();
+    this.notificationsDetails();
   }
 
   ngAfterViewInit() {
     // this.onResize();
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.profileSubscriber = this._dataService.profileDetail.subscribe(
       data => {
         if (data)
@@ -49,12 +51,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     )
   }
 
+  // notificaton method for get data 
+
+  notificationsDetails() {
+    this.layoutService.getNotificationData().subscribe(response => {
+      this.notifications = response['result'];
+    })
+
+  }
+
 
   sidebarCollaped() {
     this.humburger = !this.humburger;
     this.layoutService.changeMenuState(this.humburger);
   }
-  
+
   getProfileDetail() {
     this._dataService.getProfileDetail()
       .subscribe(
@@ -94,6 +105,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (this.profileSubscriber) {
       this.profileSubscriber.unsubscribe();
     }
+  }
+
+  onNotificationClick() {
+    console.log('working on ')
   }
 }
 

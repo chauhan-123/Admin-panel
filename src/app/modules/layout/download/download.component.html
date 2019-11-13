@@ -1,0 +1,15 @@
+<div class="uploader__body" [ngClass]="{'uploader__body--active': isDropActive}">
+  <div class="uploader__placeholder" (click)="onAddFileHandler()">
+    <mat-icon>cloud_upload</mat-icon><br />
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <app-input-files label="Add Video" accept="video/mp4" errorMessage="Only video files are accepted" maxFiles="1"></app-input-files>
+  </div>
+</div>

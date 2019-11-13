@@ -19,7 +19,6 @@ export class ChatApplicationComponent {
       const messageWithTimestamp = `${currentTime}: ${response['result'].message}`;
       this.messages.push(messageWithTimestamp);
     });
-    
     this.message = '';
   }
 

@@ -10,7 +10,9 @@ const routes: Routes = [
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
             {path :'dashboard', loadChildren :'./dashboard/dashboard.module#DashboardModule'},
-            {path:'chat-Application', loadChildren:'./chat-application/chat-application.module#ChatApplicationModule'}
+            {path:'chat-Application', loadChildren:'./chat-application/chat-application.module#ChatApplicationModule'},
+            {path:'subscription', loadChildren:'./subscribe/subscribe.module#SubscribeModule'},
+            {path:'download_video', loadChildren:'./download/download.module#DownloadModule'}
         ]
     },
 ];
