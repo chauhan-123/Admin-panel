@@ -8,7 +8,8 @@ import { InputFilesComponent } from '../input-files/component/input-files.compon
   styleUrls: ['./download.component.scss']
 })
 export class DownloadComponent implements OnInit {
-  @ViewChild(InputFilesComponent , {static: true} ) inputFilesComponent: InputFilesComponent
+  @ViewChild(InputFilesComponent , {static: true} ) inputFilesComponent: InputFilesComponent;
+  isDropActive = false;
   constructor( ) { }
 
   ngOnInit() {
@@ -34,6 +35,10 @@ export class DownloadComponent implements OnInit {
         //         error => console.log(error)
         //     )
     }
+}
+
+onAddFileHandler(){
+  console.log('runing...')
 }
 
 }

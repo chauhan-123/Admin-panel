@@ -1,6 +1,4 @@
-<!-- <div *ngIf="showloader" class="spinerdiv">
-  <div class="spinner"></div>
-</div> -->
+
 
 <mat-card class="page_heading">
     <span [routerLink]="['/admin']"> Admin </span>
@@ -21,7 +19,12 @@
             <mat-icon>camera_alt</mat-icon>
             <input type="file" (change)="onSelectFile($event)" matTooltip="Change Image" />
           </button>
-       
+          <div class="file-button">
+     
+            <button mat-icon-button color="warn" (click)="onRemoveFileHandler(fileData)" matTooltip="Delete File">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
       <div class="form-wrap col-md-6">
@@ -45,6 +48,7 @@
     <div class="form-btn">
       <div class="row">
         <div style="text-align: center;width:100%">
+       
           <button mat-raised-button color="primary">Update</button>
           <!-- <button mat-raised-button [routerLink]="['SETTINGS'|absolutePath]">Cancel</button> -->
         </div>

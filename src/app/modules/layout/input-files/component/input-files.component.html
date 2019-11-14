@@ -1,10 +1,11 @@
 <div class="uploader__header">
-    <span class="uploader__label">{{label}}</span>
+    <span class="uploader__label"><h1>{{label}}</h1></span>
     <button mat-button type="button" mat-icon-button color="primary" (click)="onAddFileHandler()" >
     </button>
   </div>
 
-  <div class="uploader__body" [ngClass]="{'uploader__body--active': isDropActive}" (drop)="onDropHandler($event)">
+  <div class="uploader__body" [ngClass]="{'uploader__body--active': isDropActive}" (drop)="onDropHandler($event)" (dragenter)="onDragEnterHandler($event)" (dragover)="onDragOverHandler($event)"
+  (dragleave)="onDragLeaveHandler($event)">
   <div class="uploader__placeholder" (click)="onAddFileHandler()" *ngIf = "data.length == 0">
     <mat-icon>cloud_upload</mat-icon>
     <br />
