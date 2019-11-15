@@ -16,7 +16,7 @@
     <mat-menu #notificationMenu>
       <div class="notifications">
         <div class="notification__container" *ngFor="let notification of notifications">
-          <img [src]="'data:image/jpg;base64,' + notification.url" />
+          <img [src]="'data:image/jpg;base64,' + notification.url"  (click)="onViewImage('data:image/jpg;base64,' + notification.url)"/>
           <div class="notification__wrapper">
             <span class="notification__title">{{notification.firstName}}</span>
             <span class="notification__title">{{notification.role}}</span>

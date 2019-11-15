@@ -15,6 +15,7 @@ import { HomeService } from './modules/layout/home/home.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ChatApplicationModule } from './modules/layout/chat-application/chat-application.module';
 import { ChatService } from './modules/layout/chat-application/chat.service';
+import { ViewModule } from './modules/layout/common/view/view.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ChatService } from './modules/layout/chat-application/chat.service';
     MatIconModule,
     CollespeModule,
     FormsModule,
-    ChatApplicationModule
+    ChatApplicationModule,
+    ViewModule
   ],
   providers: [AccountService, HttpService, HeaderComponent, HomeService , FormBuilder , ChatService
   ],

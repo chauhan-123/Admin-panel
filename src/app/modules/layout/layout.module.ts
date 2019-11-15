@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CustomdateModule } from 'src/app/pipe/customdate/customdate.module';
 import { InputFilesModule } from './input-files/input-files.module';
+import { ViewComponent } from './common/view/view.component';
+import { ViewModule } from './common/view/view.module';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { InputFilesModule } from './input-files/input-files.module';
     HeaderComponent, 
     SidebarComponent,
     CollespeDirective,
+    
   ],
   imports: [
     CommonModule,
@@ -38,9 +41,11 @@ import { InputFilesModule } from './input-files/input-files.module';
     CustomdateModule,
     MatBadgeModule,
     MatRippleModule,
-    InputFilesModule
+    InputFilesModule,
+    ViewModule
 
   ],  
-  providers:[HomeService]
+  providers:[HomeService],
+  entryComponents:[ViewComponent]
 })
 export class LayoutModule { }

@@ -1,0 +1,17 @@
+:host {
+    display: block;
+    height: 100%;
+    position: relative;
+}
+img,
+video {
+    max-width: 400px;
+    max-height: 400px;
+    width: 100%;
+}
+.close-btn {
+    position: absolute;
+    top: -24px;
+    right: -24px;
+    // transform: translate(-50%, -50%);
+}

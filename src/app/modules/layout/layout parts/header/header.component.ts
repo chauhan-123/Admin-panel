@@ -4,6 +4,7 @@ import { UtilityService } from 'src/app/modules/shared/services/utility.service'
 import { DataTransferService } from 'src/app/modules/shared/services/data-transfer.service';
 import { POPUP_MESSAGES } from 'src/app/constant/message';
 import { LayoutService } from '../../layout.service';
+import { ViewService } from '../../common/view/view.service';
 // import {CollespeDirective} from '../../../directive/collespe.directive';
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { LayoutService } from '../../layout.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
+  count =0;
   public browserRefresh: boolean;
   userName: string;
   Email: string;
@@ -32,7 +34,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   // }
   constructor(private _utilityService: UtilityService,
     private _router: Router, private _dataService: DataTransferService,
-    private layoutService: LayoutService
+    private layoutService: LayoutService,
+    private viewService:ViewService
   ) {
     this.getProfileDetail();
     this.notificationsDetails();
@@ -56,6 +59,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   notificationsDetails() {
     this.layoutService.getNotificationData().subscribe(response => {
       this.notifications = response['result'];
+      this.count = this.notifications.length;
+      // this.count = this.count -1;
+
+      this.viewService.countGet(this.count);
+      console.log(this.count);
     })
 
   }
@@ -107,8 +115,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onNotificationClick() {
-    console.log('working on ')
+
+  onViewImage(url: string) {
+    this.viewService.open(url, {type: 'Image'});
   }
 }
 
