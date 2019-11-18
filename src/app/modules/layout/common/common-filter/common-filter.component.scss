@@ -1,0 +1,38 @@
+:host {
+    display: block;
+    position: relative;
+}
+.filter__title {
+    margin: -24px 0 0 -24px;
+    height: 48px;
+    padding: 0 8px;
+    width: calc(100% + 32px);
+    // background-color: rgba(#FFF, .1);
+    font-size: 20px;
+    justify-content: flex-start !important;
+    button {
+        margin-right: 8px;
+    }
+}
+.filter__actions {
+    margin: 0 0 -24px -24px;
+    height: 56px;
+    width: calc(100% + 48px);
+    background-color: rgba(#000, .2);
+    box-shadow: 0 2px 1px -1px rgba(#000, .2) inset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.filter__close {
+    position: absolute;
+    top: 0;
+    right: -24px;
+    height: 24px;
+    width: 24px;
+    line-height: 12px;
+}
+
+

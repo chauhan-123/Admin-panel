@@ -18,7 +18,8 @@ import { MatDialogModule,
             MatSortModule,
             MatExpansionModule,
             MatOptionModule,
-            MatSelectModule,          
+            MatSelectModule,
+            MatDialogRef,          
      } from '@angular/material';
           import {MatPaginatorModule} from '@angular/material/paginator';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -27,7 +28,8 @@ import { HomeService } from './home.service';
 import { AddBookModelComponent } from './addBookModel/add-book-model/add-book-model.component';
 import { SearchFilterModule } from '../layout-shared/search-filter/search-filter.module';
 import { AddBookDetailsComponent } from './addBookView/add-book-details/add-book-details.component';
-
+import { CommonFilterModule } from '../common/common-filter/common-filter.module';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 const homeroutes: Routes = [
@@ -64,10 +66,12 @@ const homeroutes: Routes = [
     MatExpansionModule,
      MatOptionModule,
      MatSelectModule,
+     CommonFilterModule,
+     MatDatepickerModule
     
 
   ], 
   providers:[HomeService ,HomeComponent],
-  entryComponents:[AddBookModelComponent ]
+  entryComponents:[AddBookModelComponent  ]
 })
 export class HomeModule { }

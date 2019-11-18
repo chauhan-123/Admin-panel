@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ChatApplicationModule } from './modules/layout/chat-application/chat-application.module';
 import { ChatService } from './modules/layout/chat-application/chat.service';
 import { ViewModule } from './modules/layout/common/view/view.module';
+import { MatNativeDateModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,12 @@ import { ViewModule } from './modules/layout/common/view/view.module';
     CollespeModule,
     FormsModule,
     ChatApplicationModule,
-    ViewModule
+    ViewModule,
+    MatNativeDateModule
   ],
-  providers: [AccountService, HttpService, HeaderComponent, HomeService , FormBuilder , ChatService
+  providers: [AccountService, HttpService, HeaderComponent, HomeService , FormBuilder , ChatService,
+    { provide: MatDialogRef, useValue: {} },
+{ provide: MAT_DIALOG_DATA, useValue: [] },
   ],
 
   bootstrap: [AppComponent]

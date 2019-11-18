@@ -14,7 +14,6 @@ export class ChatApplicationComponent {
 
   sendMessage() {
     this.chatService.sendMessage(this.message).subscribe(response =>{
-      console.log(response['result'].message)
       const currentTime = moment().format('hh:mm:ss a');
       const messageWithTimestamp = `${currentTime}: ${response['result'].message}`;
       this.messages.push(messageWithTimestamp);

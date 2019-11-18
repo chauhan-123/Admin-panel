@@ -9,6 +9,28 @@
       <mat-icon>filter_list</mat-icon>
     </button>
 
+<app-common-filter  (reset)="onResetHandler()"  (apply)="onApplyHandler()">
+    <form [formGroup]="filterForm" >
+    
+        <label>Created On</label>
+        <div class="inline-fields" formGroupName="createdOn">
+          <mat-form-field>
+            <input matInput [max]="createdOn.controls['to'].value || today" placeholder="From" [matDatepicker]="createdFrom" formControlName="from" autocomplete="off" readonly (click)="createdFrom.open()"/>
+            <mat-datepicker-toggle matSuffix [for]="createdFrom"></mat-datepicker-toggle>
+            <mat-datepicker #createdFrom></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [min]="createdOn.controls['from'].value" [max]="today" placeholder="To" [matDatepicker]="createdTo" formControlName="to" autocomplete="off" readonly (click)="createdTo.open()"/>
+            <mat-datepicker-toggle matSuffix [for]="createdTo"></mat-datepicker-toggle>
+            <mat-datepicker #createdTo></mat-datepicker>
+          </mat-form-field>
+        </div>
+    
+      
+      </form>
+</app-common-filter>
+
+
     <button class="filter_btn" mat-mini-fab matTooltip="Add Book" (click)="addBookCategory()">
       <mat-icon>add</mat-icon>
     </button>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ViewService } from './view.service';
+// import { ViewService } from './view.service';
 
 export interface DialogData {
   url: string;
@@ -27,7 +27,7 @@ export class ViewComponent implements OnInit {
   constructor(
     private _dialogRef: MatDialogRef<ViewComponent>,
     @Inject(MAT_DIALOG_DATA) private _data: DialogData,
-    private viewService:ViewService
+    // private viewService:ViewService
   ) {
     this.getCountData();
   }
@@ -37,10 +37,10 @@ export class ViewComponent implements OnInit {
   }
 
   getCountData(){
-    this.viewService.dataSource.subscribe(count=>{
-      this.count = count;
-      console.log(this.count)
-    })
+    // this.viewService.dataSource.subscribe(count=>{
+    //   this.count = count;
+    //   console.log(this.count)
+    // })
   }
   onCloseHandler() {
     this.count = this.count - 1;

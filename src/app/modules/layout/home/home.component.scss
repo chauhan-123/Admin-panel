@@ -30,3 +30,16 @@ table {
   object-fit: cover;
   border-radius: 50%;
 }
+
+.filter_btn1{
+  float: right;
+}
+
+
+.inline-fields {
+  display: flex;
+  justify-content: space-between;
+  mat-form-field {
+      width: 48%;
+  }
+}

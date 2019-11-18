@@ -8,12 +8,12 @@ import { ViewComponent } from './view.component';
 })
 export class ViewService {
 
-  public dataSource = new BehaviorSubject<any>(Number);
-  data = this.dataSource.asObservable();
-  countGet(count : Number){
-    console.log(count)
-    this.dataSource.next(count);
-  }
+  // public dataSource = new BehaviorSubject<any>(Number);
+  // data = this.dataSource.asObservable();
+  // countGet(count : Number){
+  //   console.log(count)
+  //   this.dataSource.next(count);
+  // }
 
 
   constructor(private _dialog: MatDialog) { }

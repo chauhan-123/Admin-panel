@@ -13,6 +13,7 @@ import { ViewService } from '../../common/view/view.service';
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   count =0;
+  show:boolean = false;
   public browserRefresh: boolean;
   userName: string;
   Email: string;
@@ -60,14 +61,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.layoutService.getNotificationData().subscribe(response => {
       this.notifications = response['result'];
       this.count = this.notifications.length;
-      // this.count = this.count -1;
-
-      this.viewService.countGet(this.count);
-      console.log(this.count);
+      // this.viewService.countGet(this.count);
     })
 
   }
 
+  hideNotification(){
+    console.log(this.notifications.length);
+    this.count = this.notifications.length- this.notifications.length;
+console.log(this.count, '=====');
+    this.show =  true;
+  }
 
   sidebarCollaped() {
     this.humburger = !this.humburger;
