@@ -12,6 +12,21 @@ export class ChatApplicationComponent {
 
   constructor(private chatService:ChatService) { }
 
+  // sendMessage() {
+  //   this.chatService.sendMessage(this.message);
+  //   this.message = '';
+  // }
+
+  // ngOnInit() {
+  //   this.chatService
+  //     .getMessages()
+  //     .subscribe((message: string) => {
+  //       const currentTime = moment().format('hh:mm:ss a');
+  //       const messageWithTimestamp = `${currentTime}: ${message}`;
+  //       this.messages.push(messageWithTimestamp);
+  //     });
+  // }
+
   sendMessage() {
     this.chatService.sendMessage(this.message).subscribe(response =>{
       const currentTime = moment().format('hh:mm:ss a');

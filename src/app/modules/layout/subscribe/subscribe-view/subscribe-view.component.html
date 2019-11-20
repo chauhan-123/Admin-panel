@@ -1,0 +1,11 @@
+<div style="background-color:white" *ngIf ="subscribrData">
+<h1> Id: {{this.subscribrData._id}} </h1>
+<h1> Email: {{subscribrData.email}} </h1>
+<h1> firstName: {{this.subscribrData.firstName}} </h1>
+<h1> Subscribe Type: {{this.subscribrData.subscribeType}} </h1>
+<h1> SubscribeAmount: {{this.subscribrData.subscribeAmount}} </h1>
+
+<button type="button" (click)="payNow()" mat-stroked-button color="primary">Pay</button>
+<button type="button"  [routerLink]="['/admin/subscription']" mat-stroked-button color="warn">Back</button>
+
+</div>

@@ -4,13 +4,18 @@ import { SubscribeComponent } from './subscribe.component';
 import { RouterModule , Routes } from '@angular/router';
 import { MatCardModule, MatDialogModule, MatIconModule, MatInputModule, MatButtonModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatTooltipModule, MatFormFieldModule, MatListModule, MatTableModule, MatOptionModule, MatPaginatorModule, MatSelectModule, MatExpansionModule } from '@angular/material';
 import { CustomdateModule } from 'src/app/pipe/customdate/customdate.module';
+import { SubscribeViewComponent } from './subscribe-view/subscribe-view.component';
+import { combineAll } from 'rxjs/operators';
+import { PaymentComponent } from './payment/payment.component';
 
 const subRoute:Routes =[
-  {path:'', component:SubscribeComponent}
+  {path:'', component:SubscribeComponent},
+  {path:'subscription_details/:subscribeId', component:SubscribeViewComponent},
+  {path:'payment_gateway' , component:PaymentComponent}
 ]
 
 @NgModule({
-  declarations: [SubscribeComponent],
+  declarations: [SubscribeComponent, SubscribeViewComponent, PaymentComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(subRoute),
@@ -31,6 +36,7 @@ const subRoute:Routes =[
      MatOptionModule,
      MatSelectModule,
      MatPaginatorModule
-  ]
+  ],
+  entryComponents:[SubscribeViewComponent]
 })
 export class SubscribeModule { }

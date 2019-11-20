@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8">
-    <table mat-table >
+    <table mat-table   [dataSource]="subscriptionlist">
 
         <!-- Position Column -->
         <ng-container matColumnDef="position">
@@ -23,13 +23,13 @@
                <!-- subscribe type Column -->
                <ng-container matColumnDef="subscribe type">
                 <th mat-header-cell *matHeaderCellDef> subscribe type </th>
-                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.subscribeType}} </td>
             </ng-container>
 
                    <!-- subscribe amount Column -->
         <ng-container matColumnDef="subscribe amount">
             <th mat-header-cell *matHeaderCellDef> subscribe amount </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.subscribeAmount}} </td>
         </ng-container>
 
  
@@ -45,8 +45,22 @@
             <td mat-cell *matCellDef="let element"> {{element.time | customdate }} </td>
         </ng-container>
 
+            <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="action_btn">
+            <button mat-button matTooltip="View" [routerLink]="['/admin/subscription/subscription_details' , element._id]">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        
     </table>
 
     <!-- <div *ngIf="adminList?.data?.length==0">

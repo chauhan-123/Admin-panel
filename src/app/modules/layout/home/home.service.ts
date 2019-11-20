@@ -66,7 +66,6 @@ uploadProfile(images: File) {
   }
 
   getUserDetails(userId){
-console.log(userId);
 return this.httpClient.get<any>(this.baseUrl + `books_details`, { params: userId });
   }
  
