@@ -8,5 +8,7 @@ export const VALIDATION_CRITERIA = {
      phoneMaxLength : 10,
     locationMinLength:2,
     locationMaxLength:1000,
+    pincodeMinLength:6,
+    pincodeMaxLength:6
  
 };

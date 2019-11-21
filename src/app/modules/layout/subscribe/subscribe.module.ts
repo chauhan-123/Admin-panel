@@ -7,15 +7,22 @@ import { CustomdateModule } from 'src/app/pipe/customdate/customdate.module';
 import { SubscribeViewComponent } from './subscribe-view/subscribe-view.component';
 import { combineAll } from 'rxjs/operators';
 import { PaymentComponent } from './payment/payment.component';
+import { CashOnDeliveryComponent } from './cash-on-delivery/cash-on-delivery.component';
+import { DebitCardComponent } from './debit-card/debit-card.component';
+import { CreditCardComponent } from './credit-card/credit-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const subRoute:Routes =[
   {path:'', component:SubscribeComponent},
   {path:'subscription_details/:subscribeId', component:SubscribeViewComponent},
-  {path:'payment_gateway' , component:PaymentComponent}
+  {path:'payment_gateway' , component:PaymentComponent},
+  {path:'cashOnDelivery', component:CashOnDeliveryComponent},
+  {path:'debitCardPayment', component:DebitCardComponent},
+  {path:'creditCardPayment' , component:CreditCardComponent}
 ]
 
 @NgModule({
-  declarations: [SubscribeComponent, SubscribeViewComponent, PaymentComponent],
+  declarations: [SubscribeComponent, SubscribeViewComponent, PaymentComponent, CashOnDeliveryComponent, DebitCardComponent, CreditCardComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(subRoute),
@@ -35,7 +42,8 @@ const subRoute:Routes =[
     MatExpansionModule,
      MatOptionModule,
      MatSelectModule,
-     MatPaginatorModule
+     MatPaginatorModule,
+     ReactiveFormsModule
   ],
   entryComponents:[SubscribeViewComponent]
 })

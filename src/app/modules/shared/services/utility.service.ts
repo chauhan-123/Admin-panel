@@ -155,6 +155,20 @@ export class UtilityService {
         )];
     }
 
+    getPincodeControl(required = true, maxLength = 'pincodeMaxLength'){
+        let compose = [
+            Validators.pattern(PATTERN.phone),
+            Validators.minLength(VALIDATION_CRITERIA.pincodeMinLength),
+            Validators.maxLength(VALIDATION_CRITERIA[maxLength])
+        ];
+        if (required) {
+            compose.splice(0, 0, Validators.required);
+        }
+        return ['', Validators.compose(
+            compose
+        )];
+    }
+
     getPriceFormControl(required = true){
         let compose = [
             Validators.pattern(PATTERN.phone),

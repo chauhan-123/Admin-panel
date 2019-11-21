@@ -1,0 +1,160 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<div class="panel panel-primary" style="margin:20px;">
+    <div class="panel-heading">
+        <h3 class="panel-title">Cash On Delivery</h3>
+    </div>
+</div>
+
+<mat-card-content>
+        <form [formGroup]="cashOnDeliveryForm" (ngSubmit)="cashOnDeliveryForm.valid&&cashOnDelivery()">
+            <mat-form-field>
+                <input matInput required placeholder="First Name" firstName="firstname" formControlName="firstName">
+                <mat-error *ngIf="cashOnDeliveryForm['controls']['firstName']['errors']">
+                    {{getValidationError(cashOnDeliveryForm['controls']['firstName'],'firstName')}} please enter a name
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput required placeholder="Email Address" name="username" formControlName="email">
+                <mat-error *ngIf="cashOnDeliveryForm['controls']['email']['errors']">
+                    {{getValidationError(cashOnDeliveryForm['controls']['email'],'email')}} please enter a email</mat-error>
+            </mat-form-field>    <br>
+            <mat-form-field>
+                <input matInput required placeholder="Phone number" phone="phone" formControlName="phone">
+                <mat-error *ngIf="cashOnDeliveryForm['controls']['phone']['errors']">
+                    {{getValidationError(cashOnDeliveryForm['controls']['phone'],'phone')}} please enter a mobile number
+                </mat-error>
+            </mat-form-field>    <br>
+            <mat-form-field>
+                <input matInput required placeholder="Address" name="address" formControlName="address">
+                <mat-error *ngIf="cashOnDeliveryForm['controls']['address']['errors']">
+                    {{getValidationError(cashOnDeliveryForm['controls']['address'],'address')}} please enter a address</mat-error>
+            </mat-form-field>    <br>
+            <mat-form-field>
+                    <input matInput required placeholder="Country" formControlName="country">
+                    <mat-error *ngIf="cashOnDeliveryForm['controls']['country']['errors']">
+                        {{getValidationError(cashOnDeliveryForm['controls']['country'],'country')}} please enter a country</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                        <input matInput required placeholder="State" formControlName="state">
+                        <mat-error *ngIf="cashOnDeliveryForm['controls']['state']['errors']">
+                            {{getValidationError(cashOnDeliveryForm['controls']['state'],'state')}} please enter a state</mat-error>
+                    </mat-form-field>    <br>
+                    <mat-form-field>
+                            <input matInput required placeholder="City" formControlName="city">
+                            <mat-error *ngIf="cashOnDeliveryForm['controls']['city']['errors']">
+                                {{getValidationError(cashOnDeliveryForm['controls']['city'],'city')}} please enter a city</mat-error>
+                        </mat-form-field>    <br>
+                <mat-form-field>
+                        <input matInput required placeholder="Pincode" formControlName="pincode">
+                        <mat-error *ngIf="cashOnDeliveryForm['controls']['pincode']['errors']">
+                            {{getValidationError(cashOnDeliveryForm['controls']['pincode'],'pincode')}} please enter a pincode</mat-error>
+                        </mat-form-field><br>
+
+
+            <mat-card-actions class="text-center">
+                <button mat-raised-button type="submit" color="primary">Submit</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="panel-body">
+    <form [formGroup]="cashOnDeliveryForm" (ngSubmit)="cashOnDeliveryForm.valid&&cashOnDelivery()">
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="First Name" firstName="firstname" formControlName="firstName">
+                    <mat-error *ngIf="signForm['controls']['firstName']['errors']">
+                        {{getValidationError(signForm['controls']['firstName'],'firstName')}} please enter a name
+                    </mat-error>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="Email"  formControlName="email">
+                    <mat-error *ngIf="signForm['controls']['email']['errors']">
+                        {{getValidationError(signForm['controls']['email'],'email')}} please enter a email
+                    </mat-error>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="Mobile" formControlName="phone">
+                    <mat-error *ngIf="signForm['controls']['phone']['errors']">
+                        {{getValidationError(signForm['controls']['phone'],'phone')}} please enter a valid mobile number
+                    </mat-error>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="Address"  formControlName="address">
+                    <mat-error *ngIf="signForm['controls']['address']['errors']">
+                        {{getValidationError(signForm['controls']['address'],'address')}} please enter a Address
+                    </mat-error>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="City" formControlName="city">
+                    <mat-error *ngIf="signForm['controls']['city']['errors']">
+                        {{getValidationError(signForm['controls']['city'],'city')}} please enter a city name
+                    </mat-error>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="State"  formControlName="state">
+                    <mat-error *ngIf="signForm['controls']['state']['errors']">
+                        {{getValidationError(signForm['controls']['state'],'state')}} please enter a State name
+                    </mat-error>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="Country"  formControlName="country">
+                    <mat-error *ngIf="signForm['controls']['country']['errors']">
+                        {{getValidationError(signForm['controls']['country'],'country')}} please enter a country name
+                    </mat-error>
+            </div>
+            <div class="form-group col-md-6 col-sm-6">
+                    <input matInput required placeholder="Pincode"  formControlName="pincode">
+                    <mat-error *ngIf="signForm['controls']['pincode']['errors']">
+                        {{getValidationError(signForm['controls']['pincode'],'pincode')}} please enter a pincode  name
+                    </mat-error>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group col-md-3 col-sm-3 pull-right">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        </div>
+    </form>
+</div> -->
+
+</html>

@@ -115,6 +115,24 @@ export class AccountService {
     )
   }
 
+  // method for cashondeliveryForm
+  createCashOnDeliveryForm(){
+    return this._formBuilder.group(
+      {
+        firstName: this._utilityService.getNameFormControl(),
+        email: this._utilityService.getEmailFormControl(),
+        phone: this._utilityService.getPhoneFormControl(),
+        address: this._utilityService.getLocationFormControl(),
+        pincode: this._utilityService.getPincodeControl(),
+        country: this._utilityService.getNameFormControl(),
+        state: this._utilityService.getNameFormControl(),
+        city: this._utilityService.getNameFormControl(),
+      },
+      {
+      }
+    );
+  }
+
   isLoggedIn() {
     // return tokenNotExpired(); // exactly what we did below, provided by angular
     let jwt = new JwtHelper();
