@@ -11,30 +11,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./cash-on-delivery.component.scss']
 })
 export class CashOnDeliveryComponent implements OnInit {
-  cashOnDeliveryForm:FormGroup
-  constructor(private _accountService:AccountService,
-    private _subscribeService:SubscribeService,
-    private utility:UtilityService, 
-    private _router:Router) { 
+  cashOnDeliveryForm: FormGroup
+  constructor(private _accountService: AccountService,
+    private _subscribeService: SubscribeService,
+    private utility: UtilityService,
+    private _router: Router) {
     this.cashOnDeliveryForm = this._accountService.createCashOnDeliveryForm()
   }
 
   ngOnInit() {
   }
 
-  cashOnDelivery(){
-      if (this.cashOnDeliveryForm.invalid) {
-        return;
-      }
-      this._subscribeService.cashOnDelivery(this.cashOnDeliveryForm.value).subscribe(response =>{
-        console.log(response)
-        this.utility.openSnackBar('your data successfully store', true)
-        this._router.navigate(['/admin/subscription']);
-      }, error =>{
-      });
-      
-    
+  cashOnDelivery() {
+    if (this.cashOnDeliveryForm.invalid) {
+      return;
+    }
+    this._subscribeService.cashOnDelivery(this.cashOnDeliveryForm.value).subscribe(response => {
+      console.log(response)
+      this.utility.openSnackBar('your data successfully store', true)
+      this._router.navigate(['/admin/subscription']);
+    }, error => {
+    });
   }
+
+  // search button method 
+
+  searchButton(data) {
+    this._subscribeService.searchButtonData(data).subscribe(response=>{
+      console.log(response);
+    })
+}
 
   getValidationError(control, name) {
     return this._accountService.getValidationError(control, name);

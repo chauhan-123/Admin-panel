@@ -28,7 +28,6 @@ export class SubscribeViewComponent implements OnInit {
   getSubscriptionDetails(){
     this._layoutService.getSubscriptionDetails({subscribeId:this.subscribeId}).subscribe(response=>{
       this.subscribrData = response['result'][0];
-      console.log(this.subscribrData.email  , this.subscribrData)
     })
   }
 
