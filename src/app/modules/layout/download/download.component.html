@@ -13,3 +13,27 @@
     <app-input-files label="Add Video" accept="video/mp4" errorMessage="Only video files are accepted" maxFiles="1"></app-input-files>
   </div>
 </div>
+
+
+<!-- Add 4 photos -->
+<div class="home-card">
+  <div class="card-text" *ngFor ="let books of response">
+    <div class="card-img">
+      <img [src]="books?.images ? books?.images : 'assets/images/avatar.png'"alt="" (click)="downloadPhotos(books._id)" >
+    </div>
+  </div>
+
+</div>
+<div style="height: 100px;"> 
+  <a [href]="fileUrl" download="file.txt">DownloadFile</a>
+
+</div>
+
+
+
+
+
+
+
+
+

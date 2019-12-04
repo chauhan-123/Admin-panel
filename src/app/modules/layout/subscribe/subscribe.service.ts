@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../../shared/services/http.service';
 import { HttpClient } from '@angular/common/http';
+import { PaymentModel } from '../../shared/models/payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +21,14 @@ return this._http.post(`${this.baseUrl}cashOnDelivery` , data);
     console.log(data.pincode)
     return this.httpClient.get(this.baseUrl + `getPincodeData`, { params: data });
   }
+
+
+//  debit card payment online
+
+  createPayment(paymentRequest: PaymentModel) {
+    console.log(paymentRequest , '=============')
+    // const PAYMENT_URL = '/payment/pay';
+    return this._http.post(this.baseUrl, paymentRequest);
+  }
+
 }

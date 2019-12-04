@@ -38,3 +38,199 @@
     color: #444;
     font-size: 16px;
 }
+
+
+// add 4 photos css
+$thm_clr : #fff;
+$thm_clr_light : rgba($thm_clr, 0.1);
+
+.mat-toolbar-row{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+    box-shadow: 5px 5px 15px 0 rgba(46,61,73,.2);
+    color: #f9f9f9 !important;
+}
+.mat-badge-medium.mat-badge-after .mat-badge-content {
+    right: -8px;
+    top: -8px;
+    line-height: 18px;
+    border: 2px solid #393ef1;
+    background: #ffffff;
+    color: #fff;
+}
+.btn_group .mat-button{
+    min-width: 45px;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border-radius: 50%;
+    margin-left: 15px;
+    color: $thm_clr;
+}
+.logo{
+    display: flex;
+    max-height: 50px;
+    margin-left: 80px;
+    align-items: center;
+    color: #08575b;
+    img{
+        vertical-align: middle;
+        max-height: 50px;
+        margin-right: 10px;
+    }
+
+}
+
+.user_profile{
+    min-height: 150px;
+    text-align: center;
+    padding-top: 10px;
+    .img{
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+       
+    }
+    span{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 150px;
+        display: block;
+        font-weight: 500;
+
+    }
+}
+@media(max-width:767px){
+    .logo{margin-left: 60px;}
+    
+}
+@media (max-width: 599px){
+    .humburger{top: 7px;}
+}
+
+
+
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .username i{
+    position: relative;
+    top: 5px;
+  }
+
+
+  body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidepanel  {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color:#444;
+  }
+
+
+
+
+
+
+
+
+  .full-container {
+    width: 100%;
+    display: flex;
+}
+
+.sidebar {
+    min-width: 250px;
+    margin-right: 2%;
+    background:skyblue;
+    height: auto;
+    padding: 20px;
+    color: white;
+}
+.home-card {
+    width: 70%;
+    height: auto;
+    float: right;
+    padding: 20px;
+    background: white;
+    .card-text{
+        width: 200px;
+        margin: 0 auto;
+        height: auto;        
+        .card-img{
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }   
+    }     
+}
+
+
+p {
+    font-family: Lato;
+  }

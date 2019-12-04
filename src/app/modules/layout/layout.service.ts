@@ -31,4 +31,23 @@ export class LayoutService {
   getSubscriptionDetails(subscribeId){
     return this.httpClient.get(this.baseUrl + `viewSubscriptionDetails`, { params: subscribeId });
   }
+
+// 4 photos data
+  getBookListing(data) {
+    // data.page = data.page - 1;
+    return this.httpClient.get<any>(this.baseUrl + `get_book`, { params: data });
+ }
+
+
+ getImage(imageid) {
+   let data = {
+     imageid : imageid
+
+   }
+  return this.httpClient.get<any>(this.baseUrl + `download` , { params : data});
+    // .map((res) => {
+    //   return new Blob([res.body], {type: res.headers.get('Content-Type')});
+    // })
+
+}
 }

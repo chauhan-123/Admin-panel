@@ -96,6 +96,8 @@ export const POPUP_MESSAGES = {
     bookSave:'books are saved',
     logout: 'Logout',
     logoutConfirmation: 'Do you wish to logout?',
+    download:'download',
+    downloadConfirmation:'are u sure to download this photo?',
     saveAsDraft: 'Talk has been saved as draft successfully',
     talkAdded: 'Talk has been added successfully',
     classAdded: 'Class has been added successfully',

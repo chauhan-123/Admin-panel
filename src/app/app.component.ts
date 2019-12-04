@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { UtilityService } from './modules/shared/services/utility.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class AppComponent {
   loader = false;
   title = 'Login';
   constructor(
-    private _router: Router
+    private _router: Router,
+    private utility:UtilityService
   ) {
 
   }
@@ -23,6 +24,14 @@ export class AppComponent {
       }
       else if (event instanceof NavigationEnd) {
         UtilityService.loader.next(false)
+      }
+      else if (event instanceof NavigationError) {
+        let message = 'You are offline, please connect to internet and retry.';
+        if (navigator.onLine) {
+          message = 'Internal server error !';
+        }
+        this.utility.openSnackBar(message , true)
+        // this._popup.open(message, null, {duration: 5000});
       }
     });
     UtilityService.loader.subscribe(
