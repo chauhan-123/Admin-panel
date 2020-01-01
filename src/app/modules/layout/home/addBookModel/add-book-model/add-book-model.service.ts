@@ -13,7 +13,7 @@ export class AddBookModelService {
 
   submit(data) {
 console.log(data)
-    let apiType = data.id?'post':'put';
+    let apiType = data.id?'put':'post';
     let body = {
       images: data.images,
       name: data.name,
