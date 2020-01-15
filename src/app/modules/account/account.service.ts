@@ -123,7 +123,7 @@ export class AccountService {
         email: this._utilityService.getEmailFormControl(),
         phone: this._utilityService.getPhoneFormControl(),
         address: this._utilityService.getLocationFormControl(),
-        pincode: this._utilityService.getPincodeControl(),
+        // pincode: this._utilityService.getPincodeControl(),
         country: this._utilityService.getNameFormControl(),
         state: this._utilityService.getNameFormControl(),
         city: this._utilityService.getNameFormControl(),
@@ -131,6 +131,14 @@ export class AccountService {
       {
       }
     );
+  }
+
+  // method for creating pincode Form
+  createPincodeForm(){
+    return this._formBuilder.group(
+      {
+        pincode: this._utilityService.getPincodeControl(),
+      })
   }
 
   isLoggedIn() {

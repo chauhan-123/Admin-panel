@@ -110,6 +110,10 @@ export class EditProfileComponent implements OnInit {
     );
   }
 
+  // onRemoveFileHandler(data){
+
+  // }
+
   ngOnDestroy() {
     if (this.editProfileSubscription)
       this.editProfileSubscription.unsubscribe();

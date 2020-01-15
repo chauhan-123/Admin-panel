@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "compileOnSave": true,
+=======
+  "compileOnSave": false,
+>>>>>>> 63a66543acfbb2ef82931e310f27445ba833b8a2
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -19,4 +23,8 @@
       "dom"
     ]
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 63a66543acfbb2ef82931e310f27445ba833b8a2

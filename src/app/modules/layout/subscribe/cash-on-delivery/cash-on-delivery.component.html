@@ -55,19 +55,30 @@
                 {{getValidationError(cashOnDeliveryForm['controls']['city'],'city')}} please enter a city</mat-error>
         </mat-form-field> <br>
         <div class="example-container">
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <input matInput required placeholder="Pincode" formControlName="pincode">
                 <mat-error *ngIf="cashOnDeliveryForm['controls']['pincode']['errors']">
                     {{getValidationError(cashOnDeliveryForm['controls']['pincode'],'pincode')}} please enter a pincode
                 </mat-error>
-                <!-- <mat-icon class="search" (click)="searchButton(cashOnDeliveryForm.value)">search</mat-icon> -->
-            </mat-form-field><br>
+                <mat-icon class="search" (click)="searchButton(cashOnDeliveryForm.value)">search</mat-icon>
+            </mat-form-field><br> -->
         </div>
+
+
 
         <mat-card-actions class="text-center">
             <button mat-raised-button type="submit" color="primary">Submit</button>
         </mat-card-actions>
     </form>
+<form  [formGroup]="pincodeForm" (ngSubmit)="pincodeForm.valid&&pinCodeGetData()">
+    <mat-form-field>
+        <input matInput required placeholder="Pincode" formControlName="pincode">
+        <mat-error *ngIf="pincodeForm['controls']['pincode']['errors']">
+            {{getValidationError(pincodeForm['controls']['pincode'],'pincode')}} please enter a pincode
+        </mat-error>
+        <mat-icon class="search" (click)="searchButton(pincodeForm.value)">search</mat-icon>
+    </mat-form-field><br>
+</form>
 </mat-card-content>
 
 </html>

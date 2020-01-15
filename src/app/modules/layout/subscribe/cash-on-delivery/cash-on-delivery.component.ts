@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./cash-on-delivery.component.scss']
 })
 export class CashOnDeliveryComponent implements OnInit {
-  cashOnDeliveryForm: FormGroup
+  cashOnDeliveryForm: FormGroup;
+  pincodeForm:FormGroup;
   constructor(private _accountService: AccountService,
     private _subscribeService: SubscribeService,
     private utility: UtilityService,
     private _router: Router) {
     this.cashOnDeliveryForm = this._accountService.createCashOnDeliveryForm()
+    this.pincodeForm = this._accountService.createPincodeForm();
   }
 
   ngOnInit() {
@@ -27,7 +29,6 @@ export class CashOnDeliveryComponent implements OnInit {
       return;
     }
     this._subscribeService.cashOnDelivery(this.cashOnDeliveryForm.value).subscribe(response => {
-      console.log(response)
       this.utility.openSnackBar('your data successfully store', true)
       this._router.navigate(['/admin/subscription']);
     }, error => {
@@ -37,9 +38,14 @@ export class CashOnDeliveryComponent implements OnInit {
   // search button method 
 
   searchButton(data) {
+    console.log('data is on')
     this._subscribeService.searchButtonData(data).subscribe(response=>{
-      console.log(response);
+      console.log(response, 'response');
     })
+}
+
+pinCodeGetData(){
+  
 }
 
   getValidationError(control, name) {
